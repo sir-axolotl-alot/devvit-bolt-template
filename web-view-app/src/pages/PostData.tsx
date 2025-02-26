@@ -1,16 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Panel from '../components/Panel';
 import Button from '../components/Button';
+import devvitClient from '../lib/DevvitClient';
 
 const PostData: React.FC = () => {
   const [content, setContent] = useState<string>('Select an action');
 
+  useEffect(() => {
+    // Set up message handler for post data
+    devvitClient.on('FETCH_POSTS_RESPONSE', (data) => {
+      setContent(`Received post data: ${JSON.stringify(data)}`);
+    });
+
+    devvitClient.on('CREATE_POST_RESPONSE', (data) => {
+      setContent(`Post created: ${JSON.stringify(data)}`);
+    });
+
+    // Clean up event listeners when component unmounts
+    return () => {
+      devvitClient.off('FETCH_POSTS_RESPONSE');
+      devvitClient.off('CREATE_POST_RESPONSE');
+    };
+  }, []);
+
   const handleFetchPosts = () => {
-    setContent('Fetched post data would appear here');
+    setContent('Fetching post data...');
+    devvitClient.fetchPosts();
   };
 
   const handleCreatePost = () => {
-    setContent('Post creation form would appear here');
+    setContent('Preparing to create post...');
+    devvitClient.createPost({ title: 'New Post', content: 'Post content' });
   };
 
   return (

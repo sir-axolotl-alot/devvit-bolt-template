@@ -3,6 +3,7 @@ import './createPost.js';
 import { Devvit, useState, useWebView } from '@devvit/public-api';
 
 import type { DevvitMessage, WebViewMessage } from '../shared/types/message.js';
+import { createRedisService } from './redisService.js';
 
 Devvit.configure({
   redditAPI: true,
@@ -19,11 +20,7 @@ Devvit.addCustomPostType({
       return (await context.reddit.getCurrentUsername()) ?? 'anon';
     });
 
-    // Load latest counter from redis with `useAsync` hook
-    const [counter, setCounter] = useState(async () => {
-      const redisCount = await context.redis.get(`counter_${context.postId}`);
-      return Number(redisCount ?? 0);
-    });
+    const redisService = createRedisService(context);
 
     const webView = useWebView<WebViewMessage, DevvitMessage>({
       // URL of your web view content
@@ -33,25 +30,11 @@ Devvit.addCustomPostType({
       async onMessage(message, webView) {
         switch (message.type) {
           case 'webViewReady':
+            const postData = await redisService.getPostData(context.postId!);
             webView.postMessage({
               type: 'initialData',
               data: {
-                username: username,
-                currentCounter: counter,
-              },
-            });
-            break;
-          case 'setCounter':
-            await context.redis.set(
-              `counter_${context.postId}`,
-              message.data.newCounter.toString()
-            );
-            setCounter(message.data.newCounter);
-
-            webView.postMessage({
-              type: 'updateCounter',
-              data: {
-                currentCounter: message.data.newCounter,
+                postData: postData
               },
             });
             break;
@@ -78,13 +61,6 @@ Devvit.addCustomPostType({
               <text size="medium" weight="bold">
                 {' '}
                 {username ?? ''}
-              </text>
-            </hstack>
-            <hstack>
-              <text size="medium">Current counter:</text>
-              <text size="medium" weight="bold">
-                {' '}
-                {counter ?? ''}
               </text>
             </hstack>
           </vstack>

@@ -1,4 +1,6 @@
 import { Devvit } from '@devvit/public-api';
+import { createNewRandomPost } from '../shared/utils/createNewPost.js';
+import { createRedisService, RedisService } from './redisService.js'; 
 
 // Configure Devvit's plugins
 Devvit.configure({
@@ -22,6 +24,10 @@ Devvit.addMenuItem({
         </vstack>
       ),
     });
+    const postData = await createNewRandomPost();
+    const redisService = createRedisService(context);
+    await redisService.savePostData(post.id, postData);
+
     ui.showToast({ text: 'Created post!' });
     ui.navigateTo(post);
   },
