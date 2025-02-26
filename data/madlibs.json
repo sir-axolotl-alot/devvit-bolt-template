@@ -1,0 +1,54 @@
+{
+    "madlibs": [
+      {
+        "id": 1,
+        "title": "The Office Adventure",
+        "template": "My boss brought a %NOUN% to work today and decided to %VERB% it during our meeting. The entire staff was %ADJECTIVE% about the situation."
+      },
+      {
+        "id": 2,
+        "title": "Cooking Disaster",
+        "template": "I tried making dinner but accidentally used a %NOUN% as the main ingredient. I had to %VERB% the entire meal while my date looked %ADJECTIVE%."
+      },
+      {
+        "id": 3,
+        "title": "Traffic Troubles",
+        "template": "The traffic was terrible because someone's %NOUN% was in the middle of the highway. Police had to %VERB% around it while angry drivers honked %ADJECTIVE% horns."
+      },
+      {
+        "id": 4,
+        "title": "Pet Problems",
+        "template": "My neighbor's pet %NOUN% escaped and began to %VERB% all over my yard. The situation was completely %ADJECTIVE%."
+      },
+      {
+        "id": 5,
+        "title": "Weather Warning",
+        "template": "The weatherman predicted a 90% chance of %NOUN% today. He suggested we %VERB% indoors and remain %ADJECTIVE% until further notice."
+      },
+      {
+        "id": 6,
+        "title": "Gym Incident",
+        "template": "At the gym, I accidentally dropped a %NOUN% on my foot. I had to %VERB% all the way to the first aid station while everyone looked %ADJECTIVE%."
+      },
+      {
+        "id": 7,
+        "title": "Family Reunion",
+        "template": "At the family reunion, Uncle Bob brought his famous %NOUN% and started to %VERB% in front of everyone. Grandma was so %ADJECTIVE% she couldn't stop laughing."
+      },
+      {
+        "id": 8,
+        "title": "Job Interview",
+        "template": "During my job interview, a %NOUN% fell out of my pocket. I tried to %VERB% it away, but the interviewer seemed %ADJECTIVE% about the whole thing."
+      },
+      {
+        "id": 9,
+        "title": "Doctor Visit",
+        "template": "The doctor said my %NOUN% was perfectly normal, but suggested I don't %VERB% for at least a week. I was feeling rather %ADJECTIVE% about the diagnosis."
+      },
+      {
+        "id": 10,
+        "title": "Camping Trip",
+        "template": "On our camping trip, we forgot to pack a %NOUN%. We had to %VERB% one out of sticks and leaves, which was surprisingly %ADJECTIVE%!"
+      }
+    ]
+  }
