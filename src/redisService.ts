@@ -1,6 +1,6 @@
 import { Devvit } from "@devvit/public-api";
 import {PostData} from "../shared/types/postData.js";
-import {UserData} from "../shared/types/userData.js";
+import {GameUserData} from "../shared/types/userData.js";
 import {LeaderboardEntry} from "../shared/types/leaderboardEntry.js";
 
 Devvit.configure({
@@ -14,11 +14,11 @@ export type RedisService = {
     savePostData: (postId:string, postData: PostData) => Promise<void>;
 
     // User
-    getUserData: (userId:string) => Promise<UserData>;
-    saveUserData: (userId:string, userData: UserData) => Promise<void>;
+    getUserData: (userId:string) => Promise<GameUserData>;
+    saveUserData: (userId:string, userData: GameUserData) => Promise<void>;
 
     // Leaderboard
-    getLeaderboard: () => Promise<LeaderboardEntry[]>;
+    getLeaderboard: (topEntries:number) => Promise<LeaderboardEntry[]>;
     setLeaderboardEntry: (username:string, score:number) => Promise<void>;
 }
 
@@ -42,7 +42,7 @@ export function createRedisService(context: Devvit.Context): RedisService {
             console.log('Retrieved user', retrievedConfig, userId);
             return retrievedConfig ? JSON.parse(retrievedConfig) : null;
         },
-        saveUserData: async (userId:String, userData:UserData) => {
+        saveUserData: async (userId:String, userData:GameUserData) => {
             await redis.set(`user_${userId}`, JSON.stringify(userData));
             console.log('Saved user', userData, userId);
         },
@@ -52,8 +52,8 @@ export function createRedisService(context: Devvit.Context): RedisService {
             await redis.zAdd('leaderboard', {member: username, score:score});
             realtime.send('leaderboard_updates', {member:username, score:score});
         },
-        getLeaderboard: async () => {
-            const scores = await redis.zRange('leaderboard', 0, 5, {reverse:true, by:'rank'});
+        getLeaderboard: async (topEntries:number) => {
+            const scores = await redis.zRange('leaderboard', 0, topEntries, {reverse:true, by:'rank'});
             return scores.map((score) => {
                 return {
                     username: score.member,

@@ -1,4 +1,8 @@
-export type UserData = {
+export type GameUserData = {
+    favoriteColor: string;
+}
+
+export type RedditUserData = {
     username: string;
-    madlibsCreated: number;    
+    userId: string;
 }

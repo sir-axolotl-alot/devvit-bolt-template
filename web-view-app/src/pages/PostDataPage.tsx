@@ -3,13 +3,13 @@ import Panel from '../components/Panel';
 import Button from '../components/Button';
 import devvitClient from '../lib/DevvitClient';
 
-const PostData: React.FC = () => {
+const PostDataPage: React.FC = () => {
   const [title, setTitle] = useState<string>('');
   const [poem, setPoem] = useState<string>('(post data will show here)');
 
   useEffect(() => {
     // Set up message handler for post data
-    devvitClient.on('postDataReponse', (message) => {
+    devvitClient.on('fetchPostDataReponse', (message) => {
       if ('postData' in message.data) {
         setTitle(message.data.postData.poemTitle);
         setPoem(message.data.postData.poemBody);
@@ -18,7 +18,7 @@ const PostData: React.FC = () => {
     
     // Clean up event listeners when component unmounts
     return () => {
-      devvitClient.off('postDataReponse');
+      devvitClient.off('fetchPostDataReponse');
     };
   }, []);
 
@@ -56,4 +56,4 @@ const PostData: React.FC = () => {
   );
 };
 
-export default PostData;
+export default PostDataPage;

@@ -1,17 +1,26 @@
-import { UserData } from './userData.js';
+import { GameUserData, RedditUserData } from './userData.js';
 import { PostData } from './postData.js';
 import { LeaderboardEntry } from './leaderboardEntry.js';
 
 /** Message from Devvit to the web view. */
 export type DevvitMessage =
-  | { type: 'initialData'; data: { postData:PostData } }
-  | { type: 'leaderboardUpdated'; data: { leaderboard:LeaderboardEntry[] } };
+  | { type: 'initialData'; data: { userId:string, postId:string } }
+  | { type: 'fetchPostDataReponse'; data: { postData:PostData } }
+  | { type: 'fetchLeaderboardResponse'; data: { leaderboard:LeaderboardEntry[] } }
+  | { type: 'fetchUserDataResponse'; data: { redditUser:RedditUserData, dbUser:GameUserData } }
+
 
 export type DevvitMessageType = DevvitMessage['type'];
 
 /** Message from the web view to Devvit. */
 export type WebViewMessage =
-  | { type: 'webViewReady' };
+  | { type: 'webViewReady' }
+  | { type: 'fetchPostData'}
+  | { type: 'createNewPost' }
+  | { type: 'setUserScore'; data: { score:number } }
+  | { type: 'setUserData'; data: { userId: string, userData:GameUserData } }
+  | { type: 'fetchLeaderboard', data: {topEntries:number} }
+  | { type: 'fetchUserData', data: {userId:string} }
 
 export type WebViewMessageType = WebViewMessage['type'];
 

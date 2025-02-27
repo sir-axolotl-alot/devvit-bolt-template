@@ -1,9 +1,10 @@
-import './createPost.js';
+import './menuActions.js';
 
 import { Devvit, useState, useWebView } from '@devvit/public-api';
 
 import type { DevvitMessage, WebViewMessage } from '../shared/types/message.js';
 import { createRedisService } from './redisService.js';
+import { handleWebViewMessages } from './webViewMessageHandler.js';
 
 Devvit.configure({
   redditAPI: true,
@@ -20,27 +21,13 @@ Devvit.addCustomPostType({
       return (await context.reddit.getCurrentUsername()) ?? 'anon';
     });
 
-    const redisService = createRedisService(context);
-
     const webView = useWebView<WebViewMessage, DevvitMessage>({
       // URL of your web view content
       url: 'game.html',
 
       // Handle messages sent from the web view
-      async onMessage(message, webView) {
-        switch (message.type) {
-          case 'webViewReady':
-            const postData = await redisService.getPostData(context.postId!);
-            webView.postMessage({
-              type: 'initialData',
-              data: {
-                postData: postData
-              },
-            });
-            break;
-          default:
-            throw new Error(`Unknown message type: ${message satisfies never}`);
-        }
+      async onMessage(message: WebViewMessage, webView) {
+        await handleWebViewMessages(message, webView, context);
       },
       onUnmount() {
         context.ui.showToast('Web view closed!');

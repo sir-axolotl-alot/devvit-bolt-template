@@ -1,4 +1,4 @@
-import { DevvitMessage, DevvitMessageType, WebViewMessage, WebViewMessageType, DevvitSystemMessage } from '../../../shared/types/message';
+import { DevvitMessage, DevvitMessageType, WebViewMessage, DevvitSystemMessage } from '../../../shared/types/message';
 
 /**
  * DevvitClient - A client for communicating with the parent window
@@ -9,6 +9,8 @@ import { DevvitMessage, DevvitMessageType, WebViewMessage, WebViewMessageType, D
 export class DevvitClient {
   private initialized: boolean = false;
   private messageHandlers: Map<DevvitMessageType, (message: DevvitMessage) => void> = new Map();
+  public userId:string|undefined;
+  public postId:string|undefined;
 
   /**
    * Initialize the client and set up message listeners
@@ -18,9 +20,6 @@ export class DevvitClient {
     
     // Set up event listener for Devvit system messages
     window.addEventListener('message', (ev:MessageEvent) => this.handleMessage(ev.data as DevvitSystemMessage));
-    
-    console.log('Webview', 'DevvitClient initialized');
-    this.initialized = true;
     
     this.postMessage({type:'webViewReady'});
     console.log('Webview', 'Sent webViewReady message');
@@ -49,8 +48,12 @@ export class DevvitClient {
     const message = devvitSystemMessage.data.message;
     console.log('Webview', 'Parsed Message', message);
     const { type } = message;
-    
-    if (type && this.messageHandlers.has(type)) {
+
+    if (type == 'initialData') {
+      this.userId = message.data.userId;
+      this.postId = message.data.postId;
+      this.initialized = true;
+    } else if (type && this.messageHandlers.has(type)) {
       const handler = this.messageHandlers.get(type);
       if (handler) {
         handler(message);
@@ -76,60 +79,6 @@ export class DevvitClient {
     public off(type: DevvitMessageType): void {
       this.messageHandlers.delete(type);
     }
-
-  /**
-   * Fetch users data
-   * This would typically make an API call, but for now it just sends a message
-   */
-  public fetchUsers(): void {
-    console.log('Fetching users...');
-    return;
-  }
-
-  /**
-   * Update user data
-   * This would typically make an API call, but for now it just sends a message
-   */
-  public updateUser(userData: any): void {
-    console.log('Updating user...', userData);
-    return;
-  }
-
-  /**
-   * Fetch posts data
-   * This would typically make an API call, but for now it just sends a message
-   */
-  public fetchPosts(): void {
-    console.log('Fetching posts...');
-    return;
-  }
-
-  /**
-   * Create a new post
-   * This would typically make an API call, but for now it just sends a message
-   */
-  public createPost(postData: any): void {
-    console.log('Creating post...', postData);
-    return;
-  }
-
-  /**
-   * Get weekly leaderboard data
-   * This would typically make an API call, but for now it just sends a message
-   */
-  public getWeeklyLeaderboard(): void {
-    console.log('Getting weekly leaderboard...');
-    return;
-  }
-
-  /**
-   * Get all-time leaderboard data
-   * This would typically make an API call, but for now it just sends a message
-   */
-  public getAllTimeLeaderboard(): void {
-    console.log('Getting all-time leaderboard...');
-    return;
-  }
 }
 
 // Create a singleton instance
