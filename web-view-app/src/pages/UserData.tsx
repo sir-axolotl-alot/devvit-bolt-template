@@ -7,20 +7,21 @@ import { DevvitMessage } from '../../../shared/types/message';
 const UserData: React.FC = () => {
   const [content, setContent] = useState<string>('Select an action');
 
-  useEffect(() => {
-    // Set up message handler for user data
-    devvitClient.on('initialData', (message) => {
-      if ('postData' in message.data) {
-        const initialData = message.data.postData;
-        setContent(`Title ${initialData.poemTitle} - Body: ${initialData.poemBody}`);
-      }
-    });
+  // useEffect(() => {
+  //   // Set up message handler for user data
+  //   devvitClient.on('initialData', (message) => {
+  //     if ('postData' in message.data) {
+  //       const initialData = message.data.postData;
+  //       console.log('Received initial data', initialData);
+  //       setContent(`Title ${initialData.poemTitle} - Body: ${initialData.poemBody}`);
+  //     }
+  //   });
 
-    // Clean up event listeners when component unmounts
-    return () => {
-      devvitClient.off('initialData');
-    };
-  }, []);
+  //   // Clean up event listeners when component unmounts
+  //   return () => {
+  //     devvitClient.off('initialData');
+  //   };
+  // }, []);
 
   const handleFetchUsers = () => {
     setContent('Fetching user data...');

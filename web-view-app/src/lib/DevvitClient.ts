@@ -1,4 +1,4 @@
-import { DevvitMessage, DevvitMessageType, WebViewMessage, WebViewMessageType } from '../../../shared/types/message';
+import { DevvitMessage, DevvitMessageType, WebViewMessage, WebViewMessageType, DevvitSystemMessage } from '../../../shared/types/message';
 
 /**
  * DevvitClient - A client for communicating with the parent window
@@ -16,16 +16,15 @@ export class DevvitClient {
   public initialize(): void {
     if (this.initialized) return;
     
-    // Set up event listener for messages from parent
-    window.addEventListener('message', (ev:MessageEvent) => this.handleMessage(ev.data as DevvitMessage));
-    window.addEventListener('load', () => this.onLoaded());
-        
-    console.log('DevvitClient initialized');
+    // Set up event listener for Devvit system messages
+    window.addEventListener('message', (ev:MessageEvent) => this.handleMessage(ev.data as DevvitSystemMessage));
+    
+    console.log('Webview', 'DevvitClient initialized');
     this.initialized = true;
-  }
-
-  private onLoaded(): void {
+    
     this.postMessage({type:'webViewReady'});
+    console.log('Webview', 'Sent webViewReady message');
+
   }
 
   /**
@@ -45,13 +44,17 @@ export class DevvitClient {
   /**
    * Handle incoming messages from the parent window
    */
-  private handleMessage(message: DevvitMessage): void {
-    switch (message.type) {
-      case 'initialData':
-        
-        break;
-      default:
-        console.warn('Unknown message type', message);  
+  private handleMessage(devvitSystemMessage: DevvitSystemMessage): void {
+    console.log('Webview', 'Handling message', devvitSystemMessage);
+    const message = devvitSystemMessage.data.message;
+    console.log('Webview', 'Parsed Message', message);
+    const { type } = message;
+    
+    if (type && this.messageHandlers.has(type)) {
+      const handler = this.messageHandlers.get(type);
+      if (handler) {
+        handler(message);
+      }
     }
   }
 

@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import UserData from './pages/UserData';
 import PostData from './pages/PostData';
@@ -16,7 +16,7 @@ function App() {
     <Router>
       <Layout>
         <Routes>
-          <Route path="/" element={<UserData />} />
+          <Route path="/" element={<Navigate to="/post-data" replace />} />
           <Route path="/user-data" element={<UserData />} />
           <Route path="/post-data" element={<PostData />} />
           <Route path="/leaderboards" element={<Leaderboards />} />

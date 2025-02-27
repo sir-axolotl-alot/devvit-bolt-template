@@ -6,22 +6,22 @@ import devvitClient from '../lib/DevvitClient';
 const Leaderboards: React.FC = () => {
   const [content, setContent] = useState<string>('Select an action');
 
-  useEffect(() => {
-    // Set up message handler for leaderboard data
-    devvitClient.on('GET_WEEKLY_LEADERBOARD_RESPONSE', (data) => {
-      setContent(`Received weekly leaderboard: ${JSON.stringify(data)}`);
-    });
+  // useEffect(() => {
+  //   // Set up message handler for leaderboard data
+  //   devvitClient.on('GET_WEEKLY_LEADERBOARD_RESPONSE', (data) => {
+  //     setContent(`Received weekly leaderboard: ${JSON.stringify(data)}`);
+  //   });
 
-    devvitClient.on('GET_ALL_TIME_LEADERBOARD_RESPONSE', (data) => {
-      setContent(`Received all-time leaderboard: ${JSON.stringify(data)}`);
-    });
+  //   devvitClient.on('GET_ALL_TIME_LEADERBOARD_RESPONSE', (data) => {
+  //     setContent(`Received all-time leaderboard: ${JSON.stringify(data)}`);
+  //   });
 
-    // Clean up event listeners when component unmounts
-    return () => {
-      devvitClient.off('GET_WEEKLY_LEADERBOARD_RESPONSE');
-      devvitClient.off('GET_ALL_TIME_LEADERBOARD_RESPONSE');
-    };
-  }, []);
+  //   // Clean up event listeners when component unmounts
+  //   return () => {
+  //     devvitClient.off('GET_WEEKLY_LEADERBOARD_RESPONSE');
+  //     devvitClient.off('GET_ALL_TIME_LEADERBOARD_RESPONSE');
+  //   };
+  // }, []);
 
   const handleShowWeekly = () => {
     setContent('Fetching weekly leaderboard...');
