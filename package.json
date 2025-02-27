@@ -14,6 +14,7 @@
     "upload": "npm run build:webroot --workspace=web-view-app && devvit upload"
   },
   "dependencies": {
+    "@devvit/payments": "^0.11.7",
     "@devvit/public-api": "0.11.7"
   },
   "devDependencies": {

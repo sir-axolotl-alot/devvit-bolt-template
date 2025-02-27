@@ -61,7 +61,7 @@ const UserDataPage: React.FC = () => {
           </Panel>
           <Panel title="Redis User Info">
             <div>
-              <p className="text-gray-600">Favorite color here:</p>
+              <p className="text-gray-600">Favorite color:</p>
               <input
                 type="string"
                 value={dbUser ? dbUser.favoriteColor : ''}

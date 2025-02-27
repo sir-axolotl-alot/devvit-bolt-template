@@ -1,6 +1,7 @@
 import { GameUserData, RedditUserData } from './userData.js';
 import { PostData } from './postData.js';
 import { LeaderboardEntry } from './leaderboardEntry.js';
+import { Product, Order} from './payments.js';
 
 /** Message from Devvit to the web view. */
 export type DevvitMessage =
@@ -8,7 +9,8 @@ export type DevvitMessage =
   | { type: 'fetchPostDataReponse'; data: { postData:PostData } }
   | { type: 'fetchLeaderboardResponse'; data: { leaderboard:LeaderboardEntry[] } }
   | { type: 'fetchUserDataResponse'; data: { redditUser:RedditUserData, dbUser:GameUserData } }
-
+  | { type: 'fetchAvailableProductsResponse'; data: { products:Product[] } }
+  | { type: 'fetchOrdersResponse'; data: { orders:Order[] } }
 
 export type DevvitMessageType = DevvitMessage['type'];
 
@@ -21,6 +23,9 @@ export type WebViewMessage =
   | { type: 'setUserData'; data: { userId: string, userData:GameUserData } }
   | { type: 'fetchLeaderboard', data: {topEntries:number} }
   | { type: 'fetchUserData', data: {userId:string} }
+  | { type: 'fetchAvailableProducts' }
+  | { type: 'fetchOrders' }
+  | { type: 'buyProduct'; data: { sku:string } }
 
 export type WebViewMessageType = WebViewMessage['type'];
 
