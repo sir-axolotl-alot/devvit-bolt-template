@@ -4,8 +4,8 @@ import Button from '../components/Button';
 import devvitClient from '../lib/DevvitClient';
 
 const PostDataPage: React.FC = () => {
-  const [title, setTitle] = useState<string>('');
-  const [poem, setPoem] = useState<string>('(post data will show here)');
+  const [title, setTitle] = useState<string|undefined>(undefined);
+  const [poem, setPoem] = useState<string|undefined>(undefined);
 
   useEffect(() => {
     // Set up message handler for post data
@@ -40,16 +40,19 @@ const PostDataPage: React.FC = () => {
         <div className="flex sm:flex-col space-x-2 sm:space-x-0 sm:space-y-2 sm:w-48">
           <Button onClick={fetchPostData} >Fetch Post Data</Button>
           <Button onClick={handleCreatePost} variant="secondary">Create Post</Button>
-        </div>
-
-        <div className="flex-1">
           <Panel title="Demo Instructions">
             <p className="text-gray-600">In this example, each post has an AI-generated poem. Click the buttons to the left to load data for this post, or create a new post with a new poem</p>
           </Panel>
+        </div>
 
-          <Panel title={title}>
-            <p className="text-gray-600" style={{whiteSpace: 'pre-line'}}>{poem}</p>
-          </Panel>         
+        <div className="flex-1">
+          <Panel title={title !== undefined ? title : '(No post title loaded)'}>
+            {poem === undefined ? (
+              <p className="text-gray-600"><i>(No post data loaded)</i></p>
+            ) : (
+              <p className="text-gray-600" style={{whiteSpace: 'pre-line'}}>{poem}</p>
+            )}
+          </Panel>
         </div>
       </div>
     </div>

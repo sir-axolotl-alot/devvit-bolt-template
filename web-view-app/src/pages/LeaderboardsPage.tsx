@@ -42,23 +42,23 @@ const LeaderboardsPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
         <div className="flex sm:flex-col space-x-2 sm:space-x-0 sm:space-y-2 sm:w-48">
           <Button onClick={fetchLeaderboardFromDevvit}>Load Leaderboard</Button>
+          <Panel title="Demo Instructions">
+            <p className="text-gray-600">Click on load leaderboards to show leaderboards on the panel below. You can also set your current score here:</p>
+          </Panel>
         </div>
         
         <div className="flex-1">
-          <Panel title="Demo Instructions">
-            <p className="text-gray-600">Click on load leaderboards to show leaderboards on the panel below. You can also set your current score here:</p>
-            <input
+          <Panel title="Leaderboard">
+          <input
               type="number"
               value={currentScore}
               onChange={(e) => setCurrentScore(parseInt(e.target.value))}
               className="border border-gray-300 rounded-md p-2" ></input>
-            <Button onClick={() => sendCurrentScoreToDevvit(currentScore)} >Set Score</Button>
-          </Panel>
-          <Panel title="Leaderboard">
+          <Button onClick={() => sendCurrentScoreToDevvit(currentScore)} >Set Score</Button>
             {loading ? (
               <p className="text-gray-600">Loading leaderboard data...</p>
             ) : entries.length === 0 ? (
-              <p className="text-gray-600">No leaderboard data available.</p>
+              <p className="text-gray-600"><i>(No leaderboard data available.)</i></p>
             ) : (
               <div className="overflow-hidden rounded-lg border border-gray-200">
                 <table className="min-w-full divide-y divide-gray-200">

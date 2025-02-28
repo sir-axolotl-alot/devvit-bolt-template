@@ -4,8 +4,8 @@ import { Devvit, useState, useWebView } from '@devvit/public-api';
 
 import type { DevvitMessage, WebViewMessage } from '../shared/types/message.js';
 import { createRedisService } from './redisService.js';
-import { fetchAvailableProducts, fulfillOrder, handleWebViewMessages, productPurchaseHandler, refundOrder } from './webViewMessageHandler.js';
-import { addPaymentHandler, useProducts, usePayments, OrderResultStatus } from '@devvit/payments';
+import { fetchAvailableProducts, fetchOrders, fulfillOrder, handleWebViewMessages, productPurchaseHandler, refundOrder } from './webViewMessageHandler.js';
+import { addPaymentHandler, useProducts, usePayments, OrderResultStatus, useOrders } from '@devvit/payments';
 
 Devvit.configure({
   redditAPI: true,
@@ -43,6 +43,8 @@ Devvit.addCustomPostType({
       context.ui.showToast(result.status === OrderResultStatus.Success ? 'Purchase successful!' : 'Purchase failed');
     });
 
+    const orders = useOrders(context);
+
     const webView = useWebView<WebViewMessage, DevvitMessage>({
       // URL of your web view content
       url: 'game.html',
@@ -64,10 +66,10 @@ Devvit.addCustomPostType({
                 return;
             }
             console.log('Fetched all products:', catalog.products);
-            fetchAvailableProducts(webView, catalog.products);
+            await fetchAvailableProducts(webView, catalog.products);
             break;
           case 'fetchOrders':
-            console.log('TODO');
+            await fetchOrders(orders.orders, webView);
             break;
           case 'buyProduct':
             console.log('Devvit', 'Received buy product message:', message.data.sku);

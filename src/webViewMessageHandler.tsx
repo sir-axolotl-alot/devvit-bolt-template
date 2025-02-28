@@ -128,20 +128,24 @@ export async function refundOrder(order: DevvitOrder, context: TriggerContext) {
     // TODO
 }
 
-async function fetchOrders(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context) {
-    const orders:Order[] = [
-        { orderId:'1', productSku:'a', productName:'Sword', purchaseDate:'2021-01-01' },
-        { orderId:'2', productSku:'b', productName:'Shield', purchaseDate:'2021-01-02' },
-        { orderId:'3', productSku:'c', productName: 'Potion', purchaseDate:'2021-01-03' },
-    ];
-
+export async function fetchOrders(orders:DevvitOrder[], webView: UseWebViewResult<DevvitMessage>) {
+    console.log('Devvit', 'Fetching orders', orders);
+    const webviewOrders = orders.map((order) => {
+        return {
+            orderId: order.id,
+            productSku: order.products[0].sku,
+            productName: order.products[0].displayName,
+            purchaseDate: order.createdAt?.toISOString() ?? '',
+            status: order.status,
+        } as Order;
+    });
     webView.postMessage({
         type: 'fetchOrdersResponse',
         data: {
-            orders: orders
+            orders: webviewOrders
         },
     });
-    console.log('Devvit', 'Sent orders to web view');
+    console.log('Devvit', 'Sent orders to web view', webviewOrders);
 }
 
 async function buyProduct(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context) {

@@ -63,7 +63,10 @@ const PaymentsPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
         <div className="flex sm:flex-col space-x-2 sm:space-x-0 sm:space-y-2 sm:w-48">
           <Button onClick={fetchProducts}>Load Products</Button>
-          <Button onClick={fetchOrders}>Load Orders</Button>
+          <Button onClick={fetchOrders} variant='secondary'>Load Orders</Button>
+          <Panel title="Demo Instructions">
+            <p className="text-gray-600">Click on Load Products to see and purchase products with Reddit Gold. Click on Load Orders to see previous orders for this user</p>
+          </Panel>
         </div>
         
         <div className="flex-1">
@@ -71,7 +74,7 @@ const PaymentsPage: React.FC = () => {
             {currentTab === PaymentsTab.Products  && (
               <>
               {products === undefined ? (
-                <p className="text-gray-600">Click on load products</p>
+                <p className="text-gray-600"><i>(No product information loaded)</i></p>
               ) : (
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
@@ -120,16 +123,22 @@ const PaymentsPage: React.FC = () => {
                       <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Purchase Date
                       </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Status
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
                     {orders.map((entry, index) => (
                       <tr key={index} className="hover:bg-gray-50">
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                          {entry.productName}
+                          {entry.productSku}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-indigo-600">
                           {entry.purchaseDate}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-indigo-600">
+                          {entry.status}
                         </td>
                       </tr>
                     ))}

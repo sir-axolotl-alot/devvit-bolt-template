@@ -47,11 +47,14 @@ const UserDataPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
         <div className="flex sm:flex-col space-x-2 sm:space-x-0 sm:space-y-2 sm:w-48">
           <Button onClick={handleFetchUser}>Fetch User Info</Button>
+          <Panel title="Demo Instructions">
+            <p className="text-gray-600">User data is defined in <pre>userData.ts</pre>. Some user data comes from the Reddit API. Use the payments tab to acquire weapons.</p>
+          </Panel>
         </div>
         <div className="flex-1">
           <Panel title="Reddit User Info">
             {redditUser === undefined ? (
-              <p className="text-gray-600">(No Reddit user data loaded)</p>
+              <p className="text-gray-600"><i>(No Reddit user data loaded)</i></p>
             ) : (
               <>
                 <p className="text-gray-600">Username: <b>{redditUser.username}</b> </p>
@@ -62,15 +65,25 @@ const UserDataPage: React.FC = () => {
           <Panel title="Redis User Info">
             <div>
               <p className="text-gray-600">Favorite color:</p>
-              <input
-                type="string"
-                value={dbUser ? dbUser.favoriteColor : ''}
-                onChange={(e) => setDbUser(dbUser ? {...dbUser, favoriteColor: e.target.value} : undefined)}
-                className="border border-gray-300 rounded-md p-2" ></input>      
-              <Button onClick={() => sendCurrentUserToDevvit(dbUser)} >Save</Button>          
+              {dbUser === undefined ? (
+                <p className="text-gray-600"><i>(No Redis user data loaded)</i></p>
+              ) : (
+                <>
+                  <input
+                    type="string"
+                    value={dbUser ? dbUser.favoriteColor : ''}
+                    onChange={(e) => setDbUser(dbUser ? {...dbUser, favoriteColor: e.target.value} : undefined)}
+                    className="border border-gray-300 rounded-md p-2" ></input>      
+                  <Button onClick={() => sendCurrentUserToDevvit(dbUser)} >Save</Button>    
+                </>
+                )}                    
             </div>
             <div style={{ overflowY: 'scroll', maxHeight: '200px' }}>
               <p className="text-gray-600">Acquired weapons:</p>
+              {dbUser === undefined ? (
+                <p className="text-gray-600"><i>(No Redis user data loaded)</i></p>
+              ) : (
+              <>
               <ul>
                 {Object.entries(
                   (dbUser?.weapons || []).reduce((acc: Record<string, number>, str: string) => {
@@ -83,6 +96,8 @@ const UserDataPage: React.FC = () => {
                   </li>
                 ))}
               </ul>
+              </>
+            )}
             </div>
           </Panel>
         </div>
