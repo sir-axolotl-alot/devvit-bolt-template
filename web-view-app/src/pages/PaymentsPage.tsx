@@ -30,10 +30,15 @@ const PaymentsPage: React.FC = () => {
       }
     });
 
+    devvitClient.on('buyProductResponse', (message) => {
+      console.log('WebView', 'Received buy product callback', message);
+    });
+
     // Clean up event listeners when component unmounts
     return () => {
       devvitClient.off('fetchAvailableProductsResponse');
       devvitClient.off('fetchOrdersResponse');
+      devvitClient.off('buyProductResponse');
     };
   }, []);
 

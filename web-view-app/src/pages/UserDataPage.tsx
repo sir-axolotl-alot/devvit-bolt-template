@@ -65,9 +65,24 @@ const UserDataPage: React.FC = () => {
               <input
                 type="string"
                 value={dbUser ? dbUser.favoriteColor : ''}
-                onChange={(e) => setDbUser({...dbUser, favoriteColor: e.target.value})}
+                onChange={(e) => setDbUser(dbUser ? {...dbUser, favoriteColor: e.target.value} : undefined)}
                 className="border border-gray-300 rounded-md p-2" ></input>      
               <Button onClick={() => sendCurrentUserToDevvit(dbUser)} >Save</Button>          
+            </div>
+            <div style={{ overflowY: 'scroll', maxHeight: '200px' }}>
+              <p className="text-gray-600">Acquired weapons:</p>
+              <ul>
+                {Object.entries(
+                  (dbUser?.weapons || []).reduce((acc: Record<string, number>, str: string) => {
+                    acc[str] = (acc[str] || 0) + 1;
+                    return acc;
+                  }, {})
+                ).map(([name, count]) => (
+                  <li key={name}>
+                    {name} (x{count})
+                  </li>
+                ))}
+              </ul>
             </div>
           </Panel>
         </div>

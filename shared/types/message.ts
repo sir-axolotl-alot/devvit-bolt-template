@@ -9,8 +9,9 @@ export type DevvitMessage =
   | { type: 'fetchPostDataReponse'; data: { postData:PostData } }
   | { type: 'fetchLeaderboardResponse'; data: { leaderboard:LeaderboardEntry[] } }
   | { type: 'fetchUserDataResponse'; data: { redditUser:RedditUserData, dbUser:GameUserData } }
-  | { type: 'fetchAvailableProductsResponse'; data: { products:Product[] } }
+  | { type: 'fetchAvailableProductsResponse'; data: { products:Product[], error:string } }
   | { type: 'fetchOrdersResponse'; data: { orders:Order[] } }
+  | { type: 'buyProductResponse'; data: { productSku:string, status:string, error:string } }
 
 export type DevvitMessageType = DevvitMessage['type'];
 

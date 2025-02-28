@@ -1,8 +1,9 @@
-import { Devvit, UseWebViewResult } from "@devvit/public-api";
+import { Devvit, TriggerContext, UseWebViewResult } from "@devvit/public-api";
 import { WebViewMessage, DevvitMessage } from "../shared/types/message.js";
 import { createRedisService } from "./redisService.js";
 import { createNewRandomPost } from "../shared/utils/createNewPost.js";
 import { Product, Order } from "../shared/types/payments.js";
+import { Product as DevvitProduct, Order as DevvitOrder, OnPurchaseResult, OrderResultStatus } from "@devvit/payments";
 
 async function fetchPostData(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context) {
     const redisService = createRedisService(context);
@@ -85,19 +86,46 @@ async function setUserData(message: WebViewMessage, webView: UseWebViewResult<De
     }
 }
 
-async function fetchAvailableProducts(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context) {
-    const products:Product[] = [
-        { sku:'a', name:'Sword', description: 'Sword that seals darkness', price: 100, imageUrl: 'sword.png' },
-        { sku:'b', name:'Shield', description: 'Shield of light', price: 50, imageUrl: 'shield.png' },
-        { sku:'c', name:'Potion', description: 'Heals 50 HP', price: 10, imageUrl: 'potion.png' },
-    ];
+export async function fetchAvailableProducts(webView: UseWebViewResult<DevvitMessage>, products: DevvitProduct[]) {
+    const webviewProducts = products.map((product) => {
+        return {
+            sku: product.sku,
+            name: product.displayName,
+            description: product.description,
+            price: product.price,
+            imageUrl: product.images?.icon ?? '',
+        } as Product;
+    });
+    
     webView.postMessage({
         type: 'fetchAvailableProductsResponse',
         data: {
-            products: products
+            products: webviewProducts,
+            error: '',
         },
     });
     console.log('Devvit', 'Sent available products to web view');
+}
+
+export async function productPurchaseHandler(result: OnPurchaseResult) { 
+    
+}
+
+export async function fulfillOrder(order: DevvitOrder, context: TriggerContext) {
+    const redisService = createRedisService(context);
+    const user = await redisService.getUserData(context.userId!);
+    if (!user.weapons) {
+        user.weapons = [];
+    }
+    order.products.forEach((product) => {
+        user.weapons.push(product.displayName);
+    });
+    await redisService.saveUserData(context.userId!, user);
+    console.log('Devvit', 'Fulfilled order:', order);
+}
+
+export async function refundOrder(order: DevvitOrder, context: TriggerContext) {
+    // TODO
 }
 
 async function fetchOrders(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context) {
@@ -150,16 +178,7 @@ export async function handleWebViewMessages(message: WebViewMessage, webView: Us
         case 'setUserData':
             await setUserData(message, webView, context);
             break;
-        case 'fetchAvailableProducts':
-            await fetchAvailableProducts(message, webView, context);
-            break;
-        case 'fetchOrders':
-            await fetchOrders(message, webView, context);
-            break;
-        case 'buyProduct':
-            await buyProduct(message, webView, context);
-            break;
         default:
-          throw new Error(`Unknown message type: ${message satisfies never}`);
+          throw new Error(`Unknown message type: ${message.type}`);
       }
 }

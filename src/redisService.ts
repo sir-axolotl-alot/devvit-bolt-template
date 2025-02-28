@@ -1,4 +1,4 @@
-import { Devvit } from "@devvit/public-api";
+import { Devvit, TriggerContext } from "@devvit/public-api";
 import {PostData} from "../shared/types/postData.js";
 import {GameUserData} from "../shared/types/userData.js";
 import {LeaderboardEntry} from "../shared/types/leaderboardEntry.js";
@@ -22,7 +22,7 @@ export type RedisService = {
     setLeaderboardEntry: (username:string, score:number) => Promise<void>;
 }
 
-export function createRedisService(context: Devvit.Context): RedisService {
+export function createRedisService(context: Devvit.Context|TriggerContext): RedisService {
     const { redis, realtime } = context;
     return {
         // Post
