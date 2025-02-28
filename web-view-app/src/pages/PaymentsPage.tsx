@@ -15,22 +15,28 @@ const PaymentsPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]|undefined>(undefined);
   const [orders, setOrders] = useState<Order[]|undefined>(undefined);
   const [currentTab, setCurrentTab] = useState<PaymentsTab>(PaymentsTab.Products);
+  const [message, setMessage] = useState<string>(' ');
 
   useEffect(() => {
     // Set up message handler for Payments data
     devvitClient.on('fetchAvailableProductsResponse', (message) => {
       if ('products' in message.data) {
         setProducts(message.data.products as Product[]);
+        setMessage('Products loaded.');
       }
     });
 
     devvitClient.on('fetchOrdersResponse', (message) => {
       if ('orders' in message.data) {
         setOrders(message.data.orders as Order[]);
+        setMessage('Orders loaded.');
       }
     });
 
     devvitClient.on('buyProductResponse', (message) => {
+      if ('status' in message.data) {
+        setMessage(`Received buy product response: ${message.data.status}`);
+      }
       console.log('WebView', 'Received buy product callback', message);
     });
 
@@ -43,23 +49,26 @@ const PaymentsPage: React.FC = () => {
   }, []);
 
   const fetchProducts = () => {
+    setMessage('Fetching Products...');
     setCurrentTab(PaymentsTab.Products);
     devvitClient.postMessage({ type: 'fetchAvailableProducts' });
   };
 
   const fetchOrders = () => {
+    setMessage('Fetching Orders...');
     setCurrentTab(PaymentsTab.Orders);
     devvitClient.postMessage({ type: 'fetchOrders' });
   };
 
   const buyProduct = (sku:string) => {
+    setMessage(`Buying product ${sku}...`);
     devvitClient.postMessage({ type: 'buyProduct', data: { sku } });
   };
 
   return (
     <div className="flex flex-col space-y-4">
       <h1 className="text-xl font-bold text-gray-800">Payments</h1>
-      
+      <p className="text-s text-gray-400" id="message">{message}</p>
       <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
         <div className="flex sm:flex-col space-x-2 sm:space-x-0 sm:space-y-2 sm:w-48">
           <Button onClick={fetchProducts}>Load Products</Button>

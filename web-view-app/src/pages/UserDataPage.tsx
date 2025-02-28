@@ -7,6 +7,7 @@ import { GameUserData, RedditUserData } from '../../../shared/types/userData';
 const UserDataPage: React.FC = () => {
   const [redditUser, setRedditUser] = useState<RedditUserData|undefined>(undefined);
   const [dbUser, setDbUser] = useState<GameUserData|undefined>(undefined);
+  const [message, setMessage] = useState<string>(' ');
 
   useEffect(() => {
     // Set up message handler for user data
@@ -20,19 +21,30 @@ const UserDataPage: React.FC = () => {
         setDbUser(message.data.dbUser as GameUserData);
         console.log('Set db user state:', message.data.dbUser);
       }
+      setMessage('User data loaded.');
+    });
+
+    devvitClient.on('setUserDataResponse', (message) => {
+      console.log('Received set user data response', message);
+      if ('status' in message.data) {
+        setMessage(message.data.status);
+      }
     });
 
     // Clean up event listeners when component unmounts
     return () => {
       devvitClient.off('fetchUserDataResponse');
+      devvitClient.off('setUserDataResponse');
     };
   }, []);
 
   const handleFetchUser = () => {
+    setMessage('Fetching User Data...');
     devvitClient.postMessage({ type: 'fetchUserData', data: { userId: devvitClient.userId! } });
   };
 
   const sendCurrentUserToDevvit = (user: GameUserData|undefined) => {
+    setMessage(`Sending user data to Devvit...`);
     if (!user) {
       console.error('No user data to send');
       return;
@@ -43,12 +55,12 @@ const UserDataPage: React.FC = () => {
   return (
     <div className="flex flex-col space-y-4">
       <h1 className="text-xl font-bold text-gray-800">User Data</h1>
-      
+      <p className="text-s text-gray-400" id="message">{message}</p>
       <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
         <div className="flex sm:flex-col space-x-2 sm:space-x-0 sm:space-y-2 sm:w-48">
           <Button onClick={handleFetchUser}>Fetch User Info</Button>
           <Panel title="Demo Instructions">
-            <p className="text-gray-600">User data is defined in <pre>userData.ts</pre>. Some user data comes from the Reddit API. Use the payments tab to acquire weapons.</p>
+            <p className="text-gray-600">User data is defined in <pre>userData.ts</pre> <br />Some user data comes from the Reddit API. Use the payments tab to acquire weapons.</p>
           </Panel>
         </div>
         <div className="flex-1">

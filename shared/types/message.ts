@@ -12,6 +12,8 @@ export type DevvitMessage =
   | { type: 'fetchAvailableProductsResponse'; data: { products:Product[], error:string } }
   | { type: 'fetchOrdersResponse'; data: { orders:Order[] } }
   | { type: 'buyProductResponse'; data: { productSku:string, status:string, error:string } }
+  | { type: 'setUserScoreResponse'; data: { status:string } }
+  | { type: 'setUserDataResponse'; data: { status:string } }
 
 export type DevvitMessageType = DevvitMessage['type'];
 

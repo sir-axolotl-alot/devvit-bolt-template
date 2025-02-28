@@ -1,9 +1,10 @@
-import { Devvit, TriggerContext, UseWebViewResult } from "@devvit/public-api";
+import { AsyncError, Devvit, TriggerContext, UseWebViewResult } from "@devvit/public-api";
 import { WebViewMessage, DevvitMessage } from "../shared/types/message.js";
 import { createRedisService } from "./redisService.js";
 import { createNewRandomPost } from "../shared/utils/createNewPost.js";
 import { Product, Order } from "../shared/types/payments.js";
 import { Product as DevvitProduct, Order as DevvitOrder, OnPurchaseResult, OrderResultStatus } from "@devvit/payments";
+import { PaymentsContext } from "./paymentsContext.js";
 
 async function fetchPostData(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context) {
     const redisService = createRedisService(context);
@@ -42,6 +43,12 @@ async function setUserScore(message: WebViewMessage, webView: UseWebViewResult<D
         const username = (await context.reddit.getCurrentUsername()) ?? 'anon';
         redisService.setLeaderboardEntry(username, message.data.score);
         console.log('Devvit', 'Saved user score to leaderboard:', username, message.data.score);
+        webView.postMessage({
+            type: 'setUserScoreResponse',
+            data: {
+                status: 'success'
+            },
+        });
     }    
 }
 
@@ -82,6 +89,12 @@ async function setUserData(message: WebViewMessage, webView: UseWebViewResult<De
         console.log('Devvit', 'Received user data from web view:', message.data.userData);
         const redisService = createRedisService(context);
         redisService.saveUserData(message.data.userId, message.data.userData);
+        webView.postMessage({
+            type: 'setUserDataResponse',
+            data: {
+                status: 'success'
+            },
+        });
         console.log('Devvit', 'Saved user data to redis:', message.data.userData);
     }
 }
@@ -107,7 +120,7 @@ export async function fetchAvailableProducts(webView: UseWebViewResult<DevvitMes
     console.log('Devvit', 'Sent available products to web view');
 }
 
-export async function productPurchaseHandler(result: OnPurchaseResult) { 
+async function productPurchaseHandler(result: OnPurchaseResult) { 
     
 }
 
@@ -128,7 +141,22 @@ export async function refundOrder(order: DevvitOrder, context: TriggerContext) {
     // TODO
 }
 
-export async function fetchOrders(orders:DevvitOrder[], webView: UseWebViewResult<DevvitMessage>) {
+export async function buyProductResponse(result:OnPurchaseResult, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context) {
+    const responseMessage:DevvitMessage = {
+        type: 'buyProductResponse',
+        data: {
+            productSku: result.status === OrderResultStatus.Success ? result.sku : '',
+            status: result.status === OrderResultStatus.Success ? 'success' : 'error',
+            error: result.errorMessage ?? '',
+        },
+    }
+    webView.postMessage(responseMessage);
+    
+    // Show a toast message
+    context.ui.showToast(result.status === OrderResultStatus.Success ? 'Purchase successful!' : 'Purchase failed');
+}
+
+async function fetchOrders(orders:DevvitOrder[], webView: UseWebViewResult<DevvitMessage>) {
     console.log('Devvit', 'Fetching orders', orders);
     const webviewOrders = orders.map((order) => {
         return {
@@ -148,18 +176,7 @@ export async function fetchOrders(orders:DevvitOrder[], webView: UseWebViewResul
     console.log('Devvit', 'Sent orders to web view', webviewOrders);
 }
 
-async function buyProduct(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context) {
-    if (message.type !== 'buyProduct') {
-        throw new Error('Invalid message type');
-    }
-    const product = message.data;
-    console.log('Devvit', 'Buying product:', product.sku);
-    context.ui.showToast('Buying product ' + product.sku);
-    // Implement purchase logic here
-    console.log('Devvit', 'Product purchased:', product.sku);
-}
-
-export async function handleWebViewMessages(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context) {
+export async function handleWebViewMessages(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context, paymentsContext:PaymentsContext) {
     switch (message.type) {
         case 'webViewReady':
             await webView.postMessage({ type: 'initialData', data: { userId: context.userId ?? 'anon', postId: context.postId! } });
@@ -182,7 +199,16 @@ export async function handleWebViewMessages(message: WebViewMessage, webView: Us
         case 'setUserData':
             await setUserData(message, webView, context);
             break;
+        case 'fetchAvailableProducts':
+            await fetchAvailableProducts(webView, paymentsContext.catalog);
+            break;
+        case 'fetchOrders':
+            await fetchOrders(paymentsContext.orders, webView);
+            break;
+        case 'buyProduct':
+            paymentsContext.payments.purchase(message.data.sku);
+            break;
         default:
-          throw new Error(`Unknown message type: ${message.type}`);
+          throw new Error(`Unknown message type: ${message satisfies never}`);
       }
 }

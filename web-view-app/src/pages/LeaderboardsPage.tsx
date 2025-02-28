@@ -7,43 +7,52 @@ import { LeaderboardEntry } from '../../../shared/types/leaderboardEntry';
 const LeaderboardsPage: React.FC = () => {
   const [entries, setEntries] = useState<LeaderboardEntry[]>([]);
   const [currentScore, setCurrentScore] = useState<number>(0);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>(' ');
 
   useEffect(() => {
     // Set up message handler for leaderboard data
     devvitClient.on('fetchLeaderboardResponse', (message) => {
       console.log('Received leaderboard data', message);
       if ('leaderboard' in message.data) {
-        setLoading(false);
+        setMessage('Leaderboard loaded.');
         setEntries(message.data.leaderboard as LeaderboardEntry[]);
       }
+    });
+
+    devvitClient.on('setUserScoreResponse', (message) => {
+      console.log('Received set user score response', message);
+      if ('status' in message.data) {
+        setMessage(message.data.status);
+      }
+      fetchLeaderboardFromDevvit();
     });
 
     // Clean up event listeners when component unmounts
     return () => {
       devvitClient.off('fetchLeaderboardResponse');
+      devvitClient.off('setUserScoreResponse');
     };
   }, []);
 
   const fetchLeaderboardFromDevvit = () => {
-    setLoading(true);
+    setMessage('Loading...');
     devvitClient.postMessage({ type: 'fetchLeaderboard', data: { topEntries: 10 } });
   };
 
   const sendCurrentScoreToDevvit = (score: number) => {
-    console.log('Sending score to Devvit:', score);
+    setMessage(`Sending score to Devvit: ${score}`);
     devvitClient.postMessage({ type: 'setUserScore', data: { score } });
   };
 
   return (
     <div className="flex flex-col space-y-4">
       <h1 className="text-xl font-bold text-gray-800">Leaderboards</h1>
-      
+      <p className="text-s text-gray-400" id="message">{message}</p>
       <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
         <div className="flex sm:flex-col space-x-2 sm:space-x-0 sm:space-y-2 sm:w-48">
           <Button onClick={fetchLeaderboardFromDevvit}>Load Leaderboard</Button>
           <Panel title="Demo Instructions">
-            <p className="text-gray-600">Click on load leaderboards to show leaderboards on the panel below. You can also set your current score here:</p>
+            <p className="text-gray-600">Click on load leaderboards to show leaderboards on the panel below. You can also set your current score.</p>
           </Panel>
         </div>
         
@@ -55,9 +64,7 @@ const LeaderboardsPage: React.FC = () => {
               onChange={(e) => setCurrentScore(parseInt(e.target.value))}
               className="border border-gray-300 rounded-md p-2" ></input>
           <Button onClick={() => sendCurrentScoreToDevvit(currentScore)} >Set Score</Button>
-            {loading ? (
-              <p className="text-gray-600">Loading leaderboard data...</p>
-            ) : entries.length === 0 ? (
+            {entries.length === 0 ? (
               <p className="text-gray-600"><i>(No leaderboard data available.)</i></p>
             ) : (
               <div className="overflow-hidden rounded-lg border border-gray-200">
