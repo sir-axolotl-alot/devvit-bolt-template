@@ -1,4 +1,4 @@
-import { AsyncError, Devvit, TriggerContext, UseWebViewResult } from "@devvit/public-api";
+import { Devvit, TriggerContext, UseWebViewResult } from "@devvit/public-api";
 import { WebViewMessage, DevvitMessage } from "../shared/types/message.js";
 import { createRedisService } from "./redisService.js";
 import { createNewRandomPost } from "../shared/utils/createNewPost.js";
@@ -118,10 +118,6 @@ export async function fetchAvailableProducts(webView: UseWebViewResult<DevvitMes
         },
     });
     console.log('Devvit', 'Sent available products to web view');
-}
-
-async function productPurchaseHandler(result: OnPurchaseResult) { 
-    
 }
 
 export async function fulfillOrder(order: DevvitOrder, context: TriggerContext) {

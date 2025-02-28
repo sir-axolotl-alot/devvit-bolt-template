@@ -64,21 +64,16 @@ const UserDataPage: React.FC = () => {
           </Panel>
         </div>
         <div className="flex-1">
-          <Panel title="Reddit User Info">
-            {redditUser === undefined ? (
-              <p className="text-gray-600"><i>(No Reddit user data loaded)</i></p>
-            ) : (
-              <>
-                <p className="text-gray-600">Username: <b>{redditUser.username}</b> </p>
-                <p className="text-gray-600">User ID: <b>{redditUser.userId}</b></p>
-              </>
-            )}
-          </Panel>
-          <Panel title="Redis User Info">
+          <Panel title="User Info">
+            <h1> <b> Reddit User Info: </b></h1>
+            <p className="text-gray-600">Username: <b>{redditUser?.username}</b> </p>
+            <p className="text-gray-600">User ID: <b>{redditUser?.userId}</b></p>
+            <hr />
+            <h1> <b>Custom User Info (Redis): </b> </h1>
             <div>
               <p className="text-gray-600">Favorite color:</p>
               {dbUser === undefined ? (
-                <p className="text-gray-600"><i>(No Redis user data loaded)</i></p>
+                <p className="text-gray-600"><i>...</i></p>
               ) : (
                 <>
                   <input
@@ -93,7 +88,7 @@ const UserDataPage: React.FC = () => {
             <div style={{ overflowY: 'scroll', maxHeight: '200px' }}>
               <p className="text-gray-600">Acquired weapons:</p>
               {dbUser === undefined ? (
-                <p className="text-gray-600"><i>(No Redis user data loaded)</i></p>
+                <p className="text-gray-600"><i>...</i></p>
               ) : (
               <>
               <ul>
