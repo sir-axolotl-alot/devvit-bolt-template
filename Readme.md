@@ -125,4 +125,44 @@ devvitClient.on('fetchUserDataResponse', (message) => {
 The example above is also valid for the Post Data model in `shared/postData.ts`
 
 ## Creating new posts
-This template 
+This template has a simple use case of creating posts with poems. 
+Here's how you can modify the Post Model and configure it to create posts for your app:
+```typescript
+// 1. Modify the Post Model in `shared/postData.ts`
+export type PostData = {
+  puzzleTitle:string;
+  puzzleBoard:number[];
+  myCustomProperty1:string;
+  //...
+};
+
+// 2. Modify how you want a new post to be created in `webViewMessageHandler.tsx`
+export async function createNewRandomPost(context:Devvit.Context) {
+    // ...
+    // Your logic here..
+    // ...
+    createNewPost(postTitle, postData, context);
+}
+
+// 3. Similarly, you should modify the post creation context menu in `menuActions.tsx`
+Devvit.addMenuItem({
+  label: 'Create a new My Awesome App post',
+  location: 'subreddit',
+  onPress: async (_event, context) => {
+    // ...
+    // Your logic here...
+    // ...
+    await createNewPost(postTile, postData, context);
+  },
+});
+```
+
+
+## Building and testing this template
+```
+npm install
+npm run build:webroot
+devvit upload
+devvit playtest r/my_test_subreddit
+```
+

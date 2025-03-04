@@ -9,7 +9,6 @@
   ],
   "scripts": {
     "build:webroot": "npm run build:webroot --workspace=web-view-app",
-    "playtest": "npm run build:webroot --workspace=web-view-app && devvit playtest r/axolotl_playground",
     "dev": "npm run dev --workspace=web-view-app",
     "upload": "npm run build:webroot --workspace=web-view-app && devvit upload"
   },

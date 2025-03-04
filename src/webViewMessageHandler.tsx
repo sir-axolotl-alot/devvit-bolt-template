@@ -5,7 +5,7 @@ import { Product, Order } from "../shared/types/payments.js";
 import { Product as DevvitProduct, Order as DevvitOrder, OnPurchaseResult, OrderResultStatus } from "@devvit/payments";
 import { PaymentsContext } from "./paymentsContext.js";
 import { getNewRandomPoem } from "../data/poems.js";
-import { createNewPost } from "../shared/utils/createNewPost.js";
+import { createNewPost as createNewPostUtil } from "../shared/utils/createNewPost.js";
 
 async function fetchPostData(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context) {
     const redisService = createRedisService(context);
@@ -155,11 +155,11 @@ async function fetchOrders(orders:DevvitOrder[], webView: UseWebViewResult<Devvi
     console.log('Devvit', 'Sent orders to web view', webviewOrders);
 }
 
-export async function createNewRandomPost(context:Devvit.Context) {
+async function createNewPost(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context:Devvit.Context) {
     // This template creates a new post with a random poem
     // Feel free to delete this method implementation and create your own.
     const postData = await getNewRandomPoem();
-    await createNewPost(postData.poemTitle, postData, context);
+    await createNewPostUtil(postData.poemTitle, postData, context);
 }
 
 export async function handleWebViewMessages(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context, paymentsContext:PaymentsContext) {
@@ -171,7 +171,7 @@ export async function handleWebViewMessages(message: WebViewMessage, webView: Us
             await fetchPostData(message, webView, context);
             break;
         case 'createNewPost':
-            await createNewRandomPost(context);
+            await createNewPost(message, webView, context);
             break;
         case 'setUserScore':
             await setUserScore(message, webView, context);

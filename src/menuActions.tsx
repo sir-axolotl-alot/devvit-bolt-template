@@ -1,5 +1,6 @@
 import { Devvit } from '@devvit/public-api';
-import { createNewRandomPost } from './webViewMessageHandler.js';
+import { getNewRandomPoem } from '../data/poems.js';
+import { createNewPost } from '../shared/utils/createNewPost.js';
 
 // Configure Devvit's plugins
 Devvit.configure({
@@ -11,6 +12,9 @@ Devvit.addMenuItem({
   label: '[+] Devvit-as-a-backend post',
   location: 'subreddit',
   onPress: async (_event, context) => {
-    await createNewRandomPost(context);
+    // This template creates a new post with a random poem
+    // Feel free to delete this method implementation and create your own.
+    const postData = await getNewRandomPoem();
+    await createNewPost(postData.poemTitle, postData, context);
   },
 });
