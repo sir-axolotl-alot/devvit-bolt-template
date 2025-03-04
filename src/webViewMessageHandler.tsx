@@ -1,10 +1,11 @@
 import { Devvit, TriggerContext, UseWebViewResult } from "@devvit/public-api";
 import { WebViewMessage, DevvitMessage } from "../shared/types/message.js";
 import { createRedisService } from "./redisService.js";
-import { createNewRandomPost } from "../shared/utils/createNewPost.js";
 import { Product, Order } from "../shared/types/payments.js";
 import { Product as DevvitProduct, Order as DevvitOrder, OnPurchaseResult, OrderResultStatus } from "@devvit/payments";
 import { PaymentsContext } from "./paymentsContext.js";
+import { getNewRandomPoem } from "../data/poems.js";
+import { createNewPost } from "../shared/utils/createNewPost.js";
 
 async function fetchPostData(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context) {
     const redisService = createRedisService(context);
@@ -16,24 +17,6 @@ async function fetchPostData(message: WebViewMessage, webView: UseWebViewResult<
       },
     });
     console.log('Devvit', 'Sent post data to web view');
-}
-
-async function createNewPost(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context) {
-    const newPostData = await createNewRandomPost();
-    const redisService = createRedisService(context);
-    const subreddit = await context.reddit.getCurrentSubreddit();
-    const post = await context.reddit.submitPost({
-        title: newPostData.poemTitle,
-        subredditName: subreddit.name,
-        // The preview appears while the post loads
-        preview: (
-            <vstack height="100%" width="100%" alignment="middle center">
-            <text size="large">Loading ...</text>
-            </vstack>
-        ),
-    });
-    redisService.savePostData(post.id, newPostData);
-    context.ui.navigateTo(post);
 }
 
 async function setUserScore(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context) {
@@ -172,6 +155,13 @@ async function fetchOrders(orders:DevvitOrder[], webView: UseWebViewResult<Devvi
     console.log('Devvit', 'Sent orders to web view', webviewOrders);
 }
 
+export async function createNewRandomPost(context:Devvit.Context) {
+    // This template creates a new post with a random poem
+    // Feel free to delete this method implementation and create your own.
+    const postData = await getNewRandomPoem();
+    await createNewPost(postData.poemTitle, postData, context);
+}
+
 export async function handleWebViewMessages(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context, paymentsContext:PaymentsContext) {
     switch (message.type) {
         case 'webViewReady':
@@ -181,7 +171,7 @@ export async function handleWebViewMessages(message: WebViewMessage, webView: Us
             await fetchPostData(message, webView, context);
             break;
         case 'createNewPost':
-            await createNewPost(message, webView, context);
+            await createNewRandomPost(context);
             break;
         case 'setUserScore':
             await setUserScore(message, webView, context);
