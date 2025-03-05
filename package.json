@@ -8,7 +8,7 @@
     "web-view-app"
   ],
   "scripts": {
-    "build:webroot": "npm run build:webroot --workspace=web-view-app",
+    "build": "npm run build:webroot --workspace=web-view-app",
     "dev": "npm run dev --workspace=web-view-app",
     "upload": "npm run build:webroot --workspace=web-view-app && devvit upload"
   },

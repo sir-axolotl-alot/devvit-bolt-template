@@ -9,8 +9,8 @@ import PaymentsPage from './pages/PaymentsPage';
 
 function App() {
   useEffect(() => {
-    // Initialize the DevvitClient when the app starts
-    devvitClient.initialize();
+    const useMockedResponses = false;
+    devvitClient.initialize(useMockedResponses);
   }, []);
 
   return (

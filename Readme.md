@@ -157,12 +157,68 @@ Devvit.addMenuItem({
 });
 ```
 
+## Mocked Responses
+For convenience, while developing the web view app in a local environment, you can set the DevvitClient to use only locally mocked responses. 
+It accepts an argument in its constructor to set the messages to be routed to a local handler that will mock responses instead of trying to send them to Devvit. By default this will be set to false.
+You can use it in your application and connect it to environment variables or build-time command-line arguments to set the correct environment when developing locally.
+
+```typescript
+const useMockedResponses = true;
+devvitClient.initialize(useMockedResponses);
+```
+
+If you want to change the mocked responses, you can refer to the file `DevvitMockedResponses.ts`
+```typescript
+// ...
+case 'buyProduct':
+    this.sendMockedResponse({
+        type: 'buyProductResponse',
+        data: {
+            productSku: message.data.sku,
+            status: 'success',
+            error: ''
+        }
+    });
+    break;
+```
+
+
 
 ## Building and testing this template
+
+Install dependencies:
 ```
 npm install
-npm run build:webroot
+```
+
+### Build and run the template to test on your subreddit:
+
+First, change the "useMockedResponses" argument to the `DevvitClient` initialization:
+```typescript
+// web-view-app/src/App.ts
+const useMockedResponses = false;
+```
+
+Then run:
+```
+npm run build
 devvit upload
 devvit playtest r/my_test_subreddit
 ```
+
+### Build it and run locally on your local server
+First, change the "useMockedResponses" argument to the `DevvitClient` initialization:
+```typescript
+// web-view-app/src/App.ts
+const useMockedResponses = true;
+```
+
+Then run:
+```
+npm run dev
+```
+
+
+Once you've tested and it works, the idea is that you can delete most or all of the web-view-app folder and start your web development from scratch, keeping the DevvitClient.ts as a library to perform all communications with Devvit as the backend of your web app (which should be built into the `/webroot` folder)
+
 

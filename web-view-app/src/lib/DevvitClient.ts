@@ -1,4 +1,21 @@
 import { DevvitMessage, DevvitMessageType, WebViewMessage, DevvitSystemMessage } from '../../../shared/types/message';
+import devvitMockedResponses, { DevvitMessageHandler } from './DevvitMockedResponses';
+
+class DevvitBackendHandler implements DevvitMessageHandler {
+  private window!: Window;
+
+  constructor(window:Window) {
+    this.window = window;
+  }
+
+  setMessageHandler(handler: (message: DevvitSystemMessage) => void) {
+    window.addEventListener('message', (ev:MessageEvent) => handler(ev.data as DevvitSystemMessage));
+  }
+
+  postMessage(message: WebViewMessage) {
+    this.window.parent.postMessage(message, '*');
+  }
+}
 
 /**
  * DevvitClient - A client for communicating with the parent window
@@ -11,19 +28,26 @@ export class DevvitClient {
   private messageHandlers: Map<DevvitMessageType, (message: DevvitMessage) => void> = new Map();
   public userId:string|undefined;
   public postId:string|undefined;
+  private devvitMessageHandler!: DevvitMessageHandler;
 
   /**
    * Initialize the client and set up message listeners
    */
-  public initialize(): void {
+  public initialize(useMockedResponses:boolean = false): void {
     if (this.initialized) return;
-    
-    // Set up event listener for Devvit system messages
-    window.addEventListener('message', (ev:MessageEvent) => this.handleMessage(ev.data as DevvitSystemMessage));
+
+    if (useMockedResponses) {
+      this.devvitMessageHandler = devvitMockedResponses;
+      console.log('DevvitClient', 'Using mocked responses');
+    } else {
+      this.devvitMessageHandler = new DevvitBackendHandler(window);
+      console.log('DevvitClient', 'Connected to Devvit Backend. Use `devvit playtest` to test your app');
+    }
+    this.devvitMessageHandler.setMessageHandler(this.handleMessage.bind(this));
     
     this.postMessage({type:'webViewReady'});
     console.log('Webview', 'Sent webViewReady message');
-
+    this.initialized = true;
   }
 
   /**
@@ -33,11 +57,7 @@ export class DevvitClient {
    * @type WebViewMessage
    */
   public postMessage(message:WebViewMessage): void {
-    if (window.parent) {
-      window.parent.postMessage(message, '*');
-    } else {
-      console.warn('No parent window found to post message to');
-    }
+    this.devvitMessageHandler.postMessage(message);
   }
 
   /**
