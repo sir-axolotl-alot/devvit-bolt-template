@@ -70,7 +70,8 @@ export class DevvitMockedResponses implements DevvitMessageHandler {
                     type: 'fetchUserDataResponse',
                     data: {
                         redditUser: { userId: 'anon', username: 'anon' },
-                        dbUser: {solvedPuzzles: 0, playedPuzzles: 0 }
+                        dbUser: {solvedPuzzles: 0, playedPuzzles: 0 },
+                        error: ''
                     }
                 });
                 break;
