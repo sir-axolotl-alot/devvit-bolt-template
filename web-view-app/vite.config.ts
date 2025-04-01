@@ -7,20 +7,15 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  server: {
+    port: 3000,
+    open: true,
+    cors: true,    
+  },
   build: {
-    rollupOptions: {
-      output: {
-        entryFileNames: 'game.js',
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'style.css' || assetInfo.name === 'index.css') {
-            return 'game.css';
-          }
-          return '[name].[ext]';
-        },
-      },
-    },
-    assetsInlineLimit: 0,
-    assetsDir: '.',
-    cssCodeSplit: false,
+    outDir: '../webroot',
+    sourcemap: true,
+    minify: false,
+    chunkSizeWarningLimit: 1500,
   },
 });

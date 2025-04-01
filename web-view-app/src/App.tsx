@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import devvitClient from './lib/DevvitClient';
 
 function App() {
@@ -8,7 +8,9 @@ function App() {
   }, []);
 
   return (
-    <></>
+    <div className="App">
+      <h1>Your app goes here</h1>
+    </div>
   );
 }
 
