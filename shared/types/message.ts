@@ -21,7 +21,6 @@ export type DevvitMessageType = DevvitMessage['type'];
 export type WebViewMessage =
   | { type: 'webViewReady' }
   | { type: 'fetchPostData'}
-  | { type: 'createNewPost' }
   | { type: 'setUserScore'; data: { score:number } }
   | { type: 'setUserData'; data: { userId: string, userData:GameUserData } }
   | { type: 'fetchLeaderboard', data: {topEntries:number} }

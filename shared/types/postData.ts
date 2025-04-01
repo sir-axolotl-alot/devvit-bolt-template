@@ -1,4 +1,6 @@
 export type PostData = {
-  poemTitle:string
-  poemBody: string;
+  riddle: string;
+  answer: string;
+  solvedTimes: number;
+  playedTimes: number;
 };

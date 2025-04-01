@@ -4,8 +4,6 @@ import { createRedisService } from "./redisService.js";
 import { Product, Order } from "../shared/types/payments.js";
 import { Product as DevvitProduct, Order as DevvitOrder, OnPurchaseResult, OrderResultStatus } from "@devvit/payments";
 import { PaymentsContext } from "./paymentsContext.js";
-import { getNewRandomPoem } from "../data/poems.js";
-import { createNewPost as createNewPostUtil } from "./createNewPost.js";
 
 async function fetchPostData(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context) {
     const redisService = createRedisService(context);
@@ -104,20 +102,11 @@ export async function fetchAvailableProducts(webView: UseWebViewResult<DevvitMes
 }
 
 export async function fulfillOrder(order: DevvitOrder, context: TriggerContext) {
-    const redisService = createRedisService(context);
-    const user = await redisService.getUserData(context.userId!);
-    if (!user.weapons) {
-        user.weapons = [];
-    }
-    order.products.forEach((product) => {
-        user.weapons.push(product.displayName);
-    });
-    await redisService.saveUserData(context.userId!, user);
-    console.log('Devvit', 'Fulfilled order:', order);
+    // TODO: Add the product to the user's inventory here
 }
 
 export async function refundOrder(order: DevvitOrder, context: TriggerContext) {
-    // TODO
+    // TODO: Remove the product from the user's inventory here
 }
 
 export async function buyProductResponse(result:OnPurchaseResult, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context) {
@@ -155,13 +144,6 @@ async function fetchOrders(orders:DevvitOrder[], webView: UseWebViewResult<Devvi
     console.log('Devvit', 'Sent orders to web view', webviewOrders);
 }
 
-async function createNewPost(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context:Devvit.Context) {
-    // This template creates a new post with a random poem
-    // Feel free to delete this method implementation and create your own.
-    const postData = await getNewRandomPoem();
-    await createNewPostUtil(postData.poemTitle, postData, context);
-}
-
 export async function handleWebViewMessages(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context, paymentsContext:PaymentsContext) {
     switch (message.type) {
         case 'webViewReady':
@@ -169,9 +151,6 @@ export async function handleWebViewMessages(message: WebViewMessage, webView: Us
             break;
         case 'fetchPostData':
             await fetchPostData(message, webView, context);
-            break;
-        case 'createNewPost':
-            await createNewPost(message, webView, context);
             break;
         case 'setUserScore':
             await setUserScore(message, webView, context);

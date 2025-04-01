@@ -38,6 +38,9 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     fetch(link.href, fetchOpts);
   }
 })();
+function getDefaultExportFromCjs(x2) {
+  return x2 && x2.__esModule && Object.prototype.hasOwnProperty.call(x2, "default") ? x2["default"] : x2;
+}
 var jsxRuntime = { exports: {} };
 var reactJsxRuntime_production_min = {};
 var react = { exports: {} };
@@ -303,6 +306,7 @@ react_production_min.version = "18.3.1";
   react.exports = react_production_min;
 }
 var reactExports = react.exports;
+const React = /* @__PURE__ */ getDefaultExportFromCjs(reactExports);
 /**
  * @license React
  * react-jsx-runtime.production.min.js
@@ -7021,27 +7025,18 @@ class DevvitMockedResponses {
   mockWebViewMessageResponse(message) {
     console.log("WebView Mocked Responses", "Handling message", message);
     switch (message.type) {
-      case "webViewReady":
-        this.sendMockedResponse({
-          type: "initialData",
-          data: {
-            userId: "anon",
-            postId: "123"
-          }
-        });
-        break;
       case "fetchPostData":
         this.sendMockedResponse({
           type: "fetchPostDataReponse",
           data: {
             postData: {
-              poemTitle: "A new poem",
-              poemBody: "This is a new poem"
+              riddle: "What has keys but can’t open locks?",
+              answer: "A piano",
+              solvedTimes: 0,
+              playedTimes: 0
             }
           }
         });
-        break;
-      case "createNewPost":
         break;
       case "setUserScore":
         this.sendMockedResponse({
@@ -7075,7 +7070,7 @@ class DevvitMockedResponses {
           type: "fetchUserDataResponse",
           data: {
             redditUser: { userId: "anon", username: "anon" },
-            dbUser: { favoriteColor: "blue", weapons: [] }
+            dbUser: { solvedPuzzles: 0, playedPuzzles: 0 }
           }
         });
         break;
@@ -7201,13 +7196,41 @@ class DevvitClient {
 }
 const devvitClient = new DevvitClient();
 function App() {
+  const [riddle, setRiddle] = React.useState(null);
+  const [answer, setAnswer] = React.useState(null);
   reactExports.useEffect(() => {
     const useMockedResponses = false;
     devvitClient.initialize(useMockedResponses);
+    devvitClient.on(
+      "fetchPostDataReponse",
+      (message) => {
+        if (message.type !== "fetchPostDataReponse") {
+          console.error("WebView", "Received unexpected message type:", message.type);
+          return;
+        }
+        console.log("WebView", "Received post data from Devvit:", message.data);
+        setRiddle(message.data.postData.riddle);
+        setAnswer(message.data.postData.answer);
+      }
+    );
+    devvitClient.postMessage({
+      type: "fetchPostData"
+    });
+    console.log("WebView", "Requesting post data from Devvit");
+    return () => {
+      console.log("WebView", "Cleaning up event listeners");
+      devvitClient.off("fetchPostDataReponse");
+    };
   }, []);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "App", children: /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: "Your app goes here" }) });
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "App", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: "Here's a Riddle:" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { children: "Riddle" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: riddle }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { children: "Answer" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: answer })
+  ] });
 }
 createRoot(document.getElementById("root")).render(
   /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.StrictMode, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) })
 );
-//# sourceMappingURL=index-CVls5W6m.js.map
+//# sourceMappingURL=index-DNlmys_Y.js.map

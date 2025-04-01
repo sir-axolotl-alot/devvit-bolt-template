@@ -25,28 +25,18 @@ export class DevvitMockedResponses implements DevvitMessageHandler {
     mockWebViewMessageResponse(message: WebViewMessage): void {
         console.log('WebView Mocked Responses', 'Handling message', message);
         switch (message.type) {
-            case 'webViewReady':
-                this.sendMockedResponse({
-                    type: 'initialData',
-                    data: {
-                        userId: 'anon',
-                        postId: '123'
-                    }
-                })
-                break;
             case 'fetchPostData':
                 this.sendMockedResponse({
                     type: 'fetchPostDataReponse',
                     data: {
                         postData: {
-                            poemTitle: 'A new poem',
-                            poemBody: 'This is a new poem',
+                            riddle: 'What has keys but can’t open locks?',
+                            answer: 'A piano',
+                            solvedTimes: 0,
+                            playedTimes: 0,
                         }
                     }
                 });
-                break;
-            case 'createNewPost':
-                // no-op
                 break;
             case 'setUserScore':
                 this.sendMockedResponse({
@@ -80,7 +70,7 @@ export class DevvitMockedResponses implements DevvitMessageHandler {
                     type: 'fetchUserDataResponse',
                     data: {
                         redditUser: { userId: 'anon', username: 'anon' },
-                        dbUser: { favoriteColor: 'blue', weapons:[] },
+                        dbUser: {solvedPuzzles: 0, playedPuzzles: 0 }
                     }
                 });
                 break;

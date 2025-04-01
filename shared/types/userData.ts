@@ -1,6 +1,6 @@
 export type GameUserData = {
-    favoriteColor: string;
-    weapons: string[];
+    solvedPuzzles: number;
+    playedPuzzles: number;
 }
 
 export type RedditUserData = {
