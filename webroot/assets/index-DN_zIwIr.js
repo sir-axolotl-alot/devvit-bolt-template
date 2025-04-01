@@ -7127,8 +7127,6 @@ class DevvitClient {
   constructor() {
     __publicField(this, "initialized", false);
     __publicField(this, "messageHandlers", /* @__PURE__ */ new Map());
-    __publicField(this, "userId");
-    __publicField(this, "postId");
     __publicField(this, "devvitMessageHandler");
   }
   /**
@@ -7144,8 +7142,6 @@ class DevvitClient {
       console.log("DevvitClient", "Connected to Devvit Backend. Use `devvit playtest` to test your app");
     }
     this.devvitMessageHandler.setMessageHandler(this.handleMessage.bind(this));
-    this.postMessage({ type: "webViewReady" });
-    console.log("Webview", "Sent webViewReady message");
     this.initialized = true;
   }
   /**
@@ -7161,15 +7157,10 @@ class DevvitClient {
    * Handle incoming messages from the parent window
    */
   handleMessage(devvitSystemMessage) {
-    console.log("Webview", "Handling message", devvitSystemMessage);
     const message = devvitSystemMessage.data.message;
-    console.log("Webview", "Parsed Message", message);
+    console.log("Webview", "Handling message", message);
     const { type } = message;
-    if (type == "initialData") {
-      this.userId = message.data.userId;
-      this.postId = message.data.postId;
-      this.initialized = true;
-    } else if (type && this.messageHandlers.has(type)) {
+    if (type && this.messageHandlers.has(type)) {
       const handler = this.messageHandlers.get(type);
       if (handler) {
         handler(message);
@@ -7199,7 +7190,7 @@ function App() {
   const [riddle, setRiddle] = React.useState(null);
   const [answer, setAnswer] = React.useState(null);
   reactExports.useEffect(() => {
-    const useMockedResponses = false;
+    const useMockedResponses = true;
     devvitClient.initialize(useMockedResponses);
     devvitClient.on(
       "fetchPostDataReponse",
@@ -7233,4 +7224,4 @@ function App() {
 createRoot(document.getElementById("root")).render(
   /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.StrictMode, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) })
 );
-//# sourceMappingURL=index-DNlmys_Y.js.map
+//# sourceMappingURL=index-DN_zIwIr.js.map

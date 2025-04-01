@@ -26,8 +26,6 @@ class DevvitBackendHandler implements DevvitMessageHandler {
 export class DevvitClient {
   private initialized: boolean = false;
   private messageHandlers: Map<DevvitMessageType, (message: DevvitMessage) => void> = new Map();
-  public userId:string|undefined;
-  public postId:string|undefined;
   private devvitMessageHandler!: DevvitMessageHandler;
 
   /**
@@ -45,8 +43,6 @@ export class DevvitClient {
     }
     this.devvitMessageHandler.setMessageHandler(this.handleMessage.bind(this));
     
-    this.postMessage({type:'webViewReady'});
-    console.log('Webview', 'Sent webViewReady message');
     this.initialized = true;
   }
 
@@ -64,16 +60,11 @@ export class DevvitClient {
    * Handle incoming messages from the parent window
    */
   private handleMessage(devvitSystemMessage: DevvitSystemMessage): void {
-    console.log('Webview', 'Handling message', devvitSystemMessage);
     const message = devvitSystemMessage.data.message;
-    console.log('Webview', 'Parsed Message', message);
+    console.log('Webview', 'Handling message', message);
     const { type } = message;
 
-    if (type == 'initialData') {
-      this.userId = message.data.userId;
-      this.postId = message.data.postId;
-      this.initialized = true;
-    } else if (type && this.messageHandlers.has(type)) {
+    if (type && this.messageHandlers.has(type)) {
       const handler = this.messageHandlers.get(type);
       if (handler) {
         handler(message);

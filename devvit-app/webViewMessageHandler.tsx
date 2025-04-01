@@ -50,15 +50,28 @@ async function fetchLeaderboard(message: WebViewMessage, webView: UseWebViewResu
 
 async function fetchUserData(message: WebViewMessage, webView: UseWebViewResult<DevvitMessage>, context: Devvit.Context) {
     if (message.type === 'fetchUserData') {
-        console.log('Devvit', 'Fetching user data for user:', message.data.userId);
+        if (context.userId === undefined) {
+            console.error('Devvit', 'User ID is undefined');
+            webView.postMessage({
+                type: 'fetchUserDataResponse',
+                data: {
+                    error: 'Current user ID is undefined',
+                    redditUser: null,
+                    dbUser: null
+                },
+            });
+            return;
+        }
+        console.log('Devvit', 'Fetching user data for user:', context.userId);
         const redisService = createRedisService(context);
-        const dbUserData = await redisService.getUserData(message.data.userId);
-        const redditUserData = await context.reddit.getUserById(message.data.userId);
+        const dbUserData = await redisService.getUserData(context.userId);
+        const redditUserData = await context.reddit.getUserById(context.userId);
         webView.postMessage({
             type: 'fetchUserDataResponse',
             data: {
                 redditUser: {userId: redditUserData!.id, username: redditUserData!.username},
-                dbUser: dbUserData
+                dbUser: dbUserData,
+                error: ''
             },
         });
         console.log('Devvit', 'Sent user data to web view');

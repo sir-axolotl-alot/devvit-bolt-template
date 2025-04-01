@@ -40,10 +40,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Here's a Riddle:</h1>
-      <h2>Riddle</h2>
+      <h1>Your New Devvit App is Ready! Start prompting!</h1>
+      <p>Here is a riddle: </p>
       <p>{riddle}</p>
-      <h2>Answer</h2>
+      <p>Answer: </p>
       <p>{answer}</p>
     </div>
   );

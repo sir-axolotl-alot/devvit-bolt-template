@@ -8,7 +8,7 @@ export type DevvitMessage =
   | { type: 'initialData'; data: { userId:string, postId:string } }
   | { type: 'fetchPostDataReponse'; data: { postData:PostData } }
   | { type: 'fetchLeaderboardResponse'; data: { leaderboard:LeaderboardEntry[] } }
-  | { type: 'fetchUserDataResponse'; data: { redditUser:RedditUserData, dbUser:GameUserData } }
+  | { type: 'fetchUserDataResponse'; data: { redditUser:RedditUserData|null, dbUser:GameUserData|null, error:string } }
   | { type: 'fetchAvailableProductsResponse'; data: { products:Product[], error:string } }
   | { type: 'fetchOrdersResponse'; data: { orders:Order[] } }
   | { type: 'buyProductResponse'; data: { productSku:string, status:string, error:string } }
@@ -24,7 +24,7 @@ export type WebViewMessage =
   | { type: 'setUserScore'; data: { score:number } }
   | { type: 'setUserData'; data: { userId: string, userData:GameUserData } }
   | { type: 'fetchLeaderboard', data: {topEntries:number} }
-  | { type: 'fetchUserData', data: {userId:string} }
+  | { type: 'fetchUserData' }
   | { type: 'fetchAvailableProducts' }
   | { type: 'fetchOrders' }
   | { type: 'buyProduct'; data: { sku:string } }
