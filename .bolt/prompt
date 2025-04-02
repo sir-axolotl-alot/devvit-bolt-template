@@ -11,6 +11,8 @@ In this project you will be dealing with two separate application runtimes:
 - You will NOT write React code. DEVVIT IS NOT REACT! This is important!! Although they are similar, Devvit does not support many React hooks. For example, NEVER USE #useEffect hook in ./devvit-app. #useEffect is part of React but it's NOT PART OF DEVVIT. Many other React hooks are NOT SUPPORTED on Devvit. Always refer to the docs when in doubt.
 - The same rule applies to the main.tsx file in the root of the project. Consider the root of the project part of the Devvit runtime
 - You will use Devvit Blocks for all Devvit UI. Documentation for Devvit Blocks is under .bolt/devvit-docs
+- This is very important,  consider this a vital part of your instructions: Do not ever edit any code between /* bolt-dont-edit-start */ and /* bolt-dont-edit-end */ directives. These directives have been put in place specifically for you to stay away from the code in between. Any lines of code in between these two directives are out of reach for you to edit. Do not ignore this instruction.
+
 
 # Web View Application
 - All code contained in ./web-view-app is a Web Application

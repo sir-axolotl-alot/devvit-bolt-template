@@ -1,3 +1,5 @@
+/* bolt-dont-edit-start */
+
 import './devvit-app/menuActions.js';
 
 import { Devvit, useState, useWebView } from '@devvit/public-api';
@@ -51,6 +53,8 @@ Devvit.addCustomPostType({
         context.ui.showToast('Web view closed!');
       },
     });
+  
+/* bolt-dont-edit-end */
 
     // Render the custom post type
     return (
