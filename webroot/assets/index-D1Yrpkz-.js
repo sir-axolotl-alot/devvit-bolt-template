@@ -306,7 +306,6 @@ react_production_min.version = "18.3.1";
   react.exports = react_production_min;
 }
 var reactExports = react.exports;
-const React = /* @__PURE__ */ getDefaultExportFromCjs(reactExports);
 /**
  * @license React
  * react-jsx-runtime.production.min.js
@@ -7027,38 +7026,13 @@ class DevvitMockedResponses {
     switch (message.type) {
       case "fetchPostData":
         this.sendMockedResponse({
-          type: "fetchPostDataReponse",
+          type: "fetchPostDataResponse",
           data: {
             postData: {
-              instructions: "Your new Devvit app is ready! Start prompting with Bolt!"
+              targetWord: "hello",
+              successCount: 10,
+              failureCount: 5
             }
-          }
-        });
-        break;
-      case "setUserScore":
-        this.sendMockedResponse({
-          type: "setUserScoreResponse",
-          data: {
-            status: "success"
-          }
-        });
-        break;
-      case "setUserData":
-        this.sendMockedResponse({
-          type: "setUserDataResponse",
-          data: {
-            status: "success"
-          }
-        });
-        break;
-      case "fetchLeaderboard":
-        this.sendMockedResponse({
-          type: "fetchLeaderboardResponse",
-          data: {
-            leaderboard: [
-              { username: "anon2", score: 200 },
-              { username: "anon3", score: 300 }
-            ]
           }
         });
         break;
@@ -7067,41 +7041,23 @@ class DevvitMockedResponses {
           type: "fetchUserDataResponse",
           data: {
             redditUser: { userId: "anon", username: "anon" },
-            dbUser: { solvedPuzzles: 0, playedPuzzles: 0 },
+            dbUser: {
+              currentStreak: 3,
+              bestStreak: 5,
+              totalPlayed: 10,
+              totalWins: 7,
+              averageGuesses: 3.5,
+              guessDistribution: [1, 2, 3, 1, 0, 0]
+            },
             error: ""
           }
         });
         break;
-      case "fetchAvailableProducts":
+      case "gameComplete":
         this.sendMockedResponse({
-          type: "fetchAvailableProductsResponse",
+          type: "gameCompleteResponse",
           data: {
-            products: [
-              { sku: "123", description: "Product 1", name: "Product 1", price: 25, imageUrl: "https://via.placeholder.com/150" },
-              { sku: "234", description: "Product 2", name: "Product 2", price: 200, imageUrl: "https://via.placeholder.com/150" }
-            ],
-            error: ""
-          }
-        });
-        break;
-      case "fetchOrders":
-        this.sendMockedResponse({
-          type: "fetchOrdersResponse",
-          data: {
-            orders: [
-              { orderId: "123", productSku: "123", productName: "Product 1", purchaseDate: "2021-01-01", status: "completed" },
-              { orderId: "234", productSku: "234", productName: "Product 2", purchaseDate: "2021-01-02", status: "completed" }
-            ]
-          }
-        });
-        break;
-      case "buyProduct":
-        this.sendMockedResponse({
-          type: "buyProductResponse",
-          data: {
-            productSku: message.data.sku,
-            status: "success",
-            error: ""
+            status: "success"
           }
         });
         break;
@@ -7184,30 +7140,309 @@ class DevvitClient {
   }
 }
 const devvitClient = new DevvitClient();
-function App() {
-  const [instructions, setInstructions] = React.useState("");
-  reactExports.useEffect(() => {
-    devvitClient.on(
-      "fetchPostDataReponse",
-      (message) => {
-        if (message.type !== "fetchPostDataReponse") {
-          console.error("WebView", "Received unexpected message type:", message.type);
-          return;
+var classnames = { exports: {} };
+/*!
+	Copyright (c) 2018 Jed Watson.
+	Licensed under the MIT License (MIT), see
+	http://jedwatson.github.io/classnames
+*/
+(function(module) {
+  (function() {
+    var hasOwn = {}.hasOwnProperty;
+    function classNames2() {
+      var classes = "";
+      for (var i = 0; i < arguments.length; i++) {
+        var arg = arguments[i];
+        if (arg) {
+          classes = appendClass(classes, parseValue(arg));
         }
-        console.log("WebView", "Received post data from Devvit:", message.data);
-        setInstructions(message.data.postData.instructions);
       }
+      return classes;
+    }
+    function parseValue(arg) {
+      if (typeof arg === "string" || typeof arg === "number") {
+        return arg;
+      }
+      if (typeof arg !== "object") {
+        return "";
+      }
+      if (Array.isArray(arg)) {
+        return classNames2.apply(null, arg);
+      }
+      if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes("[native code]")) {
+        return arg.toString();
+      }
+      var classes = "";
+      for (var key in arg) {
+        if (hasOwn.call(arg, key) && arg[key]) {
+          classes = appendClass(classes, key);
+        }
+      }
+      return classes;
+    }
+    function appendClass(value, newClass) {
+      if (!newClass) {
+        return value;
+      }
+      if (value) {
+        return value + " " + newClass;
+      }
+      return value + newClass;
+    }
+    if (module.exports) {
+      classNames2.default = classNames2;
+      module.exports = classNames2;
+    } else {
+      window.classNames = classNames2;
+    }
+  })();
+})(classnames);
+var classnamesExports = classnames.exports;
+const classNames = /* @__PURE__ */ getDefaultExportFromCjs(classnamesExports);
+const KEYBOARD_ROWS = [
+  ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+  ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+  ["Enter", "z", "x", "c", "v", "b", "n", "m", "Backspace"]
+];
+const Keyboard = ({ guesses, targetWord, onKeyPress }) => {
+  const getKeyStatus = (key) => {
+    const flatGuesses = guesses.join("");
+    if (!flatGuesses.includes(key)) return void 0;
+    if (guesses.some((guess, i) => guess[i] === key && targetWord[i] === key)) {
+      return "correct";
+    }
+    if (targetWord.includes(key)) return "present";
+    return "absent";
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-col gap-1.5", children: KEYBOARD_ROWS.map((row, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-center gap-1.5", children: row.map((key) => {
+    const status = key.length === 1 ? getKeyStatus(key) : void 0;
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "button",
+      {
+        onClick: () => onKeyPress(key),
+        className: classNames(
+          "h-14 rounded font-bold uppercase transition-colors duration-150",
+          {
+            "w-10": key.length === 1,
+            "px-4": key.length > 1,
+            "bg-green-600": status === "correct",
+            "bg-yellow-500": status === "present",
+            "bg-gray-700": status === "absent",
+            "bg-gray-600": !status,
+            "hover:bg-gray-500": !status
+          }
+        ),
+        children: key === "Backspace" ? "←" : key
+      },
+      key
     );
+  }) }, i)) });
+};
+const Grid = ({ guesses, currentGuess, targetWord }) => {
+  const empties = Array(6 - guesses.length - 1).fill("");
+  const getLetterStatus = (letter, index, word) => {
+    if (targetWord[index] === letter) return "correct";
+    if (targetWord.includes(letter)) return "present";
+    return "absent";
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-rows-6 gap-1", children: [
+    guesses.map((guess, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-5 gap-1", children: guess.split("").map((letter, j) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: classNames(
+          "w-14 h-14 border-2 flex items-center justify-center text-2xl font-bold uppercase transition-colors duration-500",
+          {
+            "bg-green-600 border-green-600": getLetterStatus(letter, j) === "correct",
+            "bg-yellow-500 border-yellow-500": getLetterStatus(letter, j) === "present",
+            "bg-gray-700 border-gray-700": getLetterStatus(letter, j) === "absent"
+          }
+        ),
+        children: letter
+      },
+      j
+    )) }, i)),
+    currentGuess && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-5 gap-1", children: currentGuess.padEnd(5).split("").map((letter, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: "w-14 h-14 border-2 border-gray-600 flex items-center justify-center text-2xl font-bold uppercase",
+        children: letter
+      },
+      i
+    )) }),
+    empties.map((_, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-5 gap-1", children: Array(5).fill("").map((_2, j) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: "w-14 h-14 border-2 border-gray-800 flex items-center justify-center"
+      },
+      j
+    )) }, i))
+  ] });
+};
+const GameStats = ({ userData, onClose, won, guesses }) => {
+  const maxGuesses = Math.max(...userData.guessDistribution);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-gray-800 rounded-lg p-6 max-w-md w-full", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center mb-6", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-2xl font-bold", children: "Statistics" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: onClose, className: "text-gray-400 hover:text-white", children: "✕" })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-4 gap-4 mb-6", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-3xl font-bold", children: userData.totalPlayed }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-xs text-gray-400", children: "Played" })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-3xl font-bold", children: [
+          Math.round(userData.totalWins / userData.totalPlayed * 100),
+          "%"
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-xs text-gray-400", children: "Win %" })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-3xl font-bold", children: userData.currentStreak }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-xs text-gray-400", children: "Current Streak" })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-3xl font-bold", children: userData.bestStreak }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-xs text-gray-400", children: "Max Streak" })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-bold mb-3", children: "GUESS DISTRIBUTION" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-1", children: userData.guessDistribution.map((count, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-4", children: i + 1 }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1 h-5", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          className: `h-full ${i + 1 === guesses && won ? "bg-green-600" : "bg-gray-600"}`,
+          style: { width: `${count / maxGuesses * 100}%` },
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "px-1 text-sm", children: count })
+        }
+      ) })
+    ] }, i)) })
+  ] }) });
+};
+const WORD_LENGTH = 5;
+const MAX_ATTEMPTS = 6;
+function App() {
+  const [postData, setPostData] = reactExports.useState(null);
+  const [userData, setUserData] = reactExports.useState(null);
+  const [gameState, setGameState] = reactExports.useState({
+    guesses: [],
+    currentGuess: "",
+    gameOver: false,
+    won: false
+  });
+  const [showStats, setShowStats] = reactExports.useState(false);
+  reactExports.useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (gameState.gameOver) return;
+      if (e.key === "Enter") {
+        submitGuess();
+      } else if (e.key === "Backspace") {
+        setGameState((prev) => ({
+          ...prev,
+          currentGuess: prev.currentGuess.slice(0, -1)
+        }));
+      } else if (/^[a-zA-Z]$/.test(e.key) && gameState.currentGuess.length < WORD_LENGTH) {
+        setGameState((prev) => ({
+          ...prev,
+          currentGuess: prev.currentGuess + e.key.toLowerCase()
+        }));
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [gameState]);
+  reactExports.useEffect(() => {
+    devvitClient.on("fetchPostDataResponse", (message) => {
+      if (message.type === "fetchPostDataResponse") {
+        setPostData(message.data.postData);
+      }
+    });
+    devvitClient.on("fetchUserDataResponse", (message) => {
+      if (message.type === "fetchUserDataResponse") {
+        setUserData(message.data.dbUser);
+      }
+    });
     devvitClient.postMessage({ type: "fetchPostData" });
-    console.log("WebView", "Requesting post data from Devvit");
+    devvitClient.postMessage({ type: "fetchUserData" });
     return () => {
-      console.log("WebView", "Cleaning up event listeners");
-      devvitClient.off("fetchPostDataReponse");
+      devvitClient.off("fetchPostDataResponse");
+      devvitClient.off("fetchUserDataResponse");
     };
   }, []);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "App", children: /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: instructions }) });
+  const submitGuess = reactExports.useCallback(() => {
+    if (gameState.currentGuess.length !== WORD_LENGTH || !postData) return;
+    const newGuesses = [...gameState.guesses, gameState.currentGuess];
+    const won = gameState.currentGuess === postData.targetWord;
+    const gameOver = won || newGuesses.length === MAX_ATTEMPTS;
+    setGameState({
+      guesses: newGuesses,
+      currentGuess: "",
+      gameOver,
+      won
+    });
+    if (gameOver) {
+      devvitClient.postMessage({
+        type: "gameComplete",
+        data: {
+          result: {
+            success: won,
+            guesses: newGuesses.length
+          }
+        }
+      });
+      setShowStats(true);
+    }
+  }, [gameState, postData]);
+  const onKeyPress = (key) => {
+    if (gameState.gameOver) return;
+    if (key === "Enter") {
+      submitGuess();
+    } else if (key === "Backspace") {
+      setGameState((prev) => ({
+        ...prev,
+        currentGuess: prev.currentGuess.slice(0, -1)
+      }));
+    } else if (gameState.currentGuess.length < WORD_LENGTH) {
+      setGameState((prev) => ({
+        ...prev,
+        currentGuess: prev.currentGuess + key.toLowerCase()
+      }));
+    }
+  };
+  if (!postData) return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center justify-center h-screen", children: "Loading..." });
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center justify-between min-h-screen bg-gray-900 text-gray-100 p-4", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("header", { className: "w-full text-center border-b border-gray-700 pb-2", children: /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-3xl font-bold", children: "Reddit Wordle" }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: "flex-1 flex flex-col items-center justify-center w-full max-w-lg mx-auto gap-8", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Grid,
+        {
+          guesses: gameState.guesses,
+          currentGuess: gameState.currentGuess,
+          targetWord: postData.targetWord
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Keyboard,
+        {
+          guesses: gameState.guesses,
+          targetWord: postData.targetWord,
+          onKeyPress
+        }
+      )
+    ] }),
+    showStats && userData && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      GameStats,
+      {
+        userData,
+        onClose: () => setShowStats(false),
+        won: gameState.won,
+        guesses: gameState.guesses.length
+      }
+    )
+  ] });
 }
-const useMockedResponses = false;
+const useMockedResponses = true;
 const boltConfig = {
   useMockedResponses
 };
@@ -7215,4 +7450,4 @@ devvitClient.initialize(boltConfig.useMockedResponses);
 createRoot(document.getElementById("root")).render(
   /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.StrictMode, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) })
 );
-//# sourceMappingURL=index-BWoPM9ct.js.map
+//# sourceMappingURL=index-D1Yrpkz-.js.map

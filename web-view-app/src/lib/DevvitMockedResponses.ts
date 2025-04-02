@@ -27,38 +27,13 @@ export class DevvitMockedResponses implements DevvitMessageHandler {
         switch (message.type) {
             case 'fetchPostData':
                 this.sendMockedResponse({
-                    type: 'fetchPostDataReponse',
+                    type: 'fetchPostDataResponse',
                     data: {
                         postData: {
-                            instructions: 'Your new Devvit app is ready! Start prompting with Bolt!',
+                            targetWord: 'hello',
+                            successCount: 10,
+                            failureCount: 5
                         }
-                    }
-                });
-                break;
-            case 'setUserScore':
-                this.sendMockedResponse({
-                    type: 'setUserScoreResponse',
-                    data: {
-                        status: 'success'
-                    }
-                });
-                break;
-            case 'setUserData':
-                this.sendMockedResponse({
-                    type: 'setUserDataResponse',
-                    data: {
-                        status: 'success'
-                    }
-                });
-                break;
-            case 'fetchLeaderboard':
-                this.sendMockedResponse({
-                    type: 'fetchLeaderboardResponse',
-                    data: {
-                        leaderboard: [
-                            { username: 'anon2', score: 200 },
-                            { username: 'anon3', score: 300 },
-                        ]
                     }
                 });
                 break;
@@ -67,46 +42,27 @@ export class DevvitMockedResponses implements DevvitMessageHandler {
                     type: 'fetchUserDataResponse',
                     data: {
                         redditUser: { userId: 'anon', username: 'anon' },
-                        dbUser: {solvedPuzzles: 0, playedPuzzles: 0 },
+                        dbUser: {
+                            currentStreak: 3,
+                            bestStreak: 5,
+                            totalPlayed: 10,
+                            totalWins: 7,
+                            averageGuesses: 3.5,
+                            guessDistribution: [1, 2, 3, 1, 0, 0]
+                        },
                         error: ''
                     }
                 });
                 break;
-            case 'fetchAvailableProducts':
+            case 'gameComplete':
                 this.sendMockedResponse({
-                    type: 'fetchAvailableProductsResponse',
+                    type: 'gameCompleteResponse',
                     data: {
-                        products: [
-                            { sku: '123', description: 'Product 1', name: 'Product 1', price: 25, imageUrl: 'https://via.placeholder.com/150' },
-                            { sku: '234', description: 'Product 2', name: 'Product 2', price: 200, imageUrl: 'https://via.placeholder.com/150' },
-                        ],
-                        error: ''
+                        status: 'success'
                     }
                 });
                 break;
-            case 'fetchOrders':
-                this.sendMockedResponse({
-                    type: 'fetchOrdersResponse',
-                    data: {
-                        orders: [
-                            { orderId: '123', productSku: '123', productName: 'Product 1', purchaseDate: '2021-01-01', status: 'completed' },
-                            { orderId: '234', productSku: '234', productName: 'Product 2', purchaseDate: '2021-01-02', status: 'completed' },
-                        ],
-                    }
-                });
-                break;
-            case 'buyProduct':
-                this.sendMockedResponse({
-                    type: 'buyProductResponse',
-                    data: {
-                        productSku: message.data.sku,
-                        status: 'success',
-                        error: ''
-                    }
-                });
-                break;
-            
-        };
+        }
     } 
 }
 

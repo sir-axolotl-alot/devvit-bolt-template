@@ -1,3 +1,5 @@
 export type PostData = {
-  instructions: string;
+  targetWord: string;
+  successCount: number;
+  failureCount: number;
 };

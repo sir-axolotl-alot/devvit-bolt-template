@@ -1,10 +1,7 @@
 import './devvit-app/menuActions.js';
-
 import { Devvit, useState, useWebView } from '@devvit/public-api';
-
 import type { DevvitMessage, WebViewMessage } from './shared/types/message.js';
-import { buyProductResponse, fulfillOrder, handleWebViewMessages, refundOrder } from './devvit-app/webViewMessageHandler.js';
-import { addPaymentHandler, useProducts, usePayments, useOrders } from '@devvit/payments';
+import { handleWebViewMessages } from './devvit-app/webViewMessageHandler.js';
 import { createRedisService } from './devvit-app/redisService.js';
 
 Devvit.configure({
@@ -12,65 +9,46 @@ Devvit.configure({
   redis: true,
 });
 
-addPaymentHandler({
-  fulfillOrder: fulfillOrder,
-  refundOrder: refundOrder
-});
-
 // Add a custom post type to Devvit
 Devvit.addCustomPostType({
-  name: 'Web View Example',
+  name: 'Wordle Puzzle',
   height: 'tall',
   render: (context) => {
-    // Load username with `useAsync` hook
+    const [postData] = useState(async () => {
+      const redisService = createRedisService(context);
+      return await redisService.getPostData(context.postId!);
+    });
+
     const [username] = useState(async () => {
       return (await context.reddit.getCurrentUsername()) ?? 'anon';
     });
 
-    const catalog = useProducts(context);
-    const payments = usePayments(async (result) => {
-      buyProductResponse(result, webView, context);
-    });
-
-    const orders = useOrders(context);
-
     const webView = useWebView<WebViewMessage, DevvitMessage>({
-      // URL of your web view content
       url: 'index.html',
-
-      // Handle messages sent from the web view
-      async onMessage(message: WebViewMessage, webView) {
-        const paymentsContext = {
-          catalog: catalog.products,
-          orders: orders.orders,
-          payments: payments,
-        }
-        await handleWebViewMessages(message, webView, context, paymentsContext);        
-      },
-      onUnmount() {
-        context.ui.showToast('Web view closed!');
+      onMessage(message: WebViewMessage, webView) {
+        handleWebViewMessages(message, webView, context, {});
       },
     });
 
     // Render the custom post type
     return (
       <vstack grow padding="small">
-        <vstack grow alignment="middle center">
+        <vstack grow alignment="middle center" gap="medium">
           <text size="xlarge" weight="bold">
-            Example App
+            Reddit Wordle
           </text>
-          <spacer />
-          <vstack alignment="start middle">
-            <hstack>
-              <text size="medium">Username:</text>
-              <text size="medium" weight="bold">
-                {' '}
-                {username ?? ''}
-              </text>
-            </hstack>
-          </vstack>
-          <spacer />
-          <button onPress={() => webView.mount()}>Launch App</button>
+          {postData && (
+            <vstack alignment="middle center" gap="small">
+              <text>Success Rate: {Math.round((postData.successCount / (postData.successCount + postData.failureCount || 1)) * 100)}%</text>
+              <text>Total Attempts: {postData.successCount + postData.failureCount}</text>
+            </vstack>
+          )}
+          <button 
+            onPress={() => webView.mount()}
+            appearance="primary"
+          >
+            Play Wordle
+          </button>
         </vstack>
       </vstack>
     );
