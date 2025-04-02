@@ -6,7 +6,7 @@ import { Product, Order} from './payments.js';
 /** Message from Devvit to the web view. */
 export type DevvitMessage =
   | { type: 'initialData'; data: { userId:string, postId:string } }
-  | { type: 'fetchPostDataReponse'; data: { postData:PostData } }
+  | { type: 'fetchPostDataResponse'; data: { postData:PostData } }
   | { type: 'fetchLeaderboardResponse'; data: { leaderboard:LeaderboardEntry[] } }
   | { type: 'fetchUserDataResponse'; data: { redditUser:RedditUserData|null, dbUser:GameUserData|null, error:string } }
   | { type: 'fetchAvailableProductsResponse'; data: { products:Product[], error:string } }

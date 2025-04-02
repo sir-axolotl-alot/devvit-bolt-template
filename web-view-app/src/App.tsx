@@ -7,8 +7,8 @@ function App() {
 
   useEffect(() => {
     // Listen for post data loaded from Devvit
-    devvitClient.on('fetchPostDataReponse', (message) => {
-        if (message.type !== 'fetchPostDataReponse') {
+    devvitClient.on('fetchPostDataResponse', (message) => {
+        if (message.type !== 'fetchPostDataResponse') {
           console.error('WebView', 'Received unexpected message type:', message.type);
           return;
         }
@@ -24,7 +24,7 @@ function App() {
     // Clean up event listeners on unmount
     return () => {
       console.log('WebView', 'Cleaning up event listeners');
-      devvitClient.off('fetchPostDataReponse');
+      devvitClient.off('fetchPostDataResponse');
     }
   }, []);
 

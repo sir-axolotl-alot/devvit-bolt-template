@@ -9,7 +9,7 @@ async function fetchPostData(message: WebViewMessage, webView: UseWebViewResult<
     const redisService = createRedisService(context);
     const postData = await redisService.getPostData(context.postId!);
     webView.postMessage({
-      type: 'fetchPostDataReponse',
+      type: 'fetchPostDataResponse',
       data: {
         postData: postData
       },

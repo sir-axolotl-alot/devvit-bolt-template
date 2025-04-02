@@ -7207,7 +7207,7 @@ function App() {
   }, []);
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "App", children: /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: instructions }) });
 }
-const useMockedResponses = false;
+const useMockedResponses = true;
 const boltConfig = {
   useMockedResponses
 };
@@ -7215,4 +7215,4 @@ devvitClient.initialize(boltConfig.useMockedResponses);
 createRoot(document.getElementById("root")).render(
   /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.StrictMode, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) })
 );
-//# sourceMappingURL=index-BWoPM9ct.js.map
+//# sourceMappingURL=index-BUslJHsK.js.map

@@ -27,7 +27,7 @@ export class DevvitMockedResponses implements DevvitMessageHandler {
         switch (message.type) {
             case 'fetchPostData':
                 this.sendMockedResponse({
-                    type: 'fetchPostDataReponse',
+                    type: 'fetchPostDataResponse',
                     data: {
                         postData: {
                             instructions: 'Your new Devvit app is ready! Start prompting with Bolt!',
