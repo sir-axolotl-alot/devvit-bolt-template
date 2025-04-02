@@ -22,14 +22,15 @@ In this project you will be dealing with two separate application runtimes:
 - This application MUST BUILD its bundle in the ./webroot folder. This is THE ONLY folder that the Devvit runtime will recognize as a valid embedded web application inside of Devvit. 
 - The Web View application MUST USE DEVVIT as a backend. It will communicate with the Devvit application via Messages sent through src/lib/DevvitClient.ts
 - If needed you can create new message types to transfer data between the web view and the Devvit app. 
-- The types `postData` and `userData` are there just as templates. Replace the properties and expand the classes as needed to fit the needs of your application specifically. When making changes to `postData` and `userData` ALWAYS update the mocked responses in DevvitMockedResponses to match the data that is expected by the webview during development
+- The types `postData` and `userData` are there just as templates. Replace the properties and expand the classes as needed to fit the needs of your application specifically. When making changes to `postData` and `userData` 
+- IMPORTANT: ALWAYS update the mocked responses in `web-view-app/src/lib/DevvitMockedResponses.ts` whenever you make changes to the messages or to the models (e.g. `postData`, `userData`)
 
 # Development workflow
 - Due to limitations in Stackblitz and the Bolt platform, you will not be able to run the `devvit` CLI as proposed in the docs
 - Your development workflow will be as following: 
     - Build the web-view-app into webroot and initialize your webserver in the webroot folder (the project is already configured to do this with `npm run dev`)
     - ALWAYS initialize the Devvit Client with `useMockedResponses=true` to enable the user to experience how their app will look like when connected to Devvit. This is set up in the `devvit-bolt.config.json` file.
-    - Update mocked responses in `web-view-app/lib/DevvitClientMockedResponses` to match the expected format based on your data types.
+    - ALWAYS ensure the file `web-view-app/src/lib/DevvitMockedResponses.ts` is up-to-date with your data types before trying to run the `npm run dev`
     - Try not to change anything in the vite.config.ts unless extremely necessary. This is configured correctly to work with Devvit once the project is exported.
 
 # When the user is happy with the app
