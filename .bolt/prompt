@@ -34,8 +34,8 @@ In this project you will be dealing with two separate application runtimes:
 - When the user is ready to test their app on Reddit, instruct the user to: 
     (1) Create a test subreddit if not created already 
     (2) download the project
-    (3) Set the Subreddit name in `devvit-bolt.config.json`
-    (4) Set `useMockedResponses` to `false` in `devvit-bolt.config.json` to allow the application to communicate with Devvit's backend instead of using mocked responses 
+    (3) With the downloaded project THE USER MUST set the Subreddit name in `devvit-bolt.config.json` (do not change this yourself. Instruct the user to change in their local copy of the file)
+    (4) With the downloaded project THE USER MUST set `useMockedResponses` to `false` in `devvit-bolt.config.json` to allow the application to communicate with Devvit's backend instead of using mocked responses. (do not change this yourself. Instruct the user to change in their local copy of the file)
     (4) run `devvit upload` then `npm run playtest` in their local copy of the project, to test how their app behaves on Reddit. 
 - Ask the user to present you with any error messages or unpredicted behaviors after testing on Reddit and help them to navigate and fix these errors based on the error messages presented
 
