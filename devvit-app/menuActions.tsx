@@ -9,36 +9,26 @@ Devvit.configure({
 
 const newGameForm = Devvit.createForm(
   {
-    title: 'Create Riddle',
-    description: 'Create a Riddle',
+    title: 'Create Instructions',
+    description: 'Create a New Post with Instructions',
     fields: [
       {
-        name: 'riddle',
-        label: 'Riddle',
+        name: 'instructions',
+        label: 'Instructions',
         type: 'string',
-        placeholder: 'Enter the riddle here',
-        required: true,
-      },
-      {
-        name: 'answer',
-        label: 'Answer',
-        type: 'string',
-        placeholder: 'Enter the answer here',
+        placeholder: 'Enter the Instructions text here',
         required: true,
       }
     ],
-    acceptLabel: 'Create Riddle',
+    acceptLabel: 'Create Post!',
   },
   async (event, context) => {
-    const { riddle, answer } = event.values;
+    const { instructions } = event.values;
     // Create post data object
     const postData: PostData = {
-      riddle: riddle,
-      answer: answer,
-      solvedTimes: 0,
-      playedTimes: 0,
+      instructions: instructions,
     };
-    const post = await createNewPost("New Riddle", postData, context);
+    const post = await createNewPost("New Empty Bolt Project", postData, context);
   }
 );
 
@@ -65,7 +55,7 @@ async function createNewPost(title:string, postData: PostData, context: Devvit.C
 
 // Adds a new menu item to the subreddit allowing to create a new post
 Devvit.addMenuItem({
-  label: '[+] New Riddle',
+  label: '[+] New Bolt Template',
   location: 'subreddit',
   onPress: async (_event, context) => {
     context.ui.showForm(newGameForm);

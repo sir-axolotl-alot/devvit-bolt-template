@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "build": "npm run build:webroot --workspace=web-view-app",
-    "dev": "npm run build && npm run dev --workspace=web-view-app"
+    "dev": "npm run build && npm run dev --workspace=web-view-app",
+    "playtest": "node commands/playtest.cjs"
   },
   "dependencies": {
     "@devvit/payments": "^0.11.11",

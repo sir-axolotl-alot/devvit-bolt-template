@@ -30,10 +30,7 @@ export class DevvitMockedResponses implements DevvitMessageHandler {
                     type: 'fetchPostDataReponse',
                     data: {
                         postData: {
-                            riddle: 'What has keys but can’t open locks?',
-                            answer: 'A piano',
-                            solvedTimes: 0,
-                            playedTimes: 0,
+                            instructions: 'Your new Devvit app is ready! Start prompting with Bolt!',
                         }
                     }
                 });

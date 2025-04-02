@@ -26,16 +26,17 @@ In this project you will be dealing with two separate application runtimes:
 - Due to limitations in Stackblitz and the Bolt platform, you will not be able to run the `devvit` CLI as proposed in the docs
 - Your development workflow will be as following: 
     - Build the web-view-app into webroot and initialize your webserver in the webroot folder (the project is already configured to do this with `npm run dev`)
-    - ALWAYS initialize the Devvit Client with `useMockedResponses=true` to enable the user to experience how their app will look like when connected to Devvit
-    - Update mocked responses in `DevvitClientMockedResponses` to match the expected format based on your data types.
+    - ALWAYS initialize the Devvit Client with `useMockedResponses=true` to enable the user to experience how their app will look like when connected to Devvit. This is set up in the `devvit-bolt.config.json` file.
+    - Update mocked responses in `web-view-app/lib/DevvitClientMockedResponses` to match the expected format based on your data types.
     - Try not to change anything in the vite.config.ts unless extremely necessary. This is configured correctly to work with Devvit once the project is exported.
 
 # When the user is happy with the app
 - When the user is ready to test their app on Reddit, instruct the user to: 
     (1) Create a test subreddit if not created already 
     (2) download the project
-    (3) disable mocked responses by initializing the DevvitClient with `useMockedResponses=false` 
-    (4) run `devvit upload` then `devvit playtest r/MY_TEST_SUBREDDIT` in their local copy of the project, to test how their app behaves on Reddit. 
+    (3) Set the Subreddit name in `devvit-bolt.config.json`
+    (4) Set `useMockedResponses` to `false` in `devvit-bolt.config.json` to allow the application to communicate with Devvit's backend instead of using mocked responses 
+    (4) run `devvit upload` then `npm run playtest` in their local copy of the project, to test how their app behaves on Reddit. 
 - Ask the user to present you with any error messages or unpredicted behaviors after testing on Reddit and help them to navigate and fix these errors based on the error messages presented
 
 

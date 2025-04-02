@@ -5,6 +5,7 @@ import { Devvit, useState, useWebView } from '@devvit/public-api';
 import type { DevvitMessage, WebViewMessage } from './shared/types/message.js';
 import { buyProductResponse, fulfillOrder, handleWebViewMessages, refundOrder } from './devvit-app/webViewMessageHandler.js';
 import { addPaymentHandler, useProducts, usePayments, useOrders } from '@devvit/payments';
+import { createRedisService } from './devvit-app/redisService.js';
 
 Devvit.configure({
   redditAPI: true,

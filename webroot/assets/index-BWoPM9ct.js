@@ -7030,10 +7030,7 @@ class DevvitMockedResponses {
           type: "fetchPostDataReponse",
           data: {
             postData: {
-              riddle: "What has keys but can’t open locks?",
-              answer: "A piano",
-              solvedTimes: 0,
-              playedTimes: 0
+              instructions: "Your new Devvit app is ready! Start prompting with Bolt!"
             }
           }
         });
@@ -7070,7 +7067,8 @@ class DevvitMockedResponses {
           type: "fetchUserDataResponse",
           data: {
             redditUser: { userId: "anon", username: "anon" },
-            dbUser: { solvedPuzzles: 0, playedPuzzles: 0 }
+            dbUser: { solvedPuzzles: 0, playedPuzzles: 0 },
+            error: ""
           }
         });
         break;
@@ -7132,9 +7130,9 @@ class DevvitClient {
   /**
    * Initialize the client and set up message listeners
    */
-  initialize(useMockedResponses = false) {
+  initialize(useMockedResponses2 = false) {
     if (this.initialized) return;
-    if (useMockedResponses) {
+    if (useMockedResponses2) {
       this.devvitMessageHandler = devvitMockedResponses;
       console.log("DevvitClient", "Using mocked responses");
     } else {
@@ -7187,11 +7185,8 @@ class DevvitClient {
 }
 const devvitClient = new DevvitClient();
 function App() {
-  const [riddle, setRiddle] = React.useState(null);
-  const [answer, setAnswer] = React.useState(null);
+  const [instructions, setInstructions] = React.useState("");
   reactExports.useEffect(() => {
-    const useMockedResponses = true;
-    devvitClient.initialize(useMockedResponses);
     devvitClient.on(
       "fetchPostDataReponse",
       (message) => {
@@ -7200,28 +7195,24 @@ function App() {
           return;
         }
         console.log("WebView", "Received post data from Devvit:", message.data);
-        setRiddle(message.data.postData.riddle);
-        setAnswer(message.data.postData.answer);
+        setInstructions(message.data.postData.instructions);
       }
     );
-    devvitClient.postMessage({
-      type: "fetchPostData"
-    });
+    devvitClient.postMessage({ type: "fetchPostData" });
     console.log("WebView", "Requesting post data from Devvit");
     return () => {
       console.log("WebView", "Cleaning up event listeners");
       devvitClient.off("fetchPostDataReponse");
     };
   }, []);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "App", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: "Here's a Riddle:" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { children: "Riddle" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: riddle }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { children: "Answer" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: answer })
-  ] });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "App", children: /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: instructions }) });
 }
+const useMockedResponses = false;
+const boltConfig = {
+  useMockedResponses
+};
+devvitClient.initialize(boltConfig.useMockedResponses);
 createRoot(document.getElementById("root")).render(
   /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.StrictMode, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) })
 );
-//# sourceMappingURL=index-DN_zIwIr.js.map
+//# sourceMappingURL=index-BWoPM9ct.js.map
