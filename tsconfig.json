@@ -3,7 +3,7 @@
   "files": [],
   "references": [
     { "path": "./src/devvit" },
-    { "path": "./src/iframe" },
+    { "path": "./src/webview" },
     { "path": "./src/shared" },
     { "path": "./tools" }
   ]

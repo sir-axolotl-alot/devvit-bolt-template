@@ -6,14 +6,17 @@
   "type": "module",
   "scripts": {
     "postinstall": "patch-package",
-    "dev": "npm run build && cd src/iframe && vite",
-    "build": "npm run type-check && npm run lint && cd src/iframe && vite build",
+    "dev:bolt": "cd src/webview && vite",
+    "dev:webview": "cd src/webview && vite build --watch",
+    "dev:devvit": "devvit playtest huckleberrydevcorner4 --config devvit.dev.yaml",
+    "dev": "concurrently -p \"[{name}]\" -n \"BOLT,DEVVIT,GAME\" -c \"bgBlue.bold,bgGreen.bold,bgMagenta.bold,bgGreen.bold\" \"npm run dev:bolt\" \"npm run dev:devvit\" \"npm run dev:webview\" --restart-tries 10",
+    "check": "npm run type-check && npm run lint",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
-    "playtest": "npm run build && devvit playtest huckleberrydevcorner4 --config devvit.dev.yaml",
     "prettier": "prettier-package-json --write ./package.json && prettier --write .",
     "type-check": "tsc --build",
-    "upload": "devvit upload --config devvit.dev.yaml"
+    "upload": "devvit upload --config devvit.dev.yaml",
+    "login": "devvit login --copy-paste"
   },
   "dependencies": {
     "@devvit/payments": "^0.11.11",
@@ -27,6 +30,7 @@
   "devDependencies": {
     "@eslint/js": "9.23.0",
     "@types/react": "^18.3.5",
+    "concurrently": "9.1.2",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.18",
