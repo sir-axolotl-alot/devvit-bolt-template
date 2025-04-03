@@ -6,7 +6,9 @@ To use this template on Bolt.new, click here: https://bolt.new/github.com/sir-ax
 
 
 The template is prepared to help you build a Web View directly in Bolt's webcontainer.
-Because Bolt and Devvit can't communicate, Bolt will try to mock all responses that it expects from Devvit
+Because Bolt and Devvit can't communicate, Bolt will try to mock all responses that it expects from Devvit. 
+
+
 You can see and edit the Mocked Responses in `web-view-app/src/lib/DevvitMockedResponses.ts`
 
 
