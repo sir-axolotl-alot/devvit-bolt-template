@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build:webroot": "vite build --outDir ../webroot --emptyOutDir"
+    "build:webroot": "vite build --outDir ../webroot --emptyOutDir",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "lucide-react": "^0.344.0",
