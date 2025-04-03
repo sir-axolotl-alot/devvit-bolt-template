@@ -3,5 +3,5 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "include": ["./devit-app/**/*", "shared/types/message.ts"]
+  "include": ["./devit-app/**/*", "main.tsx", "shared/types/**/*"]
 }
