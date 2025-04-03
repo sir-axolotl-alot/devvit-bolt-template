@@ -19,7 +19,7 @@ Because Bolt can't authenticate directly to Reddit, it should give you instructi
 It's important to remember to update the `devvit-bolt.config.json` to connect to the real Devvit backend and stop using mocked respones:
 
 
-```
+```js
 /// devvit-bolt.config.json
 {
   "useMockedResponses": false, // <-- Set this to false, before testing on Reddit
