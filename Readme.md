@@ -12,9 +12,29 @@ Once your Bolt template starts up you should see something like this:
 Now, you need to get to your terminal:
 ![](./docs//assets/1-terminal.png)
 
-Next, we need to login to devvit
+Next, we need to login to devvit by running `npm run login`.
 
 ![](./docs/assets/2-logging-in.mp4)
+
+Once you're logged in, please create a subreddit on https://www.reddit.com/ by scrolling down to `Create a Community`. It's a good idea to keep your development subreddit private so that the logs you see in the console are only from you.
+
+Once you have a new community, replace `YOUR_DEV_SUBREDDIT` in the `package.json`. Also, choose a name for your game and add it to `devvit.prod.yaml`.
+
+There are two yaml files:
+
+- `devvit.prod.yaml`: This is the production name of your application
+- `devvit.dev.yaml`: This is the version unique to you. If you are working on a team, add this file to your gitignore so that you and other team members can develop on separate apps without stepping on each other.
+
+Once you have an app name, run `npm run upload`. It will walk you through some prompts before uploading it to the developer portal.
+
+Once you have that, you're ready to run: `npm run dev`.
+
+This will do two things:
+
+1. It will expose a development port for you to be able to code in Bolt in realtime.
+2. On changes, it will submit builds to Reddit so that you can also see what your app looks like in production. This is a great place to test menu item actions, scheduled jobs, blocks, and more. Essentially, anything outside of the webview you need to see in reddit.
+
+> Not seeing a post on your subreddit? Be sure to click the menu item to insert a new post!
 
 ## Build your web view with mocked responses
 
