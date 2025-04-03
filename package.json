@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "postinstall": "patch-package",
-    "dev": "npm run build && npm run dev --workspace=web-view-app",
+    "dev": "npm run build && cd src/iframe && vite",
     "build": "npm run type-check && npm run lint && cd src/iframe && vite build",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
