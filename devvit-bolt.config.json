@@ -1,4 +1,4 @@
 {
-  "useMockedResponses": false,
+  "useMockedResponses": true,
   "testSubreddit": "r/MY_TEST_SUBREDDIT"
 }
