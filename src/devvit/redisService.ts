@@ -1,7 +1,7 @@
 import { Devvit, TriggerContext } from '@devvit/public-api';
-import { PostData } from '../shared/types/postData.js';
-import { GameUserData } from '../shared/types/userData.js';
-import { LeaderboardEntry } from '../shared/types/leaderboardEntry.js';
+import { PostData } from '../shared/types/postData';
+import { GameUserData } from '../shared/types/userData';
+import { LeaderboardEntry } from '../shared/types/leaderboardEntry';
 
 Devvit.configure({
   redis: true,

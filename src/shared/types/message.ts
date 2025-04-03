@@ -1,7 +1,7 @@
-import { GameUserData, RedditUserData } from './userData.js';
-import { PostData } from './postData.js';
-import { LeaderboardEntry } from './leaderboardEntry.js';
-import { Product, Order } from './payments.js';
+import { GameUserData, RedditUserData } from './userData';
+import { PostData } from './postData';
+import { LeaderboardEntry } from './leaderboardEntry';
+import { Product, Order } from './payments';
 
 /** Message from Devvit to the web view. */
 export type DevvitMessage =

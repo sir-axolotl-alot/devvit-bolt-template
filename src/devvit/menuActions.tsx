@@ -1,6 +1,6 @@
 import { Devvit } from '@devvit/public-api';
-import { PostData } from '../shared/types/postData.js';
-import { createRedisService } from './redisService.js';
+import { PostData } from '../shared/types/postData';
+import { createRedisService } from './redisService';
 
 // Configure Devvit's plugins
 Devvit.configure({

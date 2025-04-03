@@ -1,14 +1,14 @@
 import { Devvit, TriggerContext, UseWebViewResult } from '@devvit/public-api';
-import { WebViewMessage, DevvitMessage } from '../shared/types/message.js';
-import { createRedisService } from './redisService.js';
-import { Product, Order } from '../shared/types/payments.js';
+import { WebViewMessage, DevvitMessage } from '../shared/types/message';
+import { createRedisService } from './redisService';
+import { Product, Order } from '../shared/types/payments';
 import {
   Product as DevvitProduct,
   Order as DevvitOrder,
   OnPurchaseResult,
   OrderResultStatus,
 } from '@devvit/payments';
-import { PaymentsContext } from './paymentsContext.js';
+import { PaymentsContext } from './paymentsContext';
 
 async function fetchPostData(
   _message: WebViewMessage,

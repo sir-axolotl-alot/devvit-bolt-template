@@ -1,16 +1,16 @@
 /* bolt-dont-edit-start */
 
-import './menuActions.js';
+import './menuActions';
 
 import { Devvit, useState, useWebView } from '@devvit/public-api';
 
-import type { DevvitMessage, WebViewMessage } from '../shared/types/message.js';
+import type { DevvitMessage, WebViewMessage } from '../shared/types/message';
 import {
   buyProductResponse,
   fulfillOrder,
   handleWebViewMessages,
   refundOrder,
-} from './webViewMessageHandler.js';
+} from './webViewMessageHandler';
 import {
   addPaymentHandler,
   useProducts,
