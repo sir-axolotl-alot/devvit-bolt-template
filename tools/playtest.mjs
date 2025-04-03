@@ -18,15 +18,14 @@ const main = async function () {
   writeFileSync(configPath, JSON.stringify(config, null, 2));
   console.log('Running playtest with useMockedResponses set to false');
 
-  execSync('npm run build', {
+  execSync('npm run type-check', {
     stdio: 'inherit',
   });
 
   console.log('Running playtest on ' + config.testSubreddit);
 
-  const devvitConfigPath = join(__dirname, '../devvit.dev.yaml');
   execSync(
-    `devvit playtest ${config.testSubreddit} --config ${devvitConfigPath}`,
+    `devvit playtest ${config.testSubreddit} --config devvit.dev.yaml`,
     {
       stdio: 'inherit',
     }

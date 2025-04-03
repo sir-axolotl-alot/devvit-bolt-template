@@ -8,14 +8,14 @@
     "postinstall": "patch-package",
     "dev:bolt": "cd src/webview && vite",
     "dev:webview": "cd src/webview && vite build --watch",
-    "dev:devvit": "devvit playtest huckleberrydevcorner4 --config devvit.dev.yaml",
+    "dev:devvit": "node tools/playtest.mjs",
     "dev": "concurrently -p \"[{name}]\" -n \"BOLT,DEVVIT,GAME\" -c \"blue,green,magenta\" \"npm run dev:bolt\" \"npm run dev:devvit\" \"npm run dev:webview\" --restart-tries 10",
     "check": "npm run type-check && npm run lint",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
     "prettier": "prettier-package-json --write ./package.json && prettier --write .",
     "type-check": "tsc --build",
-    "upload": "devvit upload --config devvit.dev.yaml",
+    "upload": "devvit upload --config devvit.dev.yaml --copyPaste",
     "login": "devvit login --copy-paste"
   },
   "dependencies": {
