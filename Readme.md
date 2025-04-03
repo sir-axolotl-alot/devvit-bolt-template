@@ -12,7 +12,7 @@ Once you're happy with your webview, let Bolt know. The LLM will give you instru
 ## Testing on Reddit
 Because Bolt can't authenticate directly to Reddit, it should give you instructions on how to export the project, and run command line scripts locally to test your project.
 It's important to remember to update the `devvit-bolt.config.json` to connect to the real Devvit backend and stop using mocked respones:
-```json
+```
 /// devvit-bolt.config.json
 {
   "useMockedResponses": false, // <-- Set this to false, before testing on Reddit
