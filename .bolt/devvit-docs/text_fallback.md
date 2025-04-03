@@ -49,7 +49,9 @@ const textFallbackRichtext = new RichTextBuilder()
   .heading({ level: 1 }, (h) => {
     h.rawText('Yay for text fallbacks!');
   })
-  .codeBlock({}, (cb) => cb.rawText('This post was created via the Devvit API.'));
+  .codeBlock({}, (cb) =>
+    cb.rawText('This post was created via the Devvit API.')
+  );
 
 const post = await reddit.submitPost({
   title: 'Devvit post with richtext fallback',

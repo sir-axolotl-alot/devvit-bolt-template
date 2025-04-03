@@ -1,0 +1,13 @@
+diff --git a/node_modules/@devvit/build-pack/lib/BuildPack.js b/node_modules/@devvit/build-pack/lib/BuildPack.js
+index 5e78d7a..cafee2d 100644
+--- a/node_modules/@devvit/build-pack/lib/BuildPack.js
++++ b/node_modules/@devvit/build-pack/lib/BuildPack.js
+@@ -21,7 +21,7 @@ export function formatLog(log) {
+ export function getModuleEntrypoint(root) {
+     // favor src/ if it exists. single file projects may point directly to the
+     // source directory.
+-    const src = path.join(root, ACTOR_SRC_DIR);
++    const src = path.join(root, ACTOR_SRC_DIR + '/devvit');
+     const dir = fs.existsSync(src) ? src : root;
+     // Support TSX files and give them priority is they exist.
+     // This is used to power UI (aka BlockKit)

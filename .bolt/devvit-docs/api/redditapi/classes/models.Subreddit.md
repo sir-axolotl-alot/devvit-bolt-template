@@ -835,7 +835,9 @@ const userFlairList = response.users;
 **`Example`**
 
 ```ts
-const response = await subreddit.getUserFlair({ usernames: ['toxictoad', 'badapple'] });
+const response = await subreddit.getUserFlair({
+  usernames: ['toxictoad', 'badapple'],
+});
 const userFlairList = response.users;
 ```
 

@@ -59,7 +59,9 @@ Devvit.addMenuItem({
         text: 'Hello World with Media',
         richtext: new RichTextBuilder()
           .image({ mediaId: response.mediaId })
-          .codeBlock({}, (cb) => cb.rawText('This comment was created from a Devvit App')),
+          .codeBlock({}, (cb) =>
+            cb.rawText('This comment was created from a Devvit App')
+          ),
       });
     } catch (err) {
       throw new Error(`Error uploading media: ${err}`);

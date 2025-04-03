@@ -794,408 +794,1151 @@ import IconWorldOutline from '../assets/icons/icon-world-outline.svg';
 import AttributeOnPress from './attributes/_onPress.md';
 import AttributeColor from './attributes/_color.md';
 
-
 export const icons = {
   actions: [
-  { name: 'add', variants: [<IconAddOutline />, <IconAddFill />] },
-  { name: 'add-to-feed', variants: [<IconAddToFeedOutline />, <IconAddToFeedFill />] },
-  { name: 'award', variants: [<IconAwardOutline />, <IconAwardFill />] },
-  { name: 'backup', variants: [<IconBackupOutline />, <IconBackupFill />] },
-  { name: 'browse', variants: [<IconBrowseOutline />, <IconBrowseFill />] },
-  { name: 'chat-new', variants: [<IconChatNewOutline />, <IconChatNewFill />] },
-  { name: 'clear', variants: [<IconClearOutline />, <IconClearFill />] },
-  { name: 'comment', variants: [<IconCommentOutline />, <IconCommentFill />] },
-  { name: 'customize', variants: [<IconCustomizeOutline />, <IconCustomizeFill />] },
-  { name: 'delete', variants: [<IconDeleteOutline />, <IconDeleteFill />] },
-  { name: 'download', variants: [<IconDownloadOutline />, <IconDownloadFill />] },
-  { name: 'downvote', variants: [<IconDownvoteOutline />, <IconDownvoteFill />] },
-  { name: 'duplicate', variants: [<IconDuplicateOutline />, <IconDuplicateFill />] },
-  { name: 'edit', variants: [<IconEditOutline />, <IconEditFill />] },
-  { name: 'heart', variants: [<IconHeartOutline />, <IconHeartFill />] },
-  { name: 'hide', variants: [<IconHideOutline />, <IconHideFill />] },
-  { name: 'invite', variants: [<IconInviteOutline />, <IconInviteFill />] },
-  { name: 'join', variants: [<IconJoinOutline />, <IconJoinFill />] },
-  { name: 'joined', variants: [<IconJoinedOutline />, <IconJoinedFill />] },
-  { name: 'leave', variants: [<IconLeaveOutline />, <IconLeaveFill />] },
-  { name: 'logout', variants: [<IconLogoutOutline />, <IconLogoutFill />] },
-  { name: 'mark-read', variants: [<IconMarkReadOutline />, <IconMarkReadFill />] },
-  { name: 'message', variants: [<IconMessageOutline />, <IconMessageFill />] },
-  { name: 'notification', variants: [<IconNotificationOutline />, <IconNotificationFill />] },
-  { name: 'notification-frequent', variants: [<IconNotificationFrequentOutline />, <IconNotificationFrequentFill />] },
-  { name: 'notification-off', variants: [<IconNotificationOffOutline />, <IconNotificationOffFill />] },
-  { name: 'peace', variants: [<IconPeaceOutline />, <IconPeaceFill />] },
-  { name: 'raise-hand', variants: [<IconRaiseHandOutline />, <IconRaiseHandFill />] },
-  { name: 'recovery-phrase', variants: [<IconRecoveryPhraseOutline />, <IconRecoveryPhraseFill />] },
-  { name: 'reply', variants: [<IconReplyOutline />, <IconReplyFill />] },
-  { name: 'report', variants: [<IconReportOutline />, <IconReportFill />] },
-  { name: 'save', variants: [<IconSaveOutline />, <IconSaveFill />] },
-  { name: 'search', variants: [<IconSearchOutline />, <IconSearchFill />] },
-  { name: 'send', variants: [<IconSendOutline />, <IconSendFill />] },
-  { name: 'share-android', variants: [<IconShareAndroidOutline />, <IconShareAndroidFill />] },
-  { name: 'share', variants: [<IconShareOutline />, <IconShareFill />] },
-  { name: 'share-ios', variants: [<IconShareIosOutline />, <IconShareIosFill />] },
-  { name: 'show', variants: [<IconShowOutline />, <IconShowFill />] },
-  { name: 'star', variants: [<IconStarOutline />, <IconStarFill />] },
-  { name: 'subtract', variants: [<IconSubtractOutline />, <IconSubtractFill />] },
-  { name: 'tag', variants: [<IconTagOutline />, <IconTagFill />] },
-  { name: 'translate', variants: [<IconTranslateOutline />, <IconTranslateFill />] },
-  { name: 'translation-off', variants: [<IconTranslationOffOutline />, <IconTranslationOffFill />] },
-  { name: 'unheart', variants: [<IconUnheartOutline />, <IconUnheartFill />] },
-  { name: 'unstar', variants: [<IconUnstarOutline />, <IconUnstarFill />] },
-  { name: 'upload', variants: [<IconUploadOutline />, <IconUploadFill />] },
-  { name: 'upvote', variants: [<IconUpvoteOutline />, <IconUpvoteFill />] }
-],
-ads: [
-  { name: '3rd-party', variants: [<Icon3rdPartyOutline />, <Icon3rdPartyFill />] },
-  { name: 'ads', variants: [<IconAdsOutline />, <IconAdsFill />] },
-  { name: 'audience', variants: [<IconAudienceOutline />, <IconAudienceFill />] },
-  { name: 'brand-awareness', variants: [<IconBrandAwarenessOutline />, <IconBrandAwarenessFill />] },
-  { name: 'campaign', variants: [<IconCampaignOutline />, <IconCampaignFill />] },
-  { name: 'client-list', variants: [<IconClientListOutline />, <IconClientListFill />] },
-  { name: 'conversion', variants: [<IconConversionOutline />, <IconConversionFill />] },
-  { name: 'copy-clipboard', variants: [<IconCopyClipboardOutline />, <IconCopyClipboardFill />] },
-  { name: 'dashboard', variants: [<IconDashboardOutline />, <IconDashboardFill />] },
-  { name: 'funnel', variants: [<IconFunnelOutline />, <IconFunnelFill />] },
-  { name: 'save-view', variants: [<IconSaveViewOutline />, <IconSaveViewFill />] },
-  { name: 'spreadsheet', variants: [<IconSpreadsheetOutline />, <IconSpreadsheetFill />] }
-],
-beta: [
-  { name: 'beta-binoculars', variants: [<IconBetaBinocularsOutline />, <IconBetaBinocularsFill />] },
-  { name: 'beta-caret-updown', variants: [<IconBetaCaretUpdownOutline />, <IconBetaCaretUpdownFill />] },
-  { name: 'beta-latest', variants: [<IconBetaLatestOutline />, <IconBetaLatestFill />] },
-  { name: 'beta-planet', variants: [<IconBetaPlanetOutline />, <IconBetaPlanetFill />] },
-  { name: 'beta-talk-add', variants: [<IconBetaTalkAddOutline />, <IconBetaTalkAddFill />] },
-  { name: 'beta-telescope', variants: [<IconBetaTelescopeOutline />, <IconBetaTelescopeFill />] },
-  { name: 'communities', variants: [<IconCommunitiesOutline />, <IconCommunitiesFill />] },
-  { name: 'share-new', variants: [<IconShareNewOutline />, <IconShareNewFill />] }
-],
-content: [
-  { name: 'browser', variants: [<IconBrowserOutline />, <IconBrowserFill />] },
-  { name: 'camera', variants: [<IconCameraOutline />, <IconCameraFill />] },
-  { name: 'collection', variants: [<IconCollectionOutline />, <IconCollectionFill />] },
-  { name: 'embed', variants: [<IconEmbedOutline />, <IconEmbedFill />] },
-  { name: 'end-live-chat', variants: [<IconEndLiveChatOutline />, <IconEndLiveChatFill />] },
-  { name: 'gif-post', variants: [<IconGifPostOutline />, <IconGifPostFill />] },
-  { name: 'image-post', variants: [<IconImagePostOutline />, <IconImagePostFill />] },
-  { name: 'link-post', variants: [<IconLinkPostOutline />, <IconLinkPostFill />] },
-  { name: 'live-chat', variants: [<IconLiveChatOutline />, <IconLiveChatFill />] },
-  { name: 'media-gallery', variants: [<IconMediaGalleryOutline />, <IconMediaGalleryFill />] },
-  { name: 'pending-posts', variants: [<IconPendingPostsOutline />, <IconPendingPostsFill />] },
-  { name: 'poll-post', variants: [<IconPollPostOutline />, <IconPollPostFill />] },
-  { name: 'random', variants: [<IconRandomOutline />, <IconRandomFill />] },
-  { name: 'text-post', variants: [<IconTextPostOutline />, <IconTextPostFill />] },
-  { name: 'video-camera', variants: [<IconVideoCameraOutline />, <IconVideoCameraFill />] },
-  { name: 'video-live', variants: [<IconVideoLiveOutline />, <IconVideoLiveFill />] },
-  { name: 'video-post', variants: [<IconVideoPostOutline />, <IconVideoPostFill />] }
-],
-formatting: [
-  { name: 'add-emoji', variants: [<IconAddEmojiOutline />, <IconAddEmojiFill />] },
-  { name: 'add-media', variants: [<IconAddMediaOutline />, <IconAddMediaFill />] },
-  { name: 'align-center', variants: [<IconAlignCenterOutline />, <IconAlignCenterFill />] },
-  { name: 'align-left', variants: [<IconAlignLeftOutline />, <IconAlignLeftFill />] },
-  { name: 'align-right', variants: [<IconAlignRightOutline />, <IconAlignRightFill />] },
-  { name: 'attach', variants: [<IconAttachOutline />, <IconAttachFill />] },
-  { name: 'bold', variants: [<IconBoldOutline />, <IconBoldFill />] },
-  { name: 'code-block', variants: [<IconCodeBlockOutline />, <IconCodeBlockFill />] },
-  { name: 'code-inline', variants: [<IconCodeInlineOutline />, <IconCodeInlineFill />] },
-  { name: 'emoji', variants: [<IconEmojiOutline />, <IconEmojiFill />] },
-  { name: 'format', variants: [<IconFormatOutline />, <IconFormatFill />] },
-  { name: 'hashtag', variants: [<IconHashtagOutline />, <IconHashtagFill />] },
-  { name: 'italic', variants: [<IconItalicOutline />, <IconItalicFill />] },
-  { name: 'keyboard', variants: [<IconKeyboardOutline />, <IconKeyboardFill />] },
-  { name: 'link', variants: [<IconLinkOutline />, <IconLinkFill />] },
-  { name: 'list-bulleted', variants: [<IconListBulletedOutline />, <IconListBulletedFill />] },
-  { name: 'list-numbered', variants: [<IconListNumberedOutline />, <IconListNumberedFill />] },
-  { name: 'macro', variants: [<IconMacroOutline />, <IconMacroFill />] },
-  { name: 'quote', variants: [<IconQuoteOutline />, <IconQuoteFill />] },
-  { name: 'r-slash', variants: [<IconRSlashOutline />, <IconRSlashFill />] },
-  { name: 'rich-text', variants: [<IconRichTextOutline />, <IconRichTextFill />] },
-  { name: 'strikethrough', variants: [<IconStrikethroughOutline />, <IconStrikethroughFill />] },
-  { name: 'superscript', variants: [<IconSuperscriptOutline />, <IconSuperscriptFill />] },
-  { name: 'table', variants: [<IconTableOutline />, <IconTableFill />] },
-  { name: 'text-size', variants: [<IconTextSizeOutline />, <IconTextSizeFill />] },
-  { name: 'u-slash', variants: [<IconUSlashOutline />, <IconUSlashFill />] },
-  { name: 'webhook', variants: [<IconWebhookOutline />, <IconWebhookFill />] }
-],
-forms: [
-  { name: 'caret-down', variants: [<IconCaretDownOutline />, <IconCaretDownFill />] },
-  { name: 'caret-left', variants: [<IconCaretLeftOutline />, <IconCaretLeftFill />] },
-  { name: 'caret-right', variants: [<IconCaretRightOutline />, <IconCaretRightFill />] },
-  { name: 'caret-up', variants: [<IconCaretUpOutline />, <IconCaretUpFill />] },
-  { name: 'checkbox-dismiss', variants: [<IconCheckboxDismissOutline />, <IconCheckboxDismissFill />] },
-  { name: 'checkbox', variants: [<IconCheckboxOutline />, <IconCheckboxFill />] },
-  { name: 'checkmark', variants: [<IconCheckmarkOutline />, <IconCheckmarkFill />] },
-  { name: 'payment', variants: [<IconPaymentOutline />, <IconPaymentFill />] },
-  { name: 'radio-button', variants: [<IconRadioButtonOutline />, <IconRadioButtonFill />] },
-  { name: 'toggle', variants: [<IconToggleOutline />, <IconToggleFill />] }
-],
-locations: [
-  { name: 'all', variants: [<IconAllOutline />, <IconAllFill />] },
-  { name: 'chat', variants: [<IconChatOutline />, <IconChatFill />] },
-  { name: 'chat-group', variants: [<IconChatGroupOutline />, <IconChatGroupFill />] },
-  { name: 'chat-private', variants: [<IconChatPrivateOutline />, <IconChatPrivateFill />] },
-  { name: 'chrome', variants: [<IconChromeOutline />, <IconChromeFill />] },
-  { name: 'comments', variants: [<IconCommentsOutline />, <IconCommentsFill />] },
-  { name: 'community', variants: [<IconCommunityOutline />, <IconCommunityFill />] },
-  { name: 'custom-feed', variants: [<IconCustomFeedOutline />, <IconCustomFeedFill />] },
-  { name: 'discover', variants: [<IconDiscoverOutline />, <IconDiscoverFill />] },
-  { name: 'feed-video', variants: [<IconFeedVideoOutline />, <IconFeedVideoFill />] },
-  { name: 'history', variants: [<IconHistoryOutline />, <IconHistoryFill />] },
-  { name: 'home', variants: [<IconHomeOutline />, <IconHomeFill />] },
-  { name: 'inbox', variants: [<IconInboxOutline />, <IconInboxFill />] },
-  { name: 'marketplace', variants: [<IconMarketplaceOutline />, <IconMarketplaceFill />] },
-  { name: 'popular', variants: [<IconPopularOutline />, <IconPopularFill />] },
-  { name: 'posts', variants: [<IconPostsOutline />, <IconPostsFill />] },
-  { name: 'predictions', variants: [<IconPredictionsOutline />, <IconPredictionsFill />] },
-  { name: 'profile', variants: [<IconProfileOutline />, <IconProfileFill />] },
-  { name: 'rpan', variants: [<IconRpanOutline />, <IconRpanFill />] },
-  { name: 'safari', variants: [<IconSafariOutline />, <IconSafariFill />] },
-  { name: 'saved', variants: [<IconSavedOutline />, <IconSavedFill />] },
-  { name: 'settings', variants: [<IconSettingsOutline />, <IconSettingsFill />] },
-  { name: 'tools', variants: [<IconToolsOutline />, <IconToolsFill />] },
-  { name: 'topic', variants: [<IconTopicOutline />, <IconTopicFill />] },
-  { name: 'vault', variants: [<IconVaultOutline />, <IconVaultFill />] },
-  { name: 'video-feed', variants: [<IconVideoFeedOutline />, <IconVideoFeedFill />] },
-  { name: 'wallet', variants: [<IconWalletOutline />, <IconWalletFill />] },
-  { name: 'wiki', variants: [<IconWikiOutline />, <IconWikiFill />] },
-  { name: 'world', variants: [<IconWorldOutline />, <IconWorldFill />] }
-],
-media: [
-  { name: 'aspect-ratio', variants: [<IconAspectRatioOutline />, <IconAspectRatioFill />] },
-  { name: 'aspect-rectangle', variants: [<IconAspectRectangleOutline />, <IconAspectRectangleFill />] },
-  { name: 'audio', variants: [<IconAudioOutline />, <IconAudioFill />] },
-  { name: 'bounce', variants: [<IconBounceOutline />, <IconBounceFill />] },
-  { name: 'closed-captioning', variants: [<IconClosedCaptioningOutline />, <IconClosedCaptioningFill />] },
-  { name: 'crop', variants: [<IconCropOutline />, <IconCropFill />] },
-  { name: 'effect', variants: [<IconEffectOutline />, <IconEffectFill />] },
-  { name: 'loop', variants: [<IconLoopOutline />, <IconLoopFill />] },
-  { name: 'mask', variants: [<IconMaskOutline />, <IconMaskFill />] },
-  { name: 'meme', variants: [<IconMemeOutline />, <IconMemeFill />] },
-  { name: 'mic', variants: [<IconMicOutline />, <IconMicFill />] },
-  { name: 'mic-mute', variants: [<IconMicMuteOutline />, <IconMicMuteFill />] },
-  { name: 'music', variants: [<IconMusicOutline />, <IconMusicFill />] },
-  { name: 'mute', variants: [<IconMuteOutline />, <IconMuteFill />] },
-  { name: 'pause', variants: [<IconPauseOutline />, <IconPauseFill />] },
-  { name: 'play', variants: [<IconPlayOutline />, <IconPlayFill />] },
-  { name: 'reverse', variants: [<IconReverseOutline />, <IconReverseFill />] },
-  { name: 'rotate', variants: [<IconRotateOutline />, <IconRotateFill />] },
-  { name: 'rotate-image', variants: [<IconRotateImageOutline />, <IconRotateImageFill />] },
-  { name: 'skipback10', variants: [<IconSkipback10Outline />, <IconSkipback10Fill />] },
-  { name: 'skipforward10', variants: [<IconSkipforward10Outline />, <IconSkipforward10Fill />] },
-  { name: 'sticker', variants: [<IconStickerOutline />, <IconStickerFill />] },
-  { name: 'swap-camera', variants: [<IconSwapCameraOutline />, <IconSwapCameraFill />] },
-  { name: 'text', variants: [<IconTextOutline />, <IconTextFill />] },
-  { name: 'trim', variants: [<IconTrimOutline />, <IconTrimFill />] },
-  { name: 'video-thread', variants: [<IconVideoThreadOutline />, <IconVideoThreadFill />] },
-  { name: 'video-transcription', variants: [<IconVideoTranscriptionOutline />, <IconVideoTranscriptionFill />] },
-  { name: 'volume', variants: [<IconVolumeOutline />, <IconVolumeFill />] },
-  { name: 'volume-mute', variants: [ <IconVolumeMuteFill />] }
-],
-moderation: [
-  { name: 'admin', variants: [<IconAdminOutline />, <IconAdminFill />] },
-  { name: 'approve', variants: [<IconApproveOutline />, <IconApproveFill />] },
-  { name: 'automod', variants: [<IconAutomodOutline />, <IconAutomodFill />] },
-  { name: 'ban', variants: [<IconBanOutline />, <IconBanFill />] },
-  { name: 'block', variants: [<IconBlockOutline />, <IconBlockFill />] },
-  { name: 'confidence', variants: [<IconConfidenceOutline />, <IconConfidenceFill />] },
-  { name: 'crowd-control', variants: [<IconCrowdControlOutline />, <IconCrowdControlFill />] },
-  { name: 'distinguish', variants: [<IconDistinguishOutline />, <IconDistinguishFill />] },
-  { name: 'ignore-reports', variants: [<IconIgnoreReportsOutline />, <IconIgnoreReportsFill />] },
-  { name: 'kick', variants: [<IconKickOutline />, <IconKickFill />] },
-  { name: 'lock', variants: [<IconLockOutline />, <IconLockFill />] },
-  { name: 'mod', variants: [<IconModOutline />, <IconModFill />] },
-  { name: 'mod-mail', variants: [<IconModMailOutline />, <IconModMailFill />] },
-  { name: 'mod-mode', variants: [<IconModModeOutline />, <IconModModeFill />] },
-  { name: 'mod-mute', variants: [<IconModMuteOutline />, <IconModMuteFill />] },
-  { name: 'mod-overflow', variants: [<IconModOverflowOutline />, <IconModOverflowFill />] },
-  { name: 'mod-queue', variants: [<IconModQueueOutline />, <IconModQueueFill />] },
-  { name: 'mod-unmute', variants: [<IconModUnmuteOutline />, <IconModUnmuteFill />] },
-  { name: 'pin', variants: [<IconPinOutline />, <IconPinFill />] },
-  { name: 'removal-reasons', variants: [<IconRemovalReasonsOutline />, <IconRemovalReasonsFill />] },
-  { name: 'remove', variants: [<IconRemoveOutline />, <IconRemoveFill />] },
-  { name: 'rules', variants: [<IconRulesOutline />, <IconRulesFill />] },
-  { name: 'severity', variants: [<IconSeverityOutline />, <IconSeverityFill />] },
-  { name: 'spam', variants: [<IconSpamOutline />, <IconSpamFill />] },
-  { name: 'unban', variants: [<IconUnbanOutline />, <IconUnbanFill />] },
-  { name: 'unlock', variants: [<IconUnlockOutline />, <IconUnlockFill />] },
-  { name: 'unmod', variants: [<IconUnmodOutline />, <IconUnmodFill />] },
-  { name: 'unpin', variants: [<IconUnpinOutline />, <IconUnpinFill />] },
-  { name: 'user-note', variants: [<IconUserNoteOutline />, <IconUserNoteFill />] },
-  { name: 'wiki-ban', variants: [<IconWikiBanOutline />, <IconWikiBanFill />] },
-  { name: 'wiki-unban', variants: [<IconWikiUnbanOutline />, <IconWikiUnbanFill />] }
-],
-navigation: [
-  { name: 'back', variants: [<IconBackOutline />, <IconBackFill />] },
-  { name: 'close', variants: [<IconCloseOutline />, <IconCloseFill />] },
-  { name: 'collapse-left', variants: [<IconCollapseLeftOutline />, <IconCollapseLeftFill />] },
-  { name: 'collapse-right', variants: [<IconCollapseRightOutline />, <IconCollapseRightFill />] },
-  { name: 'dismiss-all', variants: [<IconDismissAllOutline />, <IconDismissAllFill />] },
-  { name: 'down', variants: [<IconDownOutline />, <IconDownFill />] },
-  { name: 'down-arrow', variants: [<IconDownArrowOutline />] },
-  { name: 'drag', variants: [<IconDragOutline />] },
-  { name: 'expand-left', variants: [<IconExpandLeftOutline />, <IconExpandLeftFill />] },
-  { name: 'expand-right', variants: [<IconExpandRightOutline />, <IconExpandRightFill />] },
-  { name: 'external', variants: [<IconExternalOutline />, <IconExternalFill />] },
-  { name: 'filter', variants: [<IconFilterOutline />, <IconFilterFill />] },
-  { name: 'forward', variants: [<IconForwardOutline />, <IconForwardFill />] },
-  { name: 'help', variants: [<IconHelpOutline />, <IconHelpFill />] },
-  { name: 'info', variants: [<IconInfoOutline />, <IconInfoFill />] },
-  { name: 'jump-down', variants: [<IconJumpDownOutline />, <IconJumpDownFill />] },
-  { name: 'jump-up', variants: [<IconJumpUpOutline />, <IconJumpUpFill />] },
-  { name: 'left', variants: [<IconLeftOutline />, <IconLeftFill />] },
-  { name: 'load', variants: [<IconLoadOutline />] },
-  { name: 'menu', variants: [<IconMenuOutline />, <IconMenuFill />] },
-  { name: 'overflow-caret', variants: [<IconOverflowCaretOutline />, <IconOverflowCaretFill />] },
-  { name: 'overflow-horizontal', variants: [<IconOverflowHorizontalOutline />, <IconOverflowHorizontalFill />] },
-  { name: 'overflow-vertical', variants: [<IconOverflowVerticalOutline />, <IconOverflowVerticalFill />] },
-  { name: 'qr-code', variants: [<IconQrCodeOutline />, <IconQrCodeFill />] },
-  { name: 'refresh', variants: [<IconRefreshOutline />, <IconRefreshFill />] },
-  { name: 'right', variants: [<IconRightOutline />, <IconRightFill />] },
-  { name: 'side-menu', variants: [<IconSideMenuOutline />, <IconSideMenuFill />] },
-  { name: 'sort', variants: [<IconSortOutline />, <IconSortFill />] },
-  { name: 'sort-az', variants: [<IconSortAzOutline />, <IconSortAzFill />] },
-  { name: 'sort-price', variants: [<IconSortPriceOutline />, <IconSortPriceFill />] },
-  { name: 'sort-za', variants: [<IconSortZaOutline />, <IconSortZaFill />] },
-  { name: 'swipe-back', variants: [<IconSwipeBackOutline />, <IconSwipeBackFill />] },
-  { name: 'swipe-down', variants: [<IconSwipeDownOutline />, <IconSwipeDownFill />] },
-  { name: 'swipe', variants: [<IconSwipeOutline />, <IconSwipeFill />] },
-  { name: 'swipe-up', variants: [<IconSwipeUpOutline />, <IconSwipeUpFill />] },
-  { name: 'tap', variants: [<IconTapOutline />, <IconTapFill />] },
-  { name: 'undo', variants: [<IconUndoOutline />, <IconUndoFill />] },
-  { name: 'up-arrow', variants: [<IconUpArrowOutline />, <IconUpArrowFill />] },
-  { name: 'up', variants: [<IconUpOutline />, <IconUpFill />] }
-],
-ratings: [
-  { name: 'drugs', variants: [<IconDrugsOutline />, <IconDrugsFill />] },
-  { name: 'ratings-everyone', variants: [<IconRatingsEveryoneOutline />, <IconRatingsEveryoneFill />] },
-  { name: 'ratings-mature', variants: [<IconRatingsMatureOutline />, <IconRatingsMatureFill />] },
-  { name: 'ratings-nsfw', variants: [<IconRatingsNsfwOutline />, <IconRatingsNsfwFill />] },
-  { name: 'ratings-violence', variants: [<IconRatingsViolenceOutline />, <IconRatingsViolenceFill />] }
-],
-sortsAndViews: [
-  { name: 'best', variants: [<IconBestOutline />, <IconBestFill />] },
-  { name: 'contest', variants: [<IconContestOutline />, <IconContestFill />] },
-  { name: 'controversial', variants: [<IconControversialOutline />, <IconControversialFill />] },
-  { name: 'hot', variants: [<IconHotOutline />, <IconHotFill />] },
-  { name: 'live', variants: [<IconLiveOutline />, <IconLiveFill />] },
-  { name: 'new', variants: [<IconNewOutline />, <IconNewFill />] },
-  { name: 'qa', variants: [<IconQaOutline />, <IconQaFill />] },
-  { name: 'rising', variants: [<IconRisingOutline />, <IconRisingFill />] },
-  { name: 'top', variants: [<IconTopOutline />, <IconTopFill />] },
-  { name: 'view-card', variants: [<IconViewCardOutline />, <IconViewCardFill />] },
-  { name: 'view-classic', variants: [<IconViewClassicOutline />, <IconViewClassicFill />] },
-  { name: 'view-compact', variants: [<IconViewCompactOutline />, <IconViewCompactFill />] },
-  { name: 'view-grid', variants: [<IconViewGridOutline />, <IconViewGridFill />] }
-],
-status: [
-  { name: 'activity', variants: [<IconActivityOutline />, <IconActivityFill />] },
-  { name: 'appearance', variants: [<IconAppearanceOutline />, <IconAppearanceFill />] },
-  { name: 'archived', variants: [<IconArchivedOutline />, <IconArchivedFill />] },
-  { name: 'author', variants: [<IconAuthorOutline />, <IconAuthorFill />] },
-  { name: 'avatar-style', variants: [<IconAvatarStyleOutline />, <IconAvatarStyleFill />] },
-  { name: 'blockchain', variants: [<IconBlockchainOutline />, <IconBlockchainFill />] },
-  { name: 'bot', variants: [<IconBotOutline />, <IconBotFill />] },
-  { name: 'cake', variants: [<IconCakeOutline />, <IconCakeFill />] },
-  { name: 'calendar', variants: [<IconCalendarOutline />, <IconCalendarFill />] },
-  { name: 'coins', variants: [<IconCoinsOutline />, <IconCoinsFill />] },
-  { name: 'collectible-expressions', variants: [<IconCollectibleExpressionsOutline />, <IconCollectibleExpressionsFill />] },
-  { name: 'crosspost', variants: [<IconCrosspostOutline />, <IconCrosspostFill />] },
-  { name: 'day', variants: [<IconDayOutline />, <IconDayFill />] },
-  { name: 'downvotes', variants: [<IconDownvotesOutline />, <IconDownvotesFill />] },
-  { name: 'error', variants: [<IconErrorOutline />, <IconErrorFill />] },
-  { name: 'karma', variants: [<IconKarmaOutline />, <IconKarmaFill />] },
-  { name: 'language', variants: [<IconLanguageOutline />, <IconLanguageFill />] },
-  { name: 'location', variants: [<IconLocationOutline />, <IconLocationFill />] },
-  { name: 'night', variants: [<IconNightOutline />, <IconNightFill />] },
-  { name: 'nsfw', variants: [<IconNsfwOutline />, <IconNsfwFill />] },
-  { name: 'nsfw-language', variants: [<IconNsfwLanguageOutline />, <IconNsfwLanguageFill />] },
-  { name: 'nsfw-violence', variants: [<IconNsfwViolenceOutline />, <IconNsfwViolenceFill />] },
-  { name: 'official', variants: [<IconOfficialOutline />, <IconOfficialFill />] },
-  { name: 'original', variants: [<IconOriginalOutline />, <IconOriginalFill />] },
-  { name: 'phone', variants: [<IconPhoneOutline />, <IconPhoneFill />] },
-  { name: 'powerup', variants: [<IconPowerupOutline />, <IconPowerupFill />] },
-  { name: 'premium', variants: [<IconPremiumOutline />, <IconPremiumFill />] },
-  { name: 'privacy', variants: [<IconPrivacyOutline />, <IconPrivacyFill />] },
-  { name: 'quarantined', variants: [<IconQuarantinedOutline />, <IconQuarantinedFill />] },
-  { name: 'self', variants: [<IconSelfOutline />, <IconSelfFill />] },
-  { name: 'spoiler', variants: [<IconSpoilerOutline />, <IconSpoilerFill />] },
-  { name: 'sponsored', variants: [<IconSponsoredOutline />, <IconSponsoredFill />] },
-  { name: 'statistics', variants: [<IconStatisticsOutline />, <IconStatisticsFill />] },
-  { name: 'status-live', variants: [<IconStatusLiveOutline />, <IconStatusLiveFill />] },
-  { name: 'unverified', variants: [<IconUnverifiedOutline />, <IconUnverifiedFill />] },
-  { name: 'upvotes', variants: [<IconUpvotesOutline />, <IconUpvotesFill />] },
-  { name: 'user', variants: [<IconUserOutline />, <IconUserFill />] },
-  { name: 'users', variants: [<IconUsersOutline />, <IconUsersFill />] },
-  { name: 'verified', variants: [<IconVerifiedOutline />, <IconVerifiedFill />] },
-  { name: 'views', variants: [<IconViewsOutline />, <IconViewsFill />] },
-  { name: 'warning', variants: [<IconWarningOutline />, <IconWarningFill />] },
-  { name: 'whale', variants: [<IconWhaleOutline />, <IconWhaleFill />] }
-],
-topics: [
-  { name: 'topic-activism', variants: [<IconTopicActivismOutline />, <IconTopicActivismFill />] },
-  { name: 'topic-addictionsupport', variants: [<IconTopicAddictionsupportOutline />, <IconTopicAddictionsupportFill />] },
-  { name: 'topic-advice', variants: [<IconTopicAdviceOutline />, <IconTopicAdviceFill />] },
-  { name: 'topic-animals', variants: [<IconTopicAnimalsOutline />, <IconTopicAnimalsFill />] },
-  { name: 'topic-anime', variants: [<IconTopicAnimeOutline />, <IconTopicAnimeFill />] },
-  { name: 'topic-art', variants: [<IconTopicArtOutline />, <IconTopicArtFill />] },
-  { name: 'topic-beauty', variants: [<IconTopicBeautyOutline />, <IconTopicBeautyFill />] },
-  { name: 'topic-business', variants: [<IconTopicBusinessOutline />, <IconTopicBusinessFill />] },
-  { name: 'topic-careers', variants: [<IconTopicCareersOutline />, <IconTopicCareersFill />] },
-  { name: 'topic-cars', variants: [<IconTopicCarsOutline />, <IconTopicCarsFill />] },
-  { name: 'topic-celebrity', variants: [<IconTopicCelebrityOutline />, <IconTopicCelebrityFill />] },
-  { name: 'topic-craftsdiy', variants: [<IconTopicCraftsdiyOutline />, <IconTopicCraftsdiyFill />] },
-  { name: 'topic-crypto', variants: [<IconTopicCryptoOutline />, <IconTopicCryptoFill />] },
-  { name: 'topic-culture', variants: [<IconTopicCultureOutline />, <IconTopicCultureFill />] },
-  { name: 'topic-diy', variants: [<IconTopicDiyOutline />, <IconTopicDiyFill />] },
-  { name: 'topic-entertainment', variants: [<IconTopicEntertainmentOutline />, <IconTopicEntertainmentFill />] },
-  { name: 'topic-ethics', variants: [<IconTopicEthicsOutline />, <IconTopicEthicsFill />] },
-  { name: 'topic-family', variants: [<IconTopicFamilyOutline />, <IconTopicFamilyFill />] },
-  { name: 'topic-fashion', variants: [<IconTopicFashionOutline />, <IconTopicFashionFill />] },
-  { name: 'topic-fitness', variants: [<IconTopicFitnessOutline />, <IconTopicFitnessFill />] },
-  { name: 'topic-food', variants: [<IconTopicFoodOutline />, <IconTopicFoodFill />] },
-  { name: 'topic-funny', variants: [<IconTopicFunnyOutline />, <IconTopicFunnyFill />] },
-  { name: 'topic-gender', variants: [<IconTopicGenderOutline />, <IconTopicGenderFill />] },
-  { name: 'topic-health', variants: [<IconTopicHealthOutline />, <IconTopicHealthFill />] },
-  { name: 'topic-help', variants: [<IconTopicHelpOutline />, <IconTopicHelpFill />] },
-  { name: 'topic-history', variants: [<IconTopicHistoryOutline />, <IconTopicHistoryFill />] },
-  { name: 'topic-hobbies', variants: [<IconTopicHobbiesOutline />, <IconTopicHobbiesFill />] },
-  { name: 'topic-homegarden', variants: [<IconTopicHomegardenOutline />, <IconTopicHomegardenFill />] },
-  { name: 'topic-internet', variants: [<IconTopicInternetOutline />, <IconTopicInternetFill />] },
-  { name: 'topic-law', variants: [<IconTopicLawOutline />, <IconTopicLawFill />] },
-  { name: 'topic-learning', variants: [<IconTopicLearningOutline />, <IconTopicLearningFill />] },
-  { name: 'topic-lifestyle', variants: [<IconTopicLifestyleOutline />, <IconTopicLifestyleFill />] },
-  { name: 'topic-marketplace', variants: [<IconTopicMarketplaceOutline />, <IconTopicMarketplaceFill />] },
-  { name: 'topic-mature', variants: [<IconTopicMatureOutline />, <IconTopicMatureFill />] },
-  { name: 'topic-mensfashion', variants: [<IconTopicMensfashionOutline />, <IconTopicMensfashionFill />] },
-  { name: 'topic-menshealth', variants: [<IconTopicMenshealthOutline />, <IconTopicMenshealthFill />] },
-  { name: 'topic-meta', variants: [<IconTopicMetaOutline />, <IconTopicMetaFill />] },
-  { name: 'topic-military', variants: [<IconTopicMilitaryOutline />, <IconTopicMilitaryFill />] },
-  { name: 'topic-movies', variants: [<IconTopicMoviesOutline />, <IconTopicMoviesFill />] },
-  { name: 'topic-music', variants: [<IconTopicMusicOutline />, <IconTopicMusicFill />] },
-  { name: 'topic-news', variants: [<IconTopicNewsOutline />, <IconTopicNewsFill />] },
-  { name: 'topic-other', variants: [<IconTopicOtherOutline />, <IconTopicOtherFill />] },
-  { name: 'topic-outdoors', variants: [<IconTopicOutdoorsOutline />, <IconTopicOutdoorsFill />] },
-  { name: 'topic-pets', variants: [<IconTopicPetsOutline />, <IconTopicPetsFill />] },
-  { name: 'topic-photography', variants: [<IconTopicPhotographyOutline />, <IconTopicPhotographyFill />] },
-  { name: 'topic-places', variants: [<IconTopicPlacesOutline />, <IconTopicPlacesFill />] },
-  { name: 'topic-podcasts', variants: [<IconTopicPodcastsOutline />, <IconTopicPodcastsFill />] },
-  { name: 'topic-politics', variants: [<IconTopicPoliticsOutline />, <IconTopicPoliticsFill />] },
-  { name: 'topic-programming', variants: [<IconTopicProgrammingOutline />, <IconTopicProgrammingFill />] },
-  { name: 'topic-reading', variants: [<IconTopicReadingOutline />, <IconTopicReadingFill />] },
-  { name: 'topic-religion', variants: [<IconTopicReligionOutline />, <IconTopicReligionFill />] },
-  { name: 'topic-science', variants: [<IconTopicScienceOutline />, <IconTopicScienceFill />] },
-  { name: 'topic-sexorientation', variants: [<IconTopicSexorientationOutline />, <IconTopicSexorientationFill />] },
-  { name: 'topic-sports', variants: [<IconTopicSportsOutline />, <IconTopicSportsFill />] },
-  { name: 'topic-style', variants: [<IconTopicStyleOutline />, <IconTopicStyleFill />] },
-  { name: 'topic-tabletop', variants: [<IconTopicTabletopOutline />, <IconTopicTabletopFill />] },
-  { name: 'topic-technology', variants: [<IconTopicTechnologyOutline />, <IconTopicTechnologyFill />] },
-  { name: 'topic-television', variants: [<IconTopicTelevisionOutline />, <IconTopicTelevisionFill />] },
-  { name: 'topic-traumasupport', variants: [<IconTopicTraumasupportOutline />, <IconTopicTraumasupportFill />] },
-  { name: 'topic-travel', variants: [<IconTopicTravelOutline />, <IconTopicTravelFill />] },
-  { name: 'topic-videogaming', variants: [<IconTopicVideogamingOutline />, <IconTopicVideogamingFill />] },
-  { name: 'topic-womensfashion', variants: [<IconTopicWomensfashionOutline />, <IconTopicWomensfashionFill />] },
-  { name: 'topic-womenshealth', variants: [<IconTopicWomenshealthOutline />, <IconTopicWomenshealthFill />] }
-]
+    { name: 'add', variants: [<IconAddOutline />, <IconAddFill />] },
+    {
+      name: 'add-to-feed',
+      variants: [<IconAddToFeedOutline />, <IconAddToFeedFill />],
+    },
+    { name: 'award', variants: [<IconAwardOutline />, <IconAwardFill />] },
+    { name: 'backup', variants: [<IconBackupOutline />, <IconBackupFill />] },
+    { name: 'browse', variants: [<IconBrowseOutline />, <IconBrowseFill />] },
+    {
+      name: 'chat-new',
+      variants: [<IconChatNewOutline />, <IconChatNewFill />],
+    },
+    { name: 'clear', variants: [<IconClearOutline />, <IconClearFill />] },
+    {
+      name: 'comment',
+      variants: [<IconCommentOutline />, <IconCommentFill />],
+    },
+    {
+      name: 'customize',
+      variants: [<IconCustomizeOutline />, <IconCustomizeFill />],
+    },
+    { name: 'delete', variants: [<IconDeleteOutline />, <IconDeleteFill />] },
+    {
+      name: 'download',
+      variants: [<IconDownloadOutline />, <IconDownloadFill />],
+    },
+    {
+      name: 'downvote',
+      variants: [<IconDownvoteOutline />, <IconDownvoteFill />],
+    },
+    {
+      name: 'duplicate',
+      variants: [<IconDuplicateOutline />, <IconDuplicateFill />],
+    },
+    { name: 'edit', variants: [<IconEditOutline />, <IconEditFill />] },
+    { name: 'heart', variants: [<IconHeartOutline />, <IconHeartFill />] },
+    { name: 'hide', variants: [<IconHideOutline />, <IconHideFill />] },
+    { name: 'invite', variants: [<IconInviteOutline />, <IconInviteFill />] },
+    { name: 'join', variants: [<IconJoinOutline />, <IconJoinFill />] },
+    { name: 'joined', variants: [<IconJoinedOutline />, <IconJoinedFill />] },
+    { name: 'leave', variants: [<IconLeaveOutline />, <IconLeaveFill />] },
+    { name: 'logout', variants: [<IconLogoutOutline />, <IconLogoutFill />] },
+    {
+      name: 'mark-read',
+      variants: [<IconMarkReadOutline />, <IconMarkReadFill />],
+    },
+    {
+      name: 'message',
+      variants: [<IconMessageOutline />, <IconMessageFill />],
+    },
+    {
+      name: 'notification',
+      variants: [<IconNotificationOutline />, <IconNotificationFill />],
+    },
+    {
+      name: 'notification-frequent',
+      variants: [
+        <IconNotificationFrequentOutline />,
+        <IconNotificationFrequentFill />,
+      ],
+    },
+    {
+      name: 'notification-off',
+      variants: [<IconNotificationOffOutline />, <IconNotificationOffFill />],
+    },
+    { name: 'peace', variants: [<IconPeaceOutline />, <IconPeaceFill />] },
+    {
+      name: 'raise-hand',
+      variants: [<IconRaiseHandOutline />, <IconRaiseHandFill />],
+    },
+    {
+      name: 'recovery-phrase',
+      variants: [<IconRecoveryPhraseOutline />, <IconRecoveryPhraseFill />],
+    },
+    { name: 'reply', variants: [<IconReplyOutline />, <IconReplyFill />] },
+    { name: 'report', variants: [<IconReportOutline />, <IconReportFill />] },
+    { name: 'save', variants: [<IconSaveOutline />, <IconSaveFill />] },
+    { name: 'search', variants: [<IconSearchOutline />, <IconSearchFill />] },
+    { name: 'send', variants: [<IconSendOutline />, <IconSendFill />] },
+    {
+      name: 'share-android',
+      variants: [<IconShareAndroidOutline />, <IconShareAndroidFill />],
+    },
+    { name: 'share', variants: [<IconShareOutline />, <IconShareFill />] },
+    {
+      name: 'share-ios',
+      variants: [<IconShareIosOutline />, <IconShareIosFill />],
+    },
+    { name: 'show', variants: [<IconShowOutline />, <IconShowFill />] },
+    { name: 'star', variants: [<IconStarOutline />, <IconStarFill />] },
+    {
+      name: 'subtract',
+      variants: [<IconSubtractOutline />, <IconSubtractFill />],
+    },
+    { name: 'tag', variants: [<IconTagOutline />, <IconTagFill />] },
+    {
+      name: 'translate',
+      variants: [<IconTranslateOutline />, <IconTranslateFill />],
+    },
+    {
+      name: 'translation-off',
+      variants: [<IconTranslationOffOutline />, <IconTranslationOffFill />],
+    },
+    {
+      name: 'unheart',
+      variants: [<IconUnheartOutline />, <IconUnheartFill />],
+    },
+    { name: 'unstar', variants: [<IconUnstarOutline />, <IconUnstarFill />] },
+    { name: 'upload', variants: [<IconUploadOutline />, <IconUploadFill />] },
+    { name: 'upvote', variants: [<IconUpvoteOutline />, <IconUpvoteFill />] },
+  ],
+  ads: [
+    {
+      name: '3rd-party',
+      variants: [<Icon3rdPartyOutline />, <Icon3rdPartyFill />],
+    },
+    { name: 'ads', variants: [<IconAdsOutline />, <IconAdsFill />] },
+    {
+      name: 'audience',
+      variants: [<IconAudienceOutline />, <IconAudienceFill />],
+    },
+    {
+      name: 'brand-awareness',
+      variants: [<IconBrandAwarenessOutline />, <IconBrandAwarenessFill />],
+    },
+    {
+      name: 'campaign',
+      variants: [<IconCampaignOutline />, <IconCampaignFill />],
+    },
+    {
+      name: 'client-list',
+      variants: [<IconClientListOutline />, <IconClientListFill />],
+    },
+    {
+      name: 'conversion',
+      variants: [<IconConversionOutline />, <IconConversionFill />],
+    },
+    {
+      name: 'copy-clipboard',
+      variants: [<IconCopyClipboardOutline />, <IconCopyClipboardFill />],
+    },
+    {
+      name: 'dashboard',
+      variants: [<IconDashboardOutline />, <IconDashboardFill />],
+    },
+    { name: 'funnel', variants: [<IconFunnelOutline />, <IconFunnelFill />] },
+    {
+      name: 'save-view',
+      variants: [<IconSaveViewOutline />, <IconSaveViewFill />],
+    },
+    {
+      name: 'spreadsheet',
+      variants: [<IconSpreadsheetOutline />, <IconSpreadsheetFill />],
+    },
+  ],
+  beta: [
+    {
+      name: 'beta-binoculars',
+      variants: [<IconBetaBinocularsOutline />, <IconBetaBinocularsFill />],
+    },
+    {
+      name: 'beta-caret-updown',
+      variants: [<IconBetaCaretUpdownOutline />, <IconBetaCaretUpdownFill />],
+    },
+    {
+      name: 'beta-latest',
+      variants: [<IconBetaLatestOutline />, <IconBetaLatestFill />],
+    },
+    {
+      name: 'beta-planet',
+      variants: [<IconBetaPlanetOutline />, <IconBetaPlanetFill />],
+    },
+    {
+      name: 'beta-talk-add',
+      variants: [<IconBetaTalkAddOutline />, <IconBetaTalkAddFill />],
+    },
+    {
+      name: 'beta-telescope',
+      variants: [<IconBetaTelescopeOutline />, <IconBetaTelescopeFill />],
+    },
+    {
+      name: 'communities',
+      variants: [<IconCommunitiesOutline />, <IconCommunitiesFill />],
+    },
+    {
+      name: 'share-new',
+      variants: [<IconShareNewOutline />, <IconShareNewFill />],
+    },
+  ],
+  content: [
+    {
+      name: 'browser',
+      variants: [<IconBrowserOutline />, <IconBrowserFill />],
+    },
+    { name: 'camera', variants: [<IconCameraOutline />, <IconCameraFill />] },
+    {
+      name: 'collection',
+      variants: [<IconCollectionOutline />, <IconCollectionFill />],
+    },
+    { name: 'embed', variants: [<IconEmbedOutline />, <IconEmbedFill />] },
+    {
+      name: 'end-live-chat',
+      variants: [<IconEndLiveChatOutline />, <IconEndLiveChatFill />],
+    },
+    {
+      name: 'gif-post',
+      variants: [<IconGifPostOutline />, <IconGifPostFill />],
+    },
+    {
+      name: 'image-post',
+      variants: [<IconImagePostOutline />, <IconImagePostFill />],
+    },
+    {
+      name: 'link-post',
+      variants: [<IconLinkPostOutline />, <IconLinkPostFill />],
+    },
+    {
+      name: 'live-chat',
+      variants: [<IconLiveChatOutline />, <IconLiveChatFill />],
+    },
+    {
+      name: 'media-gallery',
+      variants: [<IconMediaGalleryOutline />, <IconMediaGalleryFill />],
+    },
+    {
+      name: 'pending-posts',
+      variants: [<IconPendingPostsOutline />, <IconPendingPostsFill />],
+    },
+    {
+      name: 'poll-post',
+      variants: [<IconPollPostOutline />, <IconPollPostFill />],
+    },
+    { name: 'random', variants: [<IconRandomOutline />, <IconRandomFill />] },
+    {
+      name: 'text-post',
+      variants: [<IconTextPostOutline />, <IconTextPostFill />],
+    },
+    {
+      name: 'video-camera',
+      variants: [<IconVideoCameraOutline />, <IconVideoCameraFill />],
+    },
+    {
+      name: 'video-live',
+      variants: [<IconVideoLiveOutline />, <IconVideoLiveFill />],
+    },
+    {
+      name: 'video-post',
+      variants: [<IconVideoPostOutline />, <IconVideoPostFill />],
+    },
+  ],
+  formatting: [
+    {
+      name: 'add-emoji',
+      variants: [<IconAddEmojiOutline />, <IconAddEmojiFill />],
+    },
+    {
+      name: 'add-media',
+      variants: [<IconAddMediaOutline />, <IconAddMediaFill />],
+    },
+    {
+      name: 'align-center',
+      variants: [<IconAlignCenterOutline />, <IconAlignCenterFill />],
+    },
+    {
+      name: 'align-left',
+      variants: [<IconAlignLeftOutline />, <IconAlignLeftFill />],
+    },
+    {
+      name: 'align-right',
+      variants: [<IconAlignRightOutline />, <IconAlignRightFill />],
+    },
+    { name: 'attach', variants: [<IconAttachOutline />, <IconAttachFill />] },
+    { name: 'bold', variants: [<IconBoldOutline />, <IconBoldFill />] },
+    {
+      name: 'code-block',
+      variants: [<IconCodeBlockOutline />, <IconCodeBlockFill />],
+    },
+    {
+      name: 'code-inline',
+      variants: [<IconCodeInlineOutline />, <IconCodeInlineFill />],
+    },
+    { name: 'emoji', variants: [<IconEmojiOutline />, <IconEmojiFill />] },
+    { name: 'format', variants: [<IconFormatOutline />, <IconFormatFill />] },
+    {
+      name: 'hashtag',
+      variants: [<IconHashtagOutline />, <IconHashtagFill />],
+    },
+    { name: 'italic', variants: [<IconItalicOutline />, <IconItalicFill />] },
+    {
+      name: 'keyboard',
+      variants: [<IconKeyboardOutline />, <IconKeyboardFill />],
+    },
+    { name: 'link', variants: [<IconLinkOutline />, <IconLinkFill />] },
+    {
+      name: 'list-bulleted',
+      variants: [<IconListBulletedOutline />, <IconListBulletedFill />],
+    },
+    {
+      name: 'list-numbered',
+      variants: [<IconListNumberedOutline />, <IconListNumberedFill />],
+    },
+    { name: 'macro', variants: [<IconMacroOutline />, <IconMacroFill />] },
+    { name: 'quote', variants: [<IconQuoteOutline />, <IconQuoteFill />] },
+    { name: 'r-slash', variants: [<IconRSlashOutline />, <IconRSlashFill />] },
+    {
+      name: 'rich-text',
+      variants: [<IconRichTextOutline />, <IconRichTextFill />],
+    },
+    {
+      name: 'strikethrough',
+      variants: [<IconStrikethroughOutline />, <IconStrikethroughFill />],
+    },
+    {
+      name: 'superscript',
+      variants: [<IconSuperscriptOutline />, <IconSuperscriptFill />],
+    },
+    { name: 'table', variants: [<IconTableOutline />, <IconTableFill />] },
+    {
+      name: 'text-size',
+      variants: [<IconTextSizeOutline />, <IconTextSizeFill />],
+    },
+    { name: 'u-slash', variants: [<IconUSlashOutline />, <IconUSlashFill />] },
+    {
+      name: 'webhook',
+      variants: [<IconWebhookOutline />, <IconWebhookFill />],
+    },
+  ],
+  forms: [
+    {
+      name: 'caret-down',
+      variants: [<IconCaretDownOutline />, <IconCaretDownFill />],
+    },
+    {
+      name: 'caret-left',
+      variants: [<IconCaretLeftOutline />, <IconCaretLeftFill />],
+    },
+    {
+      name: 'caret-right',
+      variants: [<IconCaretRightOutline />, <IconCaretRightFill />],
+    },
+    {
+      name: 'caret-up',
+      variants: [<IconCaretUpOutline />, <IconCaretUpFill />],
+    },
+    {
+      name: 'checkbox-dismiss',
+      variants: [<IconCheckboxDismissOutline />, <IconCheckboxDismissFill />],
+    },
+    {
+      name: 'checkbox',
+      variants: [<IconCheckboxOutline />, <IconCheckboxFill />],
+    },
+    {
+      name: 'checkmark',
+      variants: [<IconCheckmarkOutline />, <IconCheckmarkFill />],
+    },
+    {
+      name: 'payment',
+      variants: [<IconPaymentOutline />, <IconPaymentFill />],
+    },
+    {
+      name: 'radio-button',
+      variants: [<IconRadioButtonOutline />, <IconRadioButtonFill />],
+    },
+    { name: 'toggle', variants: [<IconToggleOutline />, <IconToggleFill />] },
+  ],
+  locations: [
+    { name: 'all', variants: [<IconAllOutline />, <IconAllFill />] },
+    { name: 'chat', variants: [<IconChatOutline />, <IconChatFill />] },
+    {
+      name: 'chat-group',
+      variants: [<IconChatGroupOutline />, <IconChatGroupFill />],
+    },
+    {
+      name: 'chat-private',
+      variants: [<IconChatPrivateOutline />, <IconChatPrivateFill />],
+    },
+    { name: 'chrome', variants: [<IconChromeOutline />, <IconChromeFill />] },
+    {
+      name: 'comments',
+      variants: [<IconCommentsOutline />, <IconCommentsFill />],
+    },
+    {
+      name: 'community',
+      variants: [<IconCommunityOutline />, <IconCommunityFill />],
+    },
+    {
+      name: 'custom-feed',
+      variants: [<IconCustomFeedOutline />, <IconCustomFeedFill />],
+    },
+    {
+      name: 'discover',
+      variants: [<IconDiscoverOutline />, <IconDiscoverFill />],
+    },
+    {
+      name: 'feed-video',
+      variants: [<IconFeedVideoOutline />, <IconFeedVideoFill />],
+    },
+    {
+      name: 'history',
+      variants: [<IconHistoryOutline />, <IconHistoryFill />],
+    },
+    { name: 'home', variants: [<IconHomeOutline />, <IconHomeFill />] },
+    { name: 'inbox', variants: [<IconInboxOutline />, <IconInboxFill />] },
+    {
+      name: 'marketplace',
+      variants: [<IconMarketplaceOutline />, <IconMarketplaceFill />],
+    },
+    {
+      name: 'popular',
+      variants: [<IconPopularOutline />, <IconPopularFill />],
+    },
+    { name: 'posts', variants: [<IconPostsOutline />, <IconPostsFill />] },
+    {
+      name: 'predictions',
+      variants: [<IconPredictionsOutline />, <IconPredictionsFill />],
+    },
+    {
+      name: 'profile',
+      variants: [<IconProfileOutline />, <IconProfileFill />],
+    },
+    { name: 'rpan', variants: [<IconRpanOutline />, <IconRpanFill />] },
+    { name: 'safari', variants: [<IconSafariOutline />, <IconSafariFill />] },
+    { name: 'saved', variants: [<IconSavedOutline />, <IconSavedFill />] },
+    {
+      name: 'settings',
+      variants: [<IconSettingsOutline />, <IconSettingsFill />],
+    },
+    { name: 'tools', variants: [<IconToolsOutline />, <IconToolsFill />] },
+    { name: 'topic', variants: [<IconTopicOutline />, <IconTopicFill />] },
+    { name: 'vault', variants: [<IconVaultOutline />, <IconVaultFill />] },
+    {
+      name: 'video-feed',
+      variants: [<IconVideoFeedOutline />, <IconVideoFeedFill />],
+    },
+    { name: 'wallet', variants: [<IconWalletOutline />, <IconWalletFill />] },
+    { name: 'wiki', variants: [<IconWikiOutline />, <IconWikiFill />] },
+    { name: 'world', variants: [<IconWorldOutline />, <IconWorldFill />] },
+  ],
+  media: [
+    {
+      name: 'aspect-ratio',
+      variants: [<IconAspectRatioOutline />, <IconAspectRatioFill />],
+    },
+    {
+      name: 'aspect-rectangle',
+      variants: [<IconAspectRectangleOutline />, <IconAspectRectangleFill />],
+    },
+    { name: 'audio', variants: [<IconAudioOutline />, <IconAudioFill />] },
+    { name: 'bounce', variants: [<IconBounceOutline />, <IconBounceFill />] },
+    {
+      name: 'closed-captioning',
+      variants: [<IconClosedCaptioningOutline />, <IconClosedCaptioningFill />],
+    },
+    { name: 'crop', variants: [<IconCropOutline />, <IconCropFill />] },
+    { name: 'effect', variants: [<IconEffectOutline />, <IconEffectFill />] },
+    { name: 'loop', variants: [<IconLoopOutline />, <IconLoopFill />] },
+    { name: 'mask', variants: [<IconMaskOutline />, <IconMaskFill />] },
+    { name: 'meme', variants: [<IconMemeOutline />, <IconMemeFill />] },
+    { name: 'mic', variants: [<IconMicOutline />, <IconMicFill />] },
+    {
+      name: 'mic-mute',
+      variants: [<IconMicMuteOutline />, <IconMicMuteFill />],
+    },
+    { name: 'music', variants: [<IconMusicOutline />, <IconMusicFill />] },
+    { name: 'mute', variants: [<IconMuteOutline />, <IconMuteFill />] },
+    { name: 'pause', variants: [<IconPauseOutline />, <IconPauseFill />] },
+    { name: 'play', variants: [<IconPlayOutline />, <IconPlayFill />] },
+    {
+      name: 'reverse',
+      variants: [<IconReverseOutline />, <IconReverseFill />],
+    },
+    { name: 'rotate', variants: [<IconRotateOutline />, <IconRotateFill />] },
+    {
+      name: 'rotate-image',
+      variants: [<IconRotateImageOutline />, <IconRotateImageFill />],
+    },
+    {
+      name: 'skipback10',
+      variants: [<IconSkipback10Outline />, <IconSkipback10Fill />],
+    },
+    {
+      name: 'skipforward10',
+      variants: [<IconSkipforward10Outline />, <IconSkipforward10Fill />],
+    },
+    {
+      name: 'sticker',
+      variants: [<IconStickerOutline />, <IconStickerFill />],
+    },
+    {
+      name: 'swap-camera',
+      variants: [<IconSwapCameraOutline />, <IconSwapCameraFill />],
+    },
+    { name: 'text', variants: [<IconTextOutline />, <IconTextFill />] },
+    { name: 'trim', variants: [<IconTrimOutline />, <IconTrimFill />] },
+    {
+      name: 'video-thread',
+      variants: [<IconVideoThreadOutline />, <IconVideoThreadFill />],
+    },
+    {
+      name: 'video-transcription',
+      variants: [
+        <IconVideoTranscriptionOutline />,
+        <IconVideoTranscriptionFill />,
+      ],
+    },
+    { name: 'volume', variants: [<IconVolumeOutline />, <IconVolumeFill />] },
+    { name: 'volume-mute', variants: [<IconVolumeMuteFill />] },
+  ],
+  moderation: [
+    { name: 'admin', variants: [<IconAdminOutline />, <IconAdminFill />] },
+    {
+      name: 'approve',
+      variants: [<IconApproveOutline />, <IconApproveFill />],
+    },
+    {
+      name: 'automod',
+      variants: [<IconAutomodOutline />, <IconAutomodFill />],
+    },
+    { name: 'ban', variants: [<IconBanOutline />, <IconBanFill />] },
+    { name: 'block', variants: [<IconBlockOutline />, <IconBlockFill />] },
+    {
+      name: 'confidence',
+      variants: [<IconConfidenceOutline />, <IconConfidenceFill />],
+    },
+    {
+      name: 'crowd-control',
+      variants: [<IconCrowdControlOutline />, <IconCrowdControlFill />],
+    },
+    {
+      name: 'distinguish',
+      variants: [<IconDistinguishOutline />, <IconDistinguishFill />],
+    },
+    {
+      name: 'ignore-reports',
+      variants: [<IconIgnoreReportsOutline />, <IconIgnoreReportsFill />],
+    },
+    { name: 'kick', variants: [<IconKickOutline />, <IconKickFill />] },
+    { name: 'lock', variants: [<IconLockOutline />, <IconLockFill />] },
+    { name: 'mod', variants: [<IconModOutline />, <IconModFill />] },
+    {
+      name: 'mod-mail',
+      variants: [<IconModMailOutline />, <IconModMailFill />],
+    },
+    {
+      name: 'mod-mode',
+      variants: [<IconModModeOutline />, <IconModModeFill />],
+    },
+    {
+      name: 'mod-mute',
+      variants: [<IconModMuteOutline />, <IconModMuteFill />],
+    },
+    {
+      name: 'mod-overflow',
+      variants: [<IconModOverflowOutline />, <IconModOverflowFill />],
+    },
+    {
+      name: 'mod-queue',
+      variants: [<IconModQueueOutline />, <IconModQueueFill />],
+    },
+    {
+      name: 'mod-unmute',
+      variants: [<IconModUnmuteOutline />, <IconModUnmuteFill />],
+    },
+    { name: 'pin', variants: [<IconPinOutline />, <IconPinFill />] },
+    {
+      name: 'removal-reasons',
+      variants: [<IconRemovalReasonsOutline />, <IconRemovalReasonsFill />],
+    },
+    { name: 'remove', variants: [<IconRemoveOutline />, <IconRemoveFill />] },
+    { name: 'rules', variants: [<IconRulesOutline />, <IconRulesFill />] },
+    {
+      name: 'severity',
+      variants: [<IconSeverityOutline />, <IconSeverityFill />],
+    },
+    { name: 'spam', variants: [<IconSpamOutline />, <IconSpamFill />] },
+    { name: 'unban', variants: [<IconUnbanOutline />, <IconUnbanFill />] },
+    { name: 'unlock', variants: [<IconUnlockOutline />, <IconUnlockFill />] },
+    { name: 'unmod', variants: [<IconUnmodOutline />, <IconUnmodFill />] },
+    { name: 'unpin', variants: [<IconUnpinOutline />, <IconUnpinFill />] },
+    {
+      name: 'user-note',
+      variants: [<IconUserNoteOutline />, <IconUserNoteFill />],
+    },
+    {
+      name: 'wiki-ban',
+      variants: [<IconWikiBanOutline />, <IconWikiBanFill />],
+    },
+    {
+      name: 'wiki-unban',
+      variants: [<IconWikiUnbanOutline />, <IconWikiUnbanFill />],
+    },
+  ],
+  navigation: [
+    { name: 'back', variants: [<IconBackOutline />, <IconBackFill />] },
+    { name: 'close', variants: [<IconCloseOutline />, <IconCloseFill />] },
+    {
+      name: 'collapse-left',
+      variants: [<IconCollapseLeftOutline />, <IconCollapseLeftFill />],
+    },
+    {
+      name: 'collapse-right',
+      variants: [<IconCollapseRightOutline />, <IconCollapseRightFill />],
+    },
+    {
+      name: 'dismiss-all',
+      variants: [<IconDismissAllOutline />, <IconDismissAllFill />],
+    },
+    { name: 'down', variants: [<IconDownOutline />, <IconDownFill />] },
+    { name: 'down-arrow', variants: [<IconDownArrowOutline />] },
+    { name: 'drag', variants: [<IconDragOutline />] },
+    {
+      name: 'expand-left',
+      variants: [<IconExpandLeftOutline />, <IconExpandLeftFill />],
+    },
+    {
+      name: 'expand-right',
+      variants: [<IconExpandRightOutline />, <IconExpandRightFill />],
+    },
+    {
+      name: 'external',
+      variants: [<IconExternalOutline />, <IconExternalFill />],
+    },
+    { name: 'filter', variants: [<IconFilterOutline />, <IconFilterFill />] },
+    {
+      name: 'forward',
+      variants: [<IconForwardOutline />, <IconForwardFill />],
+    },
+    { name: 'help', variants: [<IconHelpOutline />, <IconHelpFill />] },
+    { name: 'info', variants: [<IconInfoOutline />, <IconInfoFill />] },
+    {
+      name: 'jump-down',
+      variants: [<IconJumpDownOutline />, <IconJumpDownFill />],
+    },
+    { name: 'jump-up', variants: [<IconJumpUpOutline />, <IconJumpUpFill />] },
+    { name: 'left', variants: [<IconLeftOutline />, <IconLeftFill />] },
+    { name: 'load', variants: [<IconLoadOutline />] },
+    { name: 'menu', variants: [<IconMenuOutline />, <IconMenuFill />] },
+    {
+      name: 'overflow-caret',
+      variants: [<IconOverflowCaretOutline />, <IconOverflowCaretFill />],
+    },
+    {
+      name: 'overflow-horizontal',
+      variants: [
+        <IconOverflowHorizontalOutline />,
+        <IconOverflowHorizontalFill />,
+      ],
+    },
+    {
+      name: 'overflow-vertical',
+      variants: [<IconOverflowVerticalOutline />, <IconOverflowVerticalFill />],
+    },
+    { name: 'qr-code', variants: [<IconQrCodeOutline />, <IconQrCodeFill />] },
+    {
+      name: 'refresh',
+      variants: [<IconRefreshOutline />, <IconRefreshFill />],
+    },
+    { name: 'right', variants: [<IconRightOutline />, <IconRightFill />] },
+    {
+      name: 'side-menu',
+      variants: [<IconSideMenuOutline />, <IconSideMenuFill />],
+    },
+    { name: 'sort', variants: [<IconSortOutline />, <IconSortFill />] },
+    { name: 'sort-az', variants: [<IconSortAzOutline />, <IconSortAzFill />] },
+    {
+      name: 'sort-price',
+      variants: [<IconSortPriceOutline />, <IconSortPriceFill />],
+    },
+    { name: 'sort-za', variants: [<IconSortZaOutline />, <IconSortZaFill />] },
+    {
+      name: 'swipe-back',
+      variants: [<IconSwipeBackOutline />, <IconSwipeBackFill />],
+    },
+    {
+      name: 'swipe-down',
+      variants: [<IconSwipeDownOutline />, <IconSwipeDownFill />],
+    },
+    { name: 'swipe', variants: [<IconSwipeOutline />, <IconSwipeFill />] },
+    {
+      name: 'swipe-up',
+      variants: [<IconSwipeUpOutline />, <IconSwipeUpFill />],
+    },
+    { name: 'tap', variants: [<IconTapOutline />, <IconTapFill />] },
+    { name: 'undo', variants: [<IconUndoOutline />, <IconUndoFill />] },
+    {
+      name: 'up-arrow',
+      variants: [<IconUpArrowOutline />, <IconUpArrowFill />],
+    },
+    { name: 'up', variants: [<IconUpOutline />, <IconUpFill />] },
+  ],
+  ratings: [
+    { name: 'drugs', variants: [<IconDrugsOutline />, <IconDrugsFill />] },
+    {
+      name: 'ratings-everyone',
+      variants: [<IconRatingsEveryoneOutline />, <IconRatingsEveryoneFill />],
+    },
+    {
+      name: 'ratings-mature',
+      variants: [<IconRatingsMatureOutline />, <IconRatingsMatureFill />],
+    },
+    {
+      name: 'ratings-nsfw',
+      variants: [<IconRatingsNsfwOutline />, <IconRatingsNsfwFill />],
+    },
+    {
+      name: 'ratings-violence',
+      variants: [<IconRatingsViolenceOutline />, <IconRatingsViolenceFill />],
+    },
+  ],
+  sortsAndViews: [
+    { name: 'best', variants: [<IconBestOutline />, <IconBestFill />] },
+    {
+      name: 'contest',
+      variants: [<IconContestOutline />, <IconContestFill />],
+    },
+    {
+      name: 'controversial',
+      variants: [<IconControversialOutline />, <IconControversialFill />],
+    },
+    { name: 'hot', variants: [<IconHotOutline />, <IconHotFill />] },
+    { name: 'live', variants: [<IconLiveOutline />, <IconLiveFill />] },
+    { name: 'new', variants: [<IconNewOutline />, <IconNewFill />] },
+    { name: 'qa', variants: [<IconQaOutline />, <IconQaFill />] },
+    { name: 'rising', variants: [<IconRisingOutline />, <IconRisingFill />] },
+    { name: 'top', variants: [<IconTopOutline />, <IconTopFill />] },
+    {
+      name: 'view-card',
+      variants: [<IconViewCardOutline />, <IconViewCardFill />],
+    },
+    {
+      name: 'view-classic',
+      variants: [<IconViewClassicOutline />, <IconViewClassicFill />],
+    },
+    {
+      name: 'view-compact',
+      variants: [<IconViewCompactOutline />, <IconViewCompactFill />],
+    },
+    {
+      name: 'view-grid',
+      variants: [<IconViewGridOutline />, <IconViewGridFill />],
+    },
+  ],
+  status: [
+    {
+      name: 'activity',
+      variants: [<IconActivityOutline />, <IconActivityFill />],
+    },
+    {
+      name: 'appearance',
+      variants: [<IconAppearanceOutline />, <IconAppearanceFill />],
+    },
+    {
+      name: 'archived',
+      variants: [<IconArchivedOutline />, <IconArchivedFill />],
+    },
+    { name: 'author', variants: [<IconAuthorOutline />, <IconAuthorFill />] },
+    {
+      name: 'avatar-style',
+      variants: [<IconAvatarStyleOutline />, <IconAvatarStyleFill />],
+    },
+    {
+      name: 'blockchain',
+      variants: [<IconBlockchainOutline />, <IconBlockchainFill />],
+    },
+    { name: 'bot', variants: [<IconBotOutline />, <IconBotFill />] },
+    { name: 'cake', variants: [<IconCakeOutline />, <IconCakeFill />] },
+    {
+      name: 'calendar',
+      variants: [<IconCalendarOutline />, <IconCalendarFill />],
+    },
+    { name: 'coins', variants: [<IconCoinsOutline />, <IconCoinsFill />] },
+    {
+      name: 'collectible-expressions',
+      variants: [
+        <IconCollectibleExpressionsOutline />,
+        <IconCollectibleExpressionsFill />,
+      ],
+    },
+    {
+      name: 'crosspost',
+      variants: [<IconCrosspostOutline />, <IconCrosspostFill />],
+    },
+    { name: 'day', variants: [<IconDayOutline />, <IconDayFill />] },
+    {
+      name: 'downvotes',
+      variants: [<IconDownvotesOutline />, <IconDownvotesFill />],
+    },
+    { name: 'error', variants: [<IconErrorOutline />, <IconErrorFill />] },
+    { name: 'karma', variants: [<IconKarmaOutline />, <IconKarmaFill />] },
+    {
+      name: 'language',
+      variants: [<IconLanguageOutline />, <IconLanguageFill />],
+    },
+    {
+      name: 'location',
+      variants: [<IconLocationOutline />, <IconLocationFill />],
+    },
+    { name: 'night', variants: [<IconNightOutline />, <IconNightFill />] },
+    { name: 'nsfw', variants: [<IconNsfwOutline />, <IconNsfwFill />] },
+    {
+      name: 'nsfw-language',
+      variants: [<IconNsfwLanguageOutline />, <IconNsfwLanguageFill />],
+    },
+    {
+      name: 'nsfw-violence',
+      variants: [<IconNsfwViolenceOutline />, <IconNsfwViolenceFill />],
+    },
+    {
+      name: 'official',
+      variants: [<IconOfficialOutline />, <IconOfficialFill />],
+    },
+    {
+      name: 'original',
+      variants: [<IconOriginalOutline />, <IconOriginalFill />],
+    },
+    { name: 'phone', variants: [<IconPhoneOutline />, <IconPhoneFill />] },
+    {
+      name: 'powerup',
+      variants: [<IconPowerupOutline />, <IconPowerupFill />],
+    },
+    {
+      name: 'premium',
+      variants: [<IconPremiumOutline />, <IconPremiumFill />],
+    },
+    {
+      name: 'privacy',
+      variants: [<IconPrivacyOutline />, <IconPrivacyFill />],
+    },
+    {
+      name: 'quarantined',
+      variants: [<IconQuarantinedOutline />, <IconQuarantinedFill />],
+    },
+    { name: 'self', variants: [<IconSelfOutline />, <IconSelfFill />] },
+    {
+      name: 'spoiler',
+      variants: [<IconSpoilerOutline />, <IconSpoilerFill />],
+    },
+    {
+      name: 'sponsored',
+      variants: [<IconSponsoredOutline />, <IconSponsoredFill />],
+    },
+    {
+      name: 'statistics',
+      variants: [<IconStatisticsOutline />, <IconStatisticsFill />],
+    },
+    {
+      name: 'status-live',
+      variants: [<IconStatusLiveOutline />, <IconStatusLiveFill />],
+    },
+    {
+      name: 'unverified',
+      variants: [<IconUnverifiedOutline />, <IconUnverifiedFill />],
+    },
+    {
+      name: 'upvotes',
+      variants: [<IconUpvotesOutline />, <IconUpvotesFill />],
+    },
+    { name: 'user', variants: [<IconUserOutline />, <IconUserFill />] },
+    { name: 'users', variants: [<IconUsersOutline />, <IconUsersFill />] },
+    {
+      name: 'verified',
+      variants: [<IconVerifiedOutline />, <IconVerifiedFill />],
+    },
+    { name: 'views', variants: [<IconViewsOutline />, <IconViewsFill />] },
+    {
+      name: 'warning',
+      variants: [<IconWarningOutline />, <IconWarningFill />],
+    },
+    { name: 'whale', variants: [<IconWhaleOutline />, <IconWhaleFill />] },
+  ],
+  topics: [
+    {
+      name: 'topic-activism',
+      variants: [<IconTopicActivismOutline />, <IconTopicActivismFill />],
+    },
+    {
+      name: 'topic-addictionsupport',
+      variants: [
+        <IconTopicAddictionsupportOutline />,
+        <IconTopicAddictionsupportFill />,
+      ],
+    },
+    {
+      name: 'topic-advice',
+      variants: [<IconTopicAdviceOutline />, <IconTopicAdviceFill />],
+    },
+    {
+      name: 'topic-animals',
+      variants: [<IconTopicAnimalsOutline />, <IconTopicAnimalsFill />],
+    },
+    {
+      name: 'topic-anime',
+      variants: [<IconTopicAnimeOutline />, <IconTopicAnimeFill />],
+    },
+    {
+      name: 'topic-art',
+      variants: [<IconTopicArtOutline />, <IconTopicArtFill />],
+    },
+    {
+      name: 'topic-beauty',
+      variants: [<IconTopicBeautyOutline />, <IconTopicBeautyFill />],
+    },
+    {
+      name: 'topic-business',
+      variants: [<IconTopicBusinessOutline />, <IconTopicBusinessFill />],
+    },
+    {
+      name: 'topic-careers',
+      variants: [<IconTopicCareersOutline />, <IconTopicCareersFill />],
+    },
+    {
+      name: 'topic-cars',
+      variants: [<IconTopicCarsOutline />, <IconTopicCarsFill />],
+    },
+    {
+      name: 'topic-celebrity',
+      variants: [<IconTopicCelebrityOutline />, <IconTopicCelebrityFill />],
+    },
+    {
+      name: 'topic-craftsdiy',
+      variants: [<IconTopicCraftsdiyOutline />, <IconTopicCraftsdiyFill />],
+    },
+    {
+      name: 'topic-crypto',
+      variants: [<IconTopicCryptoOutline />, <IconTopicCryptoFill />],
+    },
+    {
+      name: 'topic-culture',
+      variants: [<IconTopicCultureOutline />, <IconTopicCultureFill />],
+    },
+    {
+      name: 'topic-diy',
+      variants: [<IconTopicDiyOutline />, <IconTopicDiyFill />],
+    },
+    {
+      name: 'topic-entertainment',
+      variants: [
+        <IconTopicEntertainmentOutline />,
+        <IconTopicEntertainmentFill />,
+      ],
+    },
+    {
+      name: 'topic-ethics',
+      variants: [<IconTopicEthicsOutline />, <IconTopicEthicsFill />],
+    },
+    {
+      name: 'topic-family',
+      variants: [<IconTopicFamilyOutline />, <IconTopicFamilyFill />],
+    },
+    {
+      name: 'topic-fashion',
+      variants: [<IconTopicFashionOutline />, <IconTopicFashionFill />],
+    },
+    {
+      name: 'topic-fitness',
+      variants: [<IconTopicFitnessOutline />, <IconTopicFitnessFill />],
+    },
+    {
+      name: 'topic-food',
+      variants: [<IconTopicFoodOutline />, <IconTopicFoodFill />],
+    },
+    {
+      name: 'topic-funny',
+      variants: [<IconTopicFunnyOutline />, <IconTopicFunnyFill />],
+    },
+    {
+      name: 'topic-gender',
+      variants: [<IconTopicGenderOutline />, <IconTopicGenderFill />],
+    },
+    {
+      name: 'topic-health',
+      variants: [<IconTopicHealthOutline />, <IconTopicHealthFill />],
+    },
+    {
+      name: 'topic-help',
+      variants: [<IconTopicHelpOutline />, <IconTopicHelpFill />],
+    },
+    {
+      name: 'topic-history',
+      variants: [<IconTopicHistoryOutline />, <IconTopicHistoryFill />],
+    },
+    {
+      name: 'topic-hobbies',
+      variants: [<IconTopicHobbiesOutline />, <IconTopicHobbiesFill />],
+    },
+    {
+      name: 'topic-homegarden',
+      variants: [<IconTopicHomegardenOutline />, <IconTopicHomegardenFill />],
+    },
+    {
+      name: 'topic-internet',
+      variants: [<IconTopicInternetOutline />, <IconTopicInternetFill />],
+    },
+    {
+      name: 'topic-law',
+      variants: [<IconTopicLawOutline />, <IconTopicLawFill />],
+    },
+    {
+      name: 'topic-learning',
+      variants: [<IconTopicLearningOutline />, <IconTopicLearningFill />],
+    },
+    {
+      name: 'topic-lifestyle',
+      variants: [<IconTopicLifestyleOutline />, <IconTopicLifestyleFill />],
+    },
+    {
+      name: 'topic-marketplace',
+      variants: [<IconTopicMarketplaceOutline />, <IconTopicMarketplaceFill />],
+    },
+    {
+      name: 'topic-mature',
+      variants: [<IconTopicMatureOutline />, <IconTopicMatureFill />],
+    },
+    {
+      name: 'topic-mensfashion',
+      variants: [<IconTopicMensfashionOutline />, <IconTopicMensfashionFill />],
+    },
+    {
+      name: 'topic-menshealth',
+      variants: [<IconTopicMenshealthOutline />, <IconTopicMenshealthFill />],
+    },
+    {
+      name: 'topic-meta',
+      variants: [<IconTopicMetaOutline />, <IconTopicMetaFill />],
+    },
+    {
+      name: 'topic-military',
+      variants: [<IconTopicMilitaryOutline />, <IconTopicMilitaryFill />],
+    },
+    {
+      name: 'topic-movies',
+      variants: [<IconTopicMoviesOutline />, <IconTopicMoviesFill />],
+    },
+    {
+      name: 'topic-music',
+      variants: [<IconTopicMusicOutline />, <IconTopicMusicFill />],
+    },
+    {
+      name: 'topic-news',
+      variants: [<IconTopicNewsOutline />, <IconTopicNewsFill />],
+    },
+    {
+      name: 'topic-other',
+      variants: [<IconTopicOtherOutline />, <IconTopicOtherFill />],
+    },
+    {
+      name: 'topic-outdoors',
+      variants: [<IconTopicOutdoorsOutline />, <IconTopicOutdoorsFill />],
+    },
+    {
+      name: 'topic-pets',
+      variants: [<IconTopicPetsOutline />, <IconTopicPetsFill />],
+    },
+    {
+      name: 'topic-photography',
+      variants: [<IconTopicPhotographyOutline />, <IconTopicPhotographyFill />],
+    },
+    {
+      name: 'topic-places',
+      variants: [<IconTopicPlacesOutline />, <IconTopicPlacesFill />],
+    },
+    {
+      name: 'topic-podcasts',
+      variants: [<IconTopicPodcastsOutline />, <IconTopicPodcastsFill />],
+    },
+    {
+      name: 'topic-politics',
+      variants: [<IconTopicPoliticsOutline />, <IconTopicPoliticsFill />],
+    },
+    {
+      name: 'topic-programming',
+      variants: [<IconTopicProgrammingOutline />, <IconTopicProgrammingFill />],
+    },
+    {
+      name: 'topic-reading',
+      variants: [<IconTopicReadingOutline />, <IconTopicReadingFill />],
+    },
+    {
+      name: 'topic-religion',
+      variants: [<IconTopicReligionOutline />, <IconTopicReligionFill />],
+    },
+    {
+      name: 'topic-science',
+      variants: [<IconTopicScienceOutline />, <IconTopicScienceFill />],
+    },
+    {
+      name: 'topic-sexorientation',
+      variants: [
+        <IconTopicSexorientationOutline />,
+        <IconTopicSexorientationFill />,
+      ],
+    },
+    {
+      name: 'topic-sports',
+      variants: [<IconTopicSportsOutline />, <IconTopicSportsFill />],
+    },
+    {
+      name: 'topic-style',
+      variants: [<IconTopicStyleOutline />, <IconTopicStyleFill />],
+    },
+    {
+      name: 'topic-tabletop',
+      variants: [<IconTopicTabletopOutline />, <IconTopicTabletopFill />],
+    },
+    {
+      name: 'topic-technology',
+      variants: [<IconTopicTechnologyOutline />, <IconTopicTechnologyFill />],
+    },
+    {
+      name: 'topic-television',
+      variants: [<IconTopicTelevisionOutline />, <IconTopicTelevisionFill />],
+    },
+    {
+      name: 'topic-traumasupport',
+      variants: [
+        <IconTopicTraumasupportOutline />,
+        <IconTopicTraumasupportFill />,
+      ],
+    },
+    {
+      name: 'topic-travel',
+      variants: [<IconTopicTravelOutline />, <IconTopicTravelFill />],
+    },
+    {
+      name: 'topic-videogaming',
+      variants: [<IconTopicVideogamingOutline />, <IconTopicVideogamingFill />],
+    },
+    {
+      name: 'topic-womensfashion',
+      variants: [
+        <IconTopicWomensfashionOutline />,
+        <IconTopicWomensfashionFill />,
+      ],
+    },
+    {
+      name: 'topic-womenshealth',
+      variants: [
+        <IconTopicWomenshealthOutline />,
+        <IconTopicWomenshealthFill />,
+      ],
+    },
+  ],
 };
 
 The following is a list of icons available for use within Custom Posts. To use, include the `Name` of the icon in either a `<button>` or `<icon>` component.
@@ -1245,182 +1988,126 @@ An `enum` for setting the size of the icon. Possible values:
 ### Actions
 
 <IconTileGrid>
-  {
-    icons.actions.map(({ name, variants }) => (
-      <IconTile name={name}>
-        {variants}
-      </IconTile>
-    )) 
-  }
+  {icons.actions.map(({ name, variants }) => (
+    <IconTile name={name}>{variants}</IconTile>
+  ))}
 </IconTileGrid>
 
 ### Ads
 
 <IconTileGrid>
-  {
-    icons.ads.map(({ name, variants }) => (
-      <IconTile name={name}>
-        {variants}
-      </IconTile>
-    )) 
-  }
+  {icons.ads.map(({ name, variants }) => (
+    <IconTile name={name}>{variants}</IconTile>
+  ))}
 </IconTileGrid>
 
 ### Beta
 
 <IconTileGrid>
-  {
-    icons.beta.map(({ name, variants }) => (
-      <IconTile name={name}>
-        {variants}
-      </IconTile>
-    )) 
-  }
+  {icons.beta.map(({ name, variants }) => (
+    <IconTile name={name}>{variants}</IconTile>
+  ))}
 </IconTileGrid>
 
 ### Content
 
 <IconTileGrid>
-  {
-    icons.content.map(({ name, variants }) => (
-      <IconTile name={name}>
-        {variants}
-      </IconTile>
-    )) 
-  }
+  {icons.content.map(({ name, variants }) => (
+    <IconTile name={name}>{variants}</IconTile>
+  ))}
 </IconTileGrid>
 
 ### Formatting
 
 <IconTileGrid>
-  {
-    icons.formatting.map(({ name, variants }) => (
-      <IconTile name={name}>
-        {variants}
-      </IconTile>
-    )) 
-  }
+  {icons.formatting.map(({ name, variants }) => (
+    <IconTile name={name}>{variants}</IconTile>
+  ))}
 </IconTileGrid>
 
 ### Forms
 
 <IconTileGrid>
-  {
-    icons.forms.map(({ name, variants }) => (
-      <IconTile name={name}>
-        {variants}
-      </IconTile>
-    )) 
-  }
+  {icons.forms.map(({ name, variants }) => (
+    <IconTile name={name}>{variants}</IconTile>
+  ))}
 </IconTileGrid>
 
 ### Locations
 
 <IconTileGrid>
-  {
-    icons.locations.map(({ name, variants }) => (
-      <IconTile name={name}>
-        {variants}
-      </IconTile>
-    )) 
-  }
+  {icons.locations.map(({ name, variants }) => (
+    <IconTile name={name}>{variants}</IconTile>
+  ))}
 </IconTileGrid>
 
 ### Media controls
 
 <IconTileGrid>
-  {
-    icons.media.map(({ name, variants }) => (
-      <IconTile name={name}>
-        {variants}
-      </IconTile>
-    )) 
-  }
+  {icons.media.map(({ name, variants }) => (
+    <IconTile name={name}>{variants}</IconTile>
+  ))}
 </IconTileGrid>
 
 ### Moderation
 
 <IconTileGrid>
-  {
-    icons.moderation.map(({ name, variants }) => (
-      <IconTile name={name}>
-        {variants}
-      </IconTile>
-    )) 
-  }
+  {icons.moderation.map(({ name, variants }) => (
+    <IconTile name={name}>{variants}</IconTile>
+  ))}
 </IconTileGrid>
 
 ### Navigation
 
 <IconTileGrid>
-  {
-    icons.navigation.map(({ name, variants }) => (
-      <IconTile name={name}>
-        {variants}
-      </IconTile>
-    )) 
-  }
+  {icons.navigation.map(({ name, variants }) => (
+    <IconTile name={name}>{variants}</IconTile>
+  ))}
 </IconTileGrid>
 
 ### Ratings
 
 <IconTileGrid>
-  {
-    icons.ratings.map(({ name, variants }) => (
-      <IconTile name={name}>
-        {variants}
-      </IconTile>
-    )) 
-  }
+  {icons.ratings.map(({ name, variants }) => (
+    <IconTile name={name}>{variants}</IconTile>
+  ))}
 </IconTileGrid>
 
 ### Sorts & Views
 
 <IconTileGrid>
-  {
-    icons.sortsAndViews.map(({ name, variants }) => (
-      <IconTile name={name}>
-        {variants}
-      </IconTile>
-    )) 
-  }
+  {icons.sortsAndViews.map(({ name, variants }) => (
+    <IconTile name={name}>{variants}</IconTile>
+  ))}
 </IconTileGrid>
 
 ### Status
 
 <IconTileGrid>
-  {
-    icons.status.map(({ name, variants }) => (
-      <IconTile name={name}>
-        {variants}
-      </IconTile>
-    )) 
-  }
+  {icons.status.map(({ name, variants }) => (
+    <IconTile name={name}>{variants}</IconTile>
+  ))}
 </IconTileGrid>
 
 ### Topics
 
 <IconTileGrid>
-  {
-    icons.topics.map(({ name, variants }) => (
-      <IconTile name={name}>
-        {variants}
-      </IconTile>
-    )) 
-  }
+  {icons.topics.map(({ name, variants }) => (
+    <IconTile name={name}>{variants}</IconTile>
+  ))}
 </IconTileGrid>
 
 ### Other
 
-| Name                          |                Icon                |
-| :---------------------------- | :--------------------------------: |
-| basketball-fill-24            |      <IconBasketballFill24 />      |
-| basketball-outline-24         |    <IconBasketballOutline24 />     |
-| cricket-fill-outline-24       |    <IconCricketFillOutline24 />    |
-| cricket-outline-24            |      <IconCricketOutline24 />      |
-| football-fill-24              |       <IconFootballFill24 />       |
-| football-outline-24           |     <IconFootballOutline24 />      |
-| hockey-fill-24                |        <IconHockeyFill24 />        |
-| hockey-outline-24             |      <IconHockeyOutline24 />       |
-| valentines-day-fill-24        |    <IconValentinesDayFill24 />     |
-| valentines-day-outline-24     |   <IconValentinesDayOutline24 />   |
+| Name                      |              Icon              |
+| :------------------------ | :----------------------------: |
+| basketball-fill-24        |    <IconBasketballFill24 />    |
+| basketball-outline-24     |  <IconBasketballOutline24 />   |
+| cricket-fill-outline-24   |  <IconCricketFillOutline24 />  |
+| cricket-outline-24        |    <IconCricketOutline24 />    |
+| football-fill-24          |     <IconFootballFill24 />     |
+| football-outline-24       |   <IconFootballOutline24 />    |
+| hockey-fill-24            |      <IconHockeyFill24 />      |
+| hockey-outline-24         |    <IconHockeyOutline24 />     |
+| valentines-day-fill-24    |  <IconValentinesDayFill24 />   |
+| valentines-day-outline-24 | <IconValentinesDayOutline24 /> |

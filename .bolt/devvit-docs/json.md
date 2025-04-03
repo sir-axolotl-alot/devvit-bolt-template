@@ -186,5 +186,7 @@ const original = new Box(0, 0, 1, 1);
 const json = JSON.stringify(original);
 console.log(`BoxJSON: ${json}`);
 const revived = Box.fromJSON(JSON.parse(json));
-console.log(`Revived Box: ${revived instanceof Box}; as vec: ${revived.toXY()}`);
+console.log(
+  `Revived Box: ${revived instanceof Box}; as vec: ${revived.toXY()}`
+);
 ```

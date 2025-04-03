@@ -137,7 +137,8 @@ Devvit.addSettings([
       {
         type: 'boolean',
         name: 'group-bool-input',
-        label: 'Group: Use the switch to determine if some setting should be enabled:',
+        label:
+          'Group: Use the switch to determine if some setting should be enabled:',
       },
     ],
   },

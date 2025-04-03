@@ -164,12 +164,13 @@ Otherwise, messages sent to the app-account or moderator will automatically be r
 **`Example`**
 
 ```ts
-const { conversation, messages, modActions } = await reddit.modMail.createConversation({
-  subredditName: 'askReddit',
-  subject: 'Test conversation',
-  body: 'Lorem ipsum sit amet',
-  to: null,
-});
+const { conversation, messages, modActions } =
+  await reddit.modMail.createConversation({
+    subredditName: 'askReddit',
+    subject: 'Test conversation',
+    body: 'Lorem ipsum sit amet',
+    to: null,
+  });
 ```
 
 ---
@@ -321,10 +322,11 @@ Returns all messages, mod actions and conversation metadata for a given conversa
 **`Example`**
 
 ```ts
-const { conversation, messages, modActions, user } = await reddit.modMail.getConversation({
-  conversationId: 'abcdef',
-  markRead: true,
-});
+const { conversation, messages, modActions, user } =
+  await reddit.modMail.getConversation({
+    conversationId: 'abcdef',
+    markRead: true,
+  });
 ```
 
 ---
@@ -474,7 +476,10 @@ Marks a conversation as read for the user.
 **`Example`**
 
 ```ts
-await reddit.modMail.muteConversation({ conversationId: 'abcdef', numHours: 72 });
+await reddit.modMail.muteConversation({
+  conversationId: 'abcdef',
+  numHours: 72,
+});
 ```
 
 ---
@@ -555,7 +560,10 @@ Temporary ban (switch from permanent to temporary ban) the non mod user associat
 **`Example`**
 
 ```ts
-await reddit.modMail.tempBanConversation({ conversationId: 'abcdef', duration: 42 });
+await reddit.modMail.tempBanConversation({
+  conversationId: 'abcdef',
+  duration: 42,
+});
 ```
 
 ---

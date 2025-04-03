@@ -51,7 +51,9 @@ Devvit.addCustomPostType({
         async () => {
           const response = await fetch('https://example.com');
           if (!response.ok) {
-            throw Error(`HTTP error ${response.status}: ${response.statusText}`);
+            throw Error(
+              `HTTP error ${response.status}: ${response.statusText}`
+            );
           }
           return await response.json();
         },

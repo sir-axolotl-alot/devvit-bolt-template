@@ -100,7 +100,9 @@ Devvit.addTrigger({
       conversationId: conversationId,
       markRead: false,
     });
-    console.log(`Received conversation with subject:   ${result.conversation?.subject}`);
+    console.log(
+      `Received conversation with subject:   ${result.conversation?.subject}`
+    );
 
     // Looking up the incoming message from trigger event
     // Example Message ID: ModmailMessage_2ch154
@@ -154,7 +156,9 @@ Devvit.addTrigger({
     if (event.isSpoiler) {
       console.log(`This is event ${JSON.stringify(event)} changed to spoiler`);
     } else {
-      console.log(`This is event ${JSON.stringify(event)} changed to non-spoiler`);
+      console.log(
+        `This is event ${JSON.stringify(event)} changed to non-spoiler`
+      );
     }
   },
 });
@@ -183,14 +187,18 @@ These triggers are invoked when automoderator filters a post or a comment into t
 Devvit.addTrigger({
   event: 'AutomoderatorFilterPost',
   onEvent: async (event) => {
-    console.log(`Received AutomoderatorFilterPost event:\n${JSON.stringify(event)}`);
+    console.log(
+      `Received AutomoderatorFilterPost event:\n${JSON.stringify(event)}`
+    );
   },
 });
 
 Devvit.addTrigger({
   event: 'AutomoderatorFilterComment',
   onEvent: async (event) => {
-    console.log(`Received AutomoderatorFilterComment event:\n${JSON.stringify(event)}`);
+    console.log(
+      `Received AutomoderatorFilterComment event:\n${JSON.stringify(event)}`
+    );
   },
 });
 ```

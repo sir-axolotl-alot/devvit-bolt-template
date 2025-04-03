@@ -11,14 +11,14 @@ Use the `navigateTo` function to redirect users to Reddit content or external we
 import { Devvit } from '@devvit/public-api';
 
 Devvit.addMenuItem({
-  label: 'Navigate to url',
-  location: 'subreddit',
-  onPress: async (_event, context) => {
-    // highlight-start
-    const url = 'https://www.reddit.com/r/movies/comments/tzxev3/';
-    context.ui.navigateTo(url);
-    // highlight-end
-  },
+label: 'Navigate to url',
+location: 'subreddit',
+onPress: async (\_event, context) => {
+// highlight-start
+const url = 'https://www.reddit.com/r/movies/comments/tzxev3/';
+context.ui.navigateTo(url);
+// highlight-end
+},
 });
 
 export default Devvit;
@@ -31,15 +31,15 @@ import { Devvit } from '@devvit/public-api';
 Devvit.configure({ redditAPI: true });
 
 Devvit.addMenuItem({
-  label: 'Navigate to subreddit',
-  location: 'subreddit',
-  onPress: async (_event, context) => {
-    // highlight-start
-    const subredditId = 't5_2qh1o';
-    const post = await context.reddit.getSubredditById(subredditId);
-    context.ui.navigateTo(post);
-    // highlight-end
-  },
+label: 'Navigate to subreddit',
+location: 'subreddit',
+onPress: async (\_event, context) => {
+// highlight-start
+const subredditId = 't5_2qh1o';
+const post = await context.reddit.getSubredditById(subredditId);
+context.ui.navigateTo(post);
+// highlight-end
+},
 });
 
 export default Devvit;
@@ -52,15 +52,15 @@ import { Devvit } from '@devvit/public-api';
 Devvit.configure({ redditAPI: true });
 
 Devvit.addMenuItem({
-  label: 'Navigate to post',
-  location: 'subreddit',
-  onPress: async (_event, context) => {
-    // highlight-start
-    const postId = 't3_tzxev3';
-    const post = await context.reddit.getPostById(postId);
-    context.ui.navigateTo(post);
-    // highlight-end
-  },
+label: 'Navigate to post',
+location: 'subreddit',
+onPress: async (\_event, context) => {
+// highlight-start
+const postId = 't3_tzxev3';
+const post = await context.reddit.getPostById(postId);
+context.ui.navigateTo(post);
+// highlight-end
+},
 });
 
 export default Devvit;
@@ -73,15 +73,15 @@ import { Devvit } from '@devvit/public-api';
 Devvit.configure({ redditAPI: true });
 
 Devvit.addMenuItem({
-  label: 'Navigate to comment',
-  location: 'subreddit',
-  onPress: async (_event, context) => {
-    // highlight-start
-    const commentId = 't1_i426ob1';
-    const comment = await context.reddit.getCommentById(commentId);
-    context.ui.navigateTo(comment);
-    // highlight-end
-  },
+label: 'Navigate to comment',
+location: 'subreddit',
+onPress: async (\_event, context) => {
+// highlight-start
+const commentId = 't1_i426ob1';
+const comment = await context.reddit.getCommentById(commentId);
+context.ui.navigateTo(comment);
+// highlight-end
+},
 });
 
 export default Devvit;
@@ -94,6 +94,7 @@ When linking to Reddit content, the `navigateTo` function requires the [app acco
 :::
 
 ## Interactive posts
+
 A button with an `onPress` handler that navigates to a post.
 
 ```tsx title="main.tsx"

@@ -96,7 +96,9 @@ async function fetchResponse(context: Devvit.Context): Promise<string> {
 
     const json = await res.json();
 
-    return json?.choices?.length > 0 ? json?.choices[0]?.message?.content : 'No response';
+    return json?.choices?.length > 0
+      ? json?.choices[0]?.message?.content
+      : 'No response';
   } catch (e: any) {
     console.log('Fetch error ', e);
     return e.toString();

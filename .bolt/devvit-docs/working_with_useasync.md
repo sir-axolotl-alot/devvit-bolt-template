@@ -27,7 +27,11 @@ const App = () => {
 
 ```tsx
 const App = () => {
-  const { data: message, loading, error } = useAsync(async () => await redis.get('welcomeMessage'));
+  const {
+    data: message,
+    loading,
+    error,
+  } = useAsync(async () => await redis.get('welcomeMessage'));
 
   return (
     <vstack>
