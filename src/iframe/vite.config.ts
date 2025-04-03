@@ -9,6 +9,7 @@ export default defineConfig({
   },
   build: {
     outDir: '../../webroot',
+    emptyOutDir: true,
     sourcemap: true,
     minify: false,
     chunkSizeWarningLimit: 1500,

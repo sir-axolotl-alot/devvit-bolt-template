@@ -5,20 +5,20 @@
   "license": "BSD-3-Clause",
   "type": "module",
   "scripts": {
-    "build": "npm run build:webroot --workspace=web-view-app",
+    "postinstall": "patch-package",
     "dev": "npm run build && npm run dev --workspace=web-view-app",
+    "build": "npm run type-check && npm run lint && cd src/iframe && vite build",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
-    "playtest": "node tools/playtest.mjs",
+    "playtest": "npm run build && devvit playtest huckleberrydevcorner4 --config devvit.dev.yaml",
     "prettier": "prettier-package-json --write ./package.json && prettier --write .",
-    "type-check": "tsc --build"
+    "type-check": "tsc --build",
+    "upload": "devvit upload --config devvit.dev.yaml"
   },
-  "workspaces": [
-    "web-view-app"
-  ],
   "dependencies": {
     "@devvit/payments": "^0.11.11",
     "@devvit/public-api": "0.11.11",
+    "devvit": "0.11.11",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -30,6 +30,7 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.18",
+    "patch-package": "8.0.0",
     "eslint": "9.23.0",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",

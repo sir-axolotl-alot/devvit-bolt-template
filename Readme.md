@@ -20,7 +20,7 @@ It's important to remember to update the `devvit-bolt.config.json` to connect to
 /// devvit-bolt.config.json
 {
   "useMockedResponses": false, // <-- Set this to false, before testing on Reddit
-  "testSubreddt": "r/my_test_subreddit"
+  "testSubreddit": "r/my_test_subreddit"
 }
 ```
 
