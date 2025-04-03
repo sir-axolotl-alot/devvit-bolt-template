@@ -53,7 +53,12 @@ Z stack dimensions are valid because it satisfies the following rules:
 **Invalid dimensions**
 
 ```tsx
-<vstack backgroundColor="yellow" width="300px" height="300px" alignment="start top">
+<vstack
+  backgroundColor="yellow"
+  width="300px"
+  height="300px"
+  alignment="start top"
+>
   <hstack backgroundColor="red">
     <zstack height="100%" width="100%" backgroundColor="green" />
   </hstack>

@@ -130,12 +130,16 @@ async function stringsExample(context: Devvit.Context) {
   await context.redis.set('word', 'tacocat');
 
   // Use getRange() to get the letters in 'word' between index 0 to 3, inclusive
-  console.log('Range from index 0 to 3: ' + (await context.redis.getRange('word', 0, 3)));
+  console.log(
+    'Range from index 0 to 3: ' + (await context.redis.getRange('word', 0, 3))
+  );
 
   // Use setRange() to insert 'blue' at index 0
   await context.redis.setRange('word', 0, 'blue');
 
-  console.log('Word after using setRange(): ' + (await context.redis.get('word')));
+  console.log(
+    'Word after using setRange(): ' + (await context.redis.get('word'))
+  );
 
   // Use strLen() to verify the word length
   console.log('Word length: ' + (await context.redis.strLen('word')));
@@ -220,7 +224,14 @@ async function hashExample2(context: Devvit.Context) {
   const record = await context.redis.hGetAll('groceryList');
 
   if (record != undefined) {
-    console.log('Eggs: ' + record.eggs + ', Apples: ' + record.apples + ', Milk: ' + record.milk);
+    console.log(
+      'Eggs: ' +
+        record.eggs +
+        ', Apples: ' +
+        record.apples +
+        ', Milk: ' +
+        record.milk
+    );
   }
 }
 ```
@@ -289,7 +300,9 @@ async function hashExample5(context: Devvit.Context) {
   await context.redis.hSet('user123', { karma: '100' });
 
   // Increase user123's karma by 5
-  console.log('Updated karma: ' + (await context.redis.hIncrBy('user123', 'karma', 5)));
+  console.log(
+    'Updated karma: ' + (await context.redis.hIncrBy('user123', 'karma', 5))
+  );
 }
 ```
 
@@ -333,7 +346,9 @@ Number of fields: 4
 async function numbersExample(context: Devvit.Context) {
   await context.redis.set('totalPoints', '53');
 
-  console.log('Updated points: ' + (await context.redis.incrBy('totalPoints', 100)));
+  console.log(
+    'Updated points: ' + (await context.redis.incrBy('totalPoints', 100))
+  );
 }
 ```
 
@@ -364,7 +379,9 @@ async function keyExpirationExample(context: Devvit.Context) {
   await context.redis.expire('product', 60);
 
   // Get the updated expireTime for the product
-  console.log('Updated expire time: ' + (await context.redis.expireTime('product')));
+  console.log(
+    'Updated expire time: ' + (await context.redis.expireTime('product'))
+  );
 }
 ```
 
@@ -513,7 +530,9 @@ async function sortedSetExample1(context: Devvit.Context) {
   console.log('Cardinality: ' + (await context.redis.zCard('leaderboard')));
 
   // View elements with scores between 0 and 30 inclusive, sorted by score
-  let scores = await context.redis.zRange('leaderboard', 0, 30, { by: 'score' });
+  let scores = await context.redis.zRange('leaderboard', 0, 30, {
+    by: 'score',
+  });
   console.log('Scores: ' + JSON.stringify(scores));
 
   // Remove 'fernando' from the leaderboard
@@ -524,7 +543,9 @@ async function sortedSetExample1(context: Devvit.Context) {
   console.log('Updated scores: ' + JSON.stringify(scores));
 
   // View caesar's score
-  console.log("Caesar's score: " + (await context.redis.zScore('leaderboard', 'caesar')));
+  console.log(
+    "Caesar's score: " + (await context.redis.zScore('leaderboard', 'caesar'))
+  );
 }
 ```
 
@@ -552,7 +573,9 @@ async function sortedSetExample2(context: Devvit.Context) {
 
   // View elements between the words 'alpha' and 'fox' inclusive, sorted lexicographically
   // Note that 'by: "lex"' only works if all elements have the same score
-  const members = await context.redis.zRange('checkpoints', 'alpha', 'fox', { by: 'lex' });
+  const members = await context.redis.zRange('checkpoints', 'alpha', 'fox', {
+    by: 'lex',
+  });
   console.log('Members: ' + JSON.stringify(members));
 }
 ```
@@ -607,14 +630,17 @@ async function sortedSetExample4(context: Devvit.Context) {
   console.log("Dog's rank: " + (await context.redis.zRank('animals', 'dog')));
 
   // View the rank of 'zebra'
-  console.log("Zebra's rank: " + (await context.redis.zRank('animals', 'zebra')));
+  console.log(
+    "Zebra's rank: " + (await context.redis.zRank('animals', 'zebra'))
+  );
 
   // Increase the score of 'dog' by 10
   await context.redis.zIncrBy('animals', 'dog', 10);
 
   // View the rank of 'dog' again. This time it should be '3' because dog has the highest score.
   console.log(
-    "Dog's rank after incrementing score: " + (await context.redis.zRank('animals', 'dog'))
+    "Dog's rank after incrementing score: " +
+      (await context.redis.zRank('animals', 'dog'))
   );
 }
 ```
@@ -725,10 +751,21 @@ zScanResponse: {"cursor":0,"members":[{"score":10,"member":"kiwi"},{"score":20,"
 
 ```tsx
 async function bitfieldExample(context: Devvit.Context) {
-  const setBits: number[] = await context.redis.bitfield('foo', 'set', 'i5', '#0', 11);
+  const setBits: number[] = await context.redis.bitfield(
+    'foo',
+    'set',
+    'i5',
+    '#0',
+    11
+  );
   console.log('Set result: ' + setBits); // [0]
 
-  const getBits: number[] = await context.redis.bitfield('foo', 'get', 'i5', '#0');
+  const getBits: number[] = await context.redis.bitfield(
+    'foo',
+    'get',
+    'i5',
+    '#0'
+  );
   console.log('Get result: ' + setBits); // [11]
 
   const manyOperations: number[] = await context.redis.bitfield(

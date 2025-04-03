@@ -94,7 +94,12 @@ The gap is automatically subtracted from the available space children can occupy
 Align content to the top left corner
 
 ```tsx
-<zstack width="100px" height="100px" backgroundColor="#000000" alignment="top start">
+<zstack
+  width="100px"
+  height="100px"
+  backgroundColor="#000000"
+  alignment="top start"
+>
   <hstack width="33%" height="33%" backgroundColor="#ff4500" />
 </zstack>
 ```
@@ -102,7 +107,12 @@ Align content to the top left corner
 Align content to the bottom right corner
 
 ```tsx
-<zstack width="100px" height="100px" backgroundColor="#000000" alignment="bottom end">
+<zstack
+  width="100px"
+  height="100px"
+  backgroundColor="#000000"
+  alignment="bottom end"
+>
   <hstack width="33%" height="33%" backgroundColor="#ff4500" />
 </zstack>
 ```
@@ -248,7 +258,12 @@ An `<hstack>`. Open in [Play](https://developers.reddit.com/play#pen/N4Igdghgtgp
 
 ```tsx
 <blocks>
-  <hstack alignment="center middle" gap="medium" padding="medium" backgroundColor="gray">
+  <hstack
+    alignment="center middle"
+    gap="medium"
+    padding="medium"
+    backgroundColor="gray"
+  >
     <text size="large" weight="bold">
       Example Title
     </text>
@@ -285,11 +300,22 @@ A `<zstack>` example. Open in [Play](https://developers.reddit.com/play#pen/N4Ig
 
 ```tsx
 <blocks>
-  <zstack alignment="center middle" width="300px" height="200px" backgroundColor="#78909C">
+  <zstack
+    alignment="center middle"
+    width="300px"
+    height="200px"
+    backgroundColor="#78909C"
+  >
     <text size="xxlarge" weight="bold" color="white" style="heading">
       BIG TEXT
     </text>
-    <text size="xsmall" weight="regular" color="white" style="body" alignment="bottom center">
+    <text
+      size="xsmall"
+      weight="regular"
+      color="white"
+      style="body"
+      alignment="bottom center"
+    >
       On top of small text
     </text>
   </zstack>

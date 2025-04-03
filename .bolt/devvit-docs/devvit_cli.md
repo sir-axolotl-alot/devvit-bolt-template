@@ -41,7 +41,11 @@ Devvit.addCustomPostType({
   render: (_context) => {
     return (
       <blocks>
-        <image url={Icons['my-image.svg']} imageHeight="32px" imageWidth="32px" />
+        <image
+          url={Icons['my-image.svg']}
+          imageHeight="32px"
+          imageWidth="32px"
+        />
       </blocks>
     );
   },

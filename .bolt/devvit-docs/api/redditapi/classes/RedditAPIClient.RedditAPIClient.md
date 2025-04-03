@@ -1696,7 +1696,9 @@ Gets a [Vault](../modules/models.md#vault) for the specified address.
 **`Example`**
 
 ```ts
-const vault = await reddit.getVaultByAddress('0x205ee28744456bDBf180A0Fa7De51e0F116d54Ed');
+const vault = await reddit.getVaultByAddress(
+  '0x205ee28744456bDBf180A0Fa7De51e0F116d54Ed'
+);
 ```
 
 ---
@@ -2290,7 +2292,9 @@ const post = await reddit.submitPost({
     .heading({ level: 1 }, (h) => {
       h.rawText('Hello world');
     })
-    .codeBlock({}, (cb) => cb.rawText('This post was created via the Devvit API'))
+    .codeBlock({}, (cb) =>
+      cb.rawText('This post was created via the Devvit API')
+    )
     .build(),
 });
 ```

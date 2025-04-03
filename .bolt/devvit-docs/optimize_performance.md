@@ -117,9 +117,11 @@ const { data: weather, loading: weatherLoading } = useAsync(async () => {
   return await getTheWeather(context);
 });
 
-const { data: leaderboardStats, loading: leaderboardStatsLoading } = useAsync(async () => {
-  return await getLeaderboard(context);
-});
+const { data: leaderboardStats, loading: leaderboardStatsLoading } = useAsync(
+  async () => {
+    return await getLeaderboard(context);
+  }
+);
 ```
 
 #### useState
@@ -287,7 +289,10 @@ This is the updated game completion code:
 // stays as is
 await context.redis.zAdd('leaderboard', { member: username, score: gameScore });
 // new code
-context.realtime.send('leaderboard_updates', { member: username, score: gameScore });
+context.realtime.send('leaderboard_updates', {
+  member: username,
+  score: gameScore,
+});
 ```
 
 Now replace the interval with the realtime subscription:
@@ -342,9 +347,12 @@ To do this, you can add:
 ```tsx
 const [subscriberCount] = useState<number>(async () => {
   const startSubscribersRequest = Date.now(); // a reference point for the request start
-  const devvitSubredditInfo = await context.reddit.getSubredditInfoByName('devvit');
+  const devvitSubredditInfo =
+    await context.reddit.getSubredditInfoByName('devvit');
 
-  console.log(`subscribers request took: ${Date.now() - startSubscribersRequest} milliseconds`);
+  console.log(
+    `subscribers request took: ${Date.now() - startSubscribersRequest} milliseconds`
+  );
 
   return devvitSubredditInfo.subscribersCount || 0;
 });
@@ -359,7 +367,9 @@ const [performanceStartRender] = useState(Date.now()); // a reference point for 
 Add a console.log before the return statement:
 
 ```tsx
-console.log(`Getting the data took: ${Date.now() - performanceStartRender} milliseconds`);
+console.log(
+  `Getting the data took: ${Date.now() - performanceStartRender} milliseconds`
+);
 ```
 
 All of that put together will look like this:

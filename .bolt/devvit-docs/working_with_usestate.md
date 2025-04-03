@@ -106,7 +106,12 @@ const HomePage: Devvit.BlockComponent<Props> = ({ navigate }) => {
 
   //UI blocks comprising a page
   return (
-    <vstack padding="medium" gap="medium" alignment="top center" cornerRadius="medium">
+    <vstack
+      padding="medium"
+      gap="medium"
+      alignment="top center"
+      cornerRadius="medium"
+    >
       <text size="xxlarge" weight="bold" grow>
         {'This app will teach you how to count!'}
       </text>
@@ -120,7 +125,10 @@ const HomePage: Devvit.BlockComponent<Props> = ({ navigate }) => {
 };
 
 //'CountPage'component
-const CountPage: Devvit.BlockComponent<Props> = ({ navigate, setCount, count }, { redis }) => {
+const CountPage: Devvit.BlockComponent<Props> = (
+  { navigate, setCount, count },
+  { redis }
+) => {
   const incrementCount: Devvit.Blocks.OnPressEventHandler = () => {
     setCount((count) => count + 1);
     // note: to preserve the value of 'count' longerterm
@@ -129,7 +137,12 @@ const CountPage: Devvit.BlockComponent<Props> = ({ navigate, setCount, count }, 
   };
 
   return (
-    <vstack padding="medium" gap="medium" alignment="top center" cornerRadius="medium">
+    <vstack
+      padding="medium"
+      gap="medium"
+      alignment="top center"
+      cornerRadius="medium"
+    >
       <text size="xxlarge" weight="bold" grow>
         {'Press the button to add +1'}
       </text>
