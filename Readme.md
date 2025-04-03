@@ -33,8 +33,17 @@ Alternatively, you can use the command `npm run playtest` instead of `devvit pla
 
 
 The usual workflow for testing the application after downloading the Bolt project is:
+
 1- Update `devvit-bolt.config.json` with your test subreddit
+
+
 2- Update `devvit.yaml` with your app name and version (you can always set version to 0.0.0 and let the CLI take care of the rest)
+
+
 3- Run `npm install`
+
+
 4- Run `devvit upload`
+
+
 5- Run `npm run playtest`
