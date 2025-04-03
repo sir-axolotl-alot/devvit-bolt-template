@@ -1,6 +1,6 @@
 # Devvit Bolt Template
 
-How to use this template:
+To use this template on Bolt.new, click here: https://bolt.new/github.com/sir-axolotl-alot/devvit-bolt-template
 
 ## Build your web view with mocked responses
 The template is prepared to help you build a Web View directly in Bolt's webcontainer.
