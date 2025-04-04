@@ -7210,9 +7210,9 @@ class DevvitClient {
   /**
    * Initialize the client and set up message listeners
    */
-  initialize(useMockedResponses2 = false) {
+  initialize(useMockedResponses = false) {
     if (this.initialized) return;
-    if (useMockedResponses2) {
+    if (useMockedResponses) {
       this.devvitMessageHandler = devvitMockedResponses;
       console.log("DevvitClient", "Using mocked responses");
     } else {
@@ -7267,10 +7267,6 @@ class DevvitClient {
   }
 }
 const devvitClient = new DevvitClient();
-const useMockedResponses = false;
-const boltConfig = {
-  useMockedResponses
-};
 function App() {
   const [instructions, setInstructions] = React.useState("");
   reactExports.useEffect(() => {
@@ -7293,10 +7289,10 @@ function App() {
       devvitClient.off("fetchPostDataResponse");
     };
   }, []);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "App", children: /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: instructions }) });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex h-full w-full flex-col items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: instructions }) });
 }
-devvitClient.initialize(boltConfig.useMockedResponses);
+devvitClient.initialize(false);
 clientExports.createRoot(document.getElementById("root")).render(
   /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.StrictMode, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) })
 );
-//# sourceMappingURL=index-ClYfrpMG.js.map
+//# sourceMappingURL=index-Czb5Vbdq.js.map

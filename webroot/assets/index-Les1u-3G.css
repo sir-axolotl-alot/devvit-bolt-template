@@ -499,6 +499,24 @@ video {
 [hidden]:where(:not([hidden="until-found"])) {
   display: none;
 }
+.flex {
+  display: flex;
+}
+.h-full {
+  height: 100%;
+}
+.w-full {
+  width: 100%;
+}
+.flex-col {
+  flex-direction: column;
+}
+.items-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
 
 body {
   overflow: hidden;

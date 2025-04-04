@@ -31,7 +31,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="flex h-full w-full flex-col items-center justify-center">
       <h1>{instructions}</h1>
     </div>
   );
