@@ -18,7 +18,7 @@ const main = async function () {
   writeFileSync(configPath, JSON.stringify(config, null, 2));
   console.log('Running playtest with useMockedResponses set to false');
 
-  execSync('npm run type-check', {
+  execSync('npm run build:webview', {
     stdio: 'inherit',
   });
 

@@ -7267,7 +7267,7 @@ class DevvitClient {
   }
 }
 const devvitClient = new DevvitClient();
-const useMockedResponses = true;
+const useMockedResponses = false;
 const boltConfig = {
   useMockedResponses
 };
@@ -7299,4 +7299,4 @@ devvitClient.initialize(boltConfig.useMockedResponses);
 clientExports.createRoot(document.getElementById("root")).render(
   /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.StrictMode, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) })
 );
-//# sourceMappingURL=index-DmpyMiP2.js.map
+//# sourceMappingURL=index-ClYfrpMG.js.map
